@@ -55,51 +55,54 @@ function ExtraContent({ changeCallback, currenttime, originEndtime }) {
 
     return (
         <div className='extra-content'>
-            <Space>
-                <span className='time-tips'>自最后检出前：</span>
-                <Radio.Group
-                    defaultValue={activeKey}
-                    value={activeKey}
-                    onChange={e => {
-                        const endtime = moment(originEndtime * 1000)
-                            .endOf('day')
-                            .unix()
-                        const starttime = moment(endtime * 1000)
-                            .subtract(Number(e.target.value), 'day')
-                            .startOf('day')
-                            .unix()
-                        changeCallback([starttime, endtime])
-                    }}
-                >
-                    {tabList.map(tabItem => {
-                        const { tab, key } = tabItem
-                        return (
-                            <Radio.Button value={key} key={key}>
-                                {tab}
-                            </Radio.Button>
-                        )
-                    })}
-                </Radio.Group>
-                {currenttime.length && (
-                    <DateTimeRangePicker
-                        result={lastTime}
-                        openChange={times => {
-                            const [starttime, endtime] = times
-                            changeCallback([
-                                moment(starttime * 1000)
-                                    .startOf('day')
-                                    .unix(),
-                                moment(endtime * 1000)
-                                    .endOf('day')
-                                    .unix(),
-                            ])
+            <Space size='large'>
+                <div>
+                    <span className='time-tips'>自最后检出前：</span>
+                    <Radio.Group
+                        defaultValue={activeKey}
+                        value={activeKey}
+                        onChange={e => {
+                            const endtime = moment(originEndtime * 1000)
+                                .endOf('day')
+                                .unix()
+                            const starttime = moment(endtime * 1000)
+                                .subtract(Number(e.target.value), 'day')
+                                .startOf('day')
+                                .unix()
+                            changeCallback([starttime, endtime])
                         }}
-                        value={currenttime}
-                        initFormat='YYYY-MM-DD'
-                        ranges={false}
-                        showTime={false}
-                    />
-                )}
+                        style={{ marginRight: '10px' }}
+                    >
+                        {tabList.map(tabItem => {
+                            const { tab, key } = tabItem
+                            return (
+                                <Radio.Button value={key} key={key}>
+                                    {tab}
+                                </Radio.Button>
+                            )
+                        })}
+                    </Radio.Group>
+                    {currenttime.length && (
+                        <DateTimeRangePicker
+                            result={lastTime}
+                            openChange={times => {
+                                const [starttime, endtime] = times
+                                changeCallback([
+                                    moment(starttime * 1000)
+                                        .startOf('day')
+                                        .unix(),
+                                    moment(endtime * 1000)
+                                        .endOf('day')
+                                        .unix(),
+                                ])
+                            }}
+                            value={currenttime}
+                            initFormat='YYYY-MM-DD'
+                            ranges={false}
+                            showTime={false}
+                        />
+                    )}
+                </div>
                 <div className='analysis-title'>特征分析</div>
             </Space>
         </div>
