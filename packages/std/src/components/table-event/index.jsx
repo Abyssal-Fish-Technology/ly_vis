@@ -155,6 +155,7 @@ function EventTable({ data, isFormat = false, resultParams = false }) {
                 dataIndex: 'show_proc_status',
                 fixed: 'right',
                 width: 'auto',
+                sorter: valueSort('sort_proc_status'),
                 render: (d, row) => {
                     const obj = {
                         unprocessed: '激活',

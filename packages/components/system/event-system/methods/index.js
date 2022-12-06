@@ -33,13 +33,19 @@ export function translateEventLevel(level, sort = false) {
  * @param {*} process
  * @returns {String} 未处理 | 已处理 | 已确认
  */
-export function translateEventProcess(process) {
+export function translateEventProcess(process, sort = false) {
     const processObj = {
         unprocessed: '未处理',
         processed: '已处理',
         assigned: '已确认',
     }
-    return processObj[process] || process
+    const processSort = {
+        unprocessed: 0,
+        assigned: 1,
+        processed: 2,
+    }
+    const result = sort ? processSort[process] : processObj[process]
+    return result
 }
 
 /**

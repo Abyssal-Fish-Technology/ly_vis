@@ -149,6 +149,7 @@ export function formatEventData(eventArr = []) {
             show_type: translateEventType(d.type),
             show_is_alive: translateEventActive(d.is_alive),
             show_proc_status: translateEventProcess(d.proc_status),
+            sort_proc_status: translateEventProcess(d.proc_status, true),
             show_level: translateEventLevel(d.level),
             show_starttime: formatTimestamp(d.starttime, 'min'),
             show_endtime: formatTimestamp(d.endtime, 'min'),
