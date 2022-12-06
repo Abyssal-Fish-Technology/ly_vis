@@ -10,10 +10,10 @@
         .app-content {
             background: var(--bg-body);
             min-height: calc(100vh - @firstNavHeight - @secondNavHeight);
-            padding: 20px;
             margin-top: calc(@firstNavHeight + @secondNavHeight);
             .app-content-container {
                 position: relative;
+                padding: 20px;
                 .ka-wrapper,
                 .ka-content {
                     min-height: 100%;
@@ -36,6 +36,9 @@
                     max-width: 50%;
                 }
             }
+        }
+        .ant-layout-header {
+            padding: 0;
         }
     }
 }

@@ -127,8 +127,8 @@ const Toptoolbox = ({
         const calcFixed = () => {
             const bodyWidth = document.body.clientWidth
 
-            if (bodyWidth >= 2000) {
-                setFixedRight((bodyWidth - 2000) / 2)
+            if (bodyWidth >= 1440) {
+                setFixedRight((bodyWidth - 1440) / 2)
             } else {
                 setFixedRight(0)
             }

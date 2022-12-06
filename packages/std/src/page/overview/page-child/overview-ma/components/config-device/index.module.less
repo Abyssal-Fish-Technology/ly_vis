@@ -81,13 +81,18 @@
                 justify-content: space-around;
             }
             .device-item {
-                width: 250px;
+                width: 230px;
                 padding: 10px;
                 display: flex;
                 justify-content: space-around;
                 color: var(--text-white);
                 border-radius: 10px;
                 background-color: rgba(var(--color-rgb-blue), 0.9);
+                margin-bottom: 10px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
                 position: relative;
                 &.unnormal {
                     background-color: rgba(var(--color-rgb-red), 0.9);
@@ -118,7 +123,7 @@
                     flex-direction: column;
                     justify-content: center;
                     text-align: center;
-                    width: 30%;
+                    width: 35%;
                     .anticon {
                         font-size: 50px;
                         margin-bottom: 10px;
@@ -129,7 +134,7 @@
                     flex-direction: column;
                     justify-content: space-around;
                     flex: 1;
-                    padding: 0 20px;
+                    padding: 0 10px;
                     .device-item-info-item {
                         white-space: nowrap;
                         justify-content: space-between;

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { observer, Provider } from 'mobx-react'
 import { Tabs } from 'antd'
 import { useLocation } from 'react-router-dom'
@@ -70,6 +70,25 @@ function ResultPage() {
         ]
     }, [])
 
+    const [fixedLeft, setFixedLeft] = useState(20)
+
+    useEffect(() => {
+        const calcFixed = () => {
+            const bodyWidth = document.body.clientWidth
+
+            if (bodyWidth >= 1440) {
+                setFixedLeft((bodyWidth - 1440) / 2)
+            } else {
+                setFixedLeft(20)
+            }
+        }
+        calcFixed()
+        window.addEventListener('resize', calcFixed, false)
+        return () => {
+            window.removeEventListener('resize', calcFixed)
+        }
+    }, [])
+
     return (
         <div className={style.result}>
             <Provider resultStore={resultStore}>
@@ -93,7 +112,7 @@ function ResultPage() {
                             }}
                             tabBarStyle={{
                                 position: 'fixed',
-                                left: '20px',
+                                left: `${fixedLeft}px`,
                                 top: '228px',
                             }}
                         >
