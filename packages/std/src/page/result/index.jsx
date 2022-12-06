@@ -77,7 +77,7 @@ function ResultPage() {
             const bodyWidth = document.body.clientWidth
 
             if (bodyWidth >= 1440) {
-                setFixedLeft((bodyWidth - 1440) / 2)
+                setFixedLeft((bodyWidth - 1440) / 2 + 20)
             } else {
                 setFixedLeft(20)
             }
