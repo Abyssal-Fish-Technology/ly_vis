@@ -1,0 +1,78 @@
+:root {
+    /* 定义颜色 */
+    --color-black: #3a3a74;
+    --color-white-1: rgb(255, 255, 255);
+    --color-rgb-white-1: 255, 255, 255;
+    --color-white-2: rgb(246, 247, 251);
+    --color-rgb-white-2: 246, 247, 251;
+    --color-gray: rgb(132, 133, 159);
+    --color-rgb-gray: 132, 133, 159;
+    --color-lightgray: rgb(219, 223, 241);
+    --color-rgb-lightgray: 219, 223, 241;
+    --color-purple: rgb(134, 118, 255);
+    --color-rgb-purple: 134, 118, 255;
+    --color-green: #44e140;
+    --color-rgb-green: 68, 225, 64;
+    --color-orange: #ffa63f;
+    --color-rgb-orange: 255, 166, 63;
+    --color-yellow: #feca4f;
+    --color-blue: rgb(34, 81, 247);
+    --color-blue-opacity: #d4defd;
+    --color-rgb-blue: 34, 81, 247;
+    --color-lightblue: rgb(0, 162, 255);
+    --color-red: rgb(255, 45, 46);
+    --color-rgb-red: 255, 45, 46;
+
+    /* 场景颜色 */
+    --color-disabled: rgba(var(--text-color), 0.3); /* 白色的 .3 */
+
+    /* 定义场景 */
+
+    /* 背景 */
+
+    /* 场景背景 */
+    --bg-default: var(--color-white-1);
+    --bg-default-rgb: 255, 255, 255;
+    --bg-body: var(--color-white-2);
+    --bg-desc: var(--color-gray);
+    --bg-white: var(--color-white-1);
+    --bg-hover: var(--color-lightgray);
+    --bg-selected: var(--color-lightgray);
+    --bg-active: var(--color-blue);
+    --bg-disabled: var(--color-lightgray);
+
+    /* 文字 */
+    --text-color: 0, 0, 0;
+    --text-title: rgba(var(--text-color), 0.8);
+    --text-main: rgba(var(--text-color), 0.75);
+    --text-disabled: var(--color-disabled);
+    --text-desc: var(--color-gray);
+    --text-link: var(--color-blue);
+    --text-active: var(--color-blue);
+    --text-hover: var(--color-blue);
+    --text-blue: var(--color-blue);
+    --text-red: var(--color-red);
+    --text-white: var(--color-white-1);
+    --text-reverse: var(--color-white-1);
+    --text-orange: var(--color-orange);
+    --shadow-color: 0, 0, 0;
+
+    /* --shadow-1-down: 0 1px 2px -2px rgba(var(--shadow-color), 0.12), 0 3px 6px 0 rgba(var(--shadow-color), 0.1), 0 5px 12px 4px rgba(var(--shadow-color), 0.09); */
+    --shadow-1-down: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+    --shadow-2-down: 0 3px 6px -4px rgba(var(--shadow-color), 0.12), 0 6px 16px 0 rgba(var(--shadow-color), 0.08), 0 9px 28px 8px rgba(var(--shadow-color), 0.05);
+    --shadow-3-down: 0 6px 16px -8px rgba(var(--shadow-color), 0.08), 0 9px 28px 0 rgba(var(--shadow-color), 0.05), 0 12px 48px 16px rgba(var(--shadow-color), 0.02);
+    --shadow-1-inset: inset 0 0 4px 4px rgba(29, 35, 41, 0.05);
+    --shadow-filter-down: 2px 5px 8px 0 rgba(29, 35, 41, 0.05);
+
+    /* 边框 */
+    --border-blue: var(--color-blue);
+    --border-red: var(--color-red);
+
+    /* 场景边框 */
+    --border-body: var(--color-white-2);
+    --border-default: var(--color-lightgray);
+    --border-default-weight: rgba(var(--color-rgb-gray), 0.5);
+    --border-active: var(--color-blue);
+    --border-hover: var(--color-blue);
+    --border-disabled: var(--color-disabled);
+}

@@ -1,0 +1,24 @@
+
+// chart的样式
+.chart-container {
+    width: 100%;
+    height: 100%;
+    font-size: 9px;
+    //保证tooltips在图内，不会被遮挡
+    & > div {
+        position: absolute !important;
+    }
+}
+.chart-withpage {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .chart-container {
+        flex: 1;
+    }
+    .chart-page {
+        height: 30px;
+        text-align: right;
+    }
+}

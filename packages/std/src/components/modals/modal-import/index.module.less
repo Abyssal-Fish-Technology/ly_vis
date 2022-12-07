@@ -1,0 +1,29 @@
+.fileModal {
+    :global {
+        .fileuploader-error {
+            color: var(--text-red);
+            margin: 10px 0;
+            .error-info {
+                background-color: var(--bg-default);
+                color: var(--text-main);
+            }
+        }
+        .fileuploader-container {
+            max-height: 100px;
+            overflow: scroll;
+        }
+        .ant-upload-drag {
+            height: 200px;
+            background-color: var(--bg-default);
+            border-color: var(--border-default);
+            .ant-upload-drag-container {
+                & > p {
+                    color: var(--text-main);
+                }
+            }
+        }
+        .ant-modal-footer {
+            border-color: var(--border-default);
+        }
+    }
+}

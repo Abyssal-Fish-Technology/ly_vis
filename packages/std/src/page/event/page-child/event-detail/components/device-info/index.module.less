@@ -1,0 +1,74 @@
+.device-info {
+    :global {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        flex-direction: row;
+    }
+}
+.info-module {
+    :global {
+        position: relative;
+        width: 49%;
+        padding-top: 0;
+        padding-bottom: 30px;
+        background-color: var(--bg-default);
+        border-radius: 10px;
+        box-shadow: var(--shadow-1-down);
+        min-height: 200px;
+        .info-module-title {
+            line-height: 35px;
+            text-align: center;
+            border-bottom: solid 1px var(--border-default);
+            .info-module-title-icon {
+                font-size: 22px;
+                margin-right: 10px;
+                vertical-align: top;
+            }
+            .info-module-title-text {
+                display: inline-block;
+                font-weight: bold;
+                font-size: 16px;
+                .anticon {
+                    margin-left: 10px;
+                }
+            }
+        }
+        .info-module-content {
+            padding: 10px 10px 0 10px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            flex-direction: row;
+            .info-module-content-item {
+                &:first-child {
+                    margin-right: 15px;
+                }
+
+                flex: 1;
+                min-width: 200px;
+                .ant-descriptions-item {
+                    padding-bottom: 5px;
+                }
+                .ant-descriptions-item-label,
+                .ant-descriptions-item-content {
+                    line-height: 22px;
+                }
+            }
+            .location-icon {
+                color: var(--text-blue);
+                cursor: pointer;
+                margin-left: 10px;
+            }
+        }
+        .info-module-footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            line-height: 30px;
+            text-align: right;
+            padding-right: 20px;
+            color: var(--text-hover);
+        }
+    }
+}

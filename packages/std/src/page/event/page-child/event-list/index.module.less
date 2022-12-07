@@ -1,0 +1,21 @@
+.event-list {
+    :global {
+        .event-list-chart {
+            display: grid;
+            grid-template-columns: repeat(3, calc((100% - 40px) / 3));
+            grid-template-rows: 260px;
+            grid-column-gap: 20px;
+            .event-list-chart-item {
+                display: flex;
+                flex-direction: column;
+                .event-list-chart-title {
+                    text-align: center;
+                    font-weight: bolder;
+                }
+            }
+        }
+        .filter-form {
+            margin-bottom: 20px;
+        }
+    }
+}

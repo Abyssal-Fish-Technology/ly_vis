@@ -1,0 +1,57 @@
+.event {
+    :global {
+        .event-header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: var(--text-desc);
+            .anticon-alert {
+                color: var(--text-red);
+            }
+            .event-value {
+                font-size: 20px;
+                margin: 0 4px;
+                color: var(--text-main);
+            }
+            .event-count {
+                .anticon {
+                    color: var(--text-red);
+                }
+            }
+            .event-classic {
+                display: flex;
+                align-items: center;
+                .event-detail {
+                    display: flex;
+                    flex-direction: column;
+                    text-align: right;
+                }
+                .event-icon {
+                    .anticon {
+                        font-size: 24px;
+                        margin-right: 20px;
+                    }
+                }
+            }
+            .event-legend {
+                .type-item {
+                    display: flex;
+                    align-items: center;
+                }
+                .type-legend {
+                    height: 8px;
+                    width: 16px;
+                    border-radius: 2px;
+                    margin-right: 4px;
+                }
+            }
+        }
+        .event-content {
+            margin-top: 20px;
+            .event-cotent-title {
+                text-align: center;
+                font-weight: bolder;
+            }
+        }
+    }
+}

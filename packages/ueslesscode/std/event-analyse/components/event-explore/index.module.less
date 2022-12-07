@@ -1,0 +1,94 @@
+.analyseChart {
+    :global {
+        position: relative;
+        .toolbox {
+            display: flex;
+        }
+        .chart-cotent {
+            .links,
+            .nodes {
+                transform-origin: center;
+            }
+
+            background-color: var(--bg-default);
+            width: 100%;
+            height: calc(100% - 32px);
+            .nodeItem {
+                cursor: pointer;
+                font-size: 9px;
+                .bg {
+                    fill-opacity: 1 !important;
+                    fill: var(--bg-body) !important;
+                }
+                .label-name {
+                    fill: var(--text-main);
+                    &.shadow {
+                        stroke: var(--bg-default);
+                        stroke-width: 2px;
+                        stroke-opacity: 0.8;
+                        pointer-events: none;
+                    }
+                }
+                .label-text {
+                    dominant-baseline: middle;
+                    text-anchor: middle;
+                }
+                .label-expand {
+                    fill: var(--text-main);
+                    text-anchor: middle;
+                    dominant-baseline: middle;
+                }
+                .nodePie {
+                    path {
+                        fill-opacity: 0.2;
+                    }
+                }
+            }
+            .linkItem {
+                line {
+                    stroke: var(--text-desc);
+                    stroke-opacity: 0.4;
+                }
+                .edgepath {
+                    fill-opacity: 0;
+                    stroke-opacity: 0;
+                }
+                .edgelabel {
+                    pointer-events: none;
+                    font-size: 8px;
+                    fill: '#aaa';
+                    text-anchor: middle;
+                }
+            }
+        }
+        .zoom-control {
+            display: flex;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            height: 140px;
+            bottom: 0;
+            right: 0;
+            .anticon {
+                font-size: 14px;
+                color: var(--text-desc);
+                cursor: pointer;
+            }
+            .ant-slider-handle {
+                border-radius: 0;
+                height: 2px;
+            }
+        }
+        .context-menu {
+            .menu-item {
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .anticon {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

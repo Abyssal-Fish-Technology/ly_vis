@@ -1,0 +1,92 @@
+.feature-chart {
+    height: 200px;
+    :global {
+        svg {
+            .fill-blue {
+                fill: var(--text-blue);
+            }
+            .fill-red {
+                fill: var(--text-red);
+            }
+            .axis-label {
+                fill: var(--text-main);
+                text-anchor: middle;
+                font-size: 10px;
+                dominant-baseline: central;
+            }
+            .group {
+                rect {
+                    fill: none;
+                    stroke: var(--text-red);
+                    stroke-width: 2px;
+                    stroke-dasharray: 5;
+                    rx: 6;
+                    ry: 6;
+                }
+                text {
+                    text-anchor: middle;
+                }
+                .group-victim {
+                    rect {
+                        stroke: var(--text-blue);
+                    }
+                }
+            }
+            .device {
+                .device-item {
+                    text {
+                        dominant-baseline: central;
+                        font-size: 9px;
+                    }
+                    .device-sign {
+                        r: 4;
+                        fill-opacity: 0.3;
+                    }
+                }
+                .attack-device {
+                    fill: var(--text-red);
+                    .device-sign {
+                        stroke: var(--text-red);
+                    }
+                    text {
+                        text-anchor: end;
+                        transform: translate(-8px, 0);
+                    }
+                }
+                .victim-device {
+                    fill: var(--text-blue);
+                    .device-sign {
+                        stroke: var(--text-blue);
+                    }
+                    text {
+                        text-anchor: start;
+                        transform: translate(8px, 0);
+                    }
+                }
+            }
+            .traffic {
+                fill: none;
+                stroke-opacity: 0.5;
+                .attck-traffic {
+                    stroke: var(--text-red);
+                }
+                .victim-traffic {
+                    stroke: var(--text-blue);
+                }
+            }
+            .axis {
+                .domain {
+                    stroke: var(--color-lightgray);
+                }
+                .tick {
+                    line {
+                        stroke: var(--color-lightgray);
+                    }
+                    text {
+                        fill: var(--text-desc);
+                    }
+                }
+            }
+        }
+    }
+}

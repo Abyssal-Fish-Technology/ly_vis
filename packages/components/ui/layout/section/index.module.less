@@ -1,0 +1,36 @@
+.section {
+    :global {
+        padding: 20px;
+        padding-top: 0;
+        background-color: var(--bg-default);
+        border-radius: 10px;
+        box-shadow: var(--shadow-1-down);
+        display: flex;
+        flex-direction: column;
+        .app-section-header {
+            display: flex;
+            padding-top: 10px;
+            padding-bottom: 6px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            .app-section-title {
+                font-size: 14px;
+                font-weight: bold;
+                color: var(--text-title);
+                .app-section-title-subTitle {
+                    font-size: 13px;
+                    font-weight: normal;
+                }
+            }
+            .app-section-header-extra {
+                flex: none;
+                margin-left: auto;
+            }
+        }
+        .app-section-content {
+            flex: auto;
+        }
+        .ant-form-item { margin-bottom: 10px !important; }
+    }
+}

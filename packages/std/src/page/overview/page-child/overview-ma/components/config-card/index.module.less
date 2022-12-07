@@ -1,0 +1,44 @@
+.config-card {
+    :global {
+        display: flex;
+        justify-content: space-between;
+        .config-card-item {
+            flex-grow: 1;
+            padding: 10px 0;
+            margin-right: 20px;
+            height: 100px;
+            background: var(--bg-default);
+            display: flex;
+            border-radius: 6px;
+            box-shadow: var(--shadow-1-down);
+            &:nth-last-child(1) {
+                margin-right: 0;
+            }
+            .config-card-item-left {
+                text-align: center;
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                color: var(--text-main);
+                .anticon {
+                    font-size: 40px;
+                    color: var(--text-desc);
+                }
+            }
+            .config-card-value {
+                display: flex;
+                justify-content: space-around;
+                flex-direction: column;
+                color: var(--text-desc);
+                text-align: right;
+            }
+            .config-card-value-item-value {
+                font-size: 20px;
+                font-weight: bolder;
+                margin: 0 4px;
+                color: var(--text-main);
+            }
+        }
+    }
+}

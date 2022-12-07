@@ -1,0 +1,44 @@
+{
+    "name": "@shadowflow/std",
+    "version": "1.0.0",
+    "private": true,
+    "homepage": ".",
+    "dependencies": {
+        "@shadowflow/components": "^0.1.1",
+        "cross-env": "^7.0.3",
+        "css-vars-ponyfill": "^2.4.2",
+        "d3-voronoi-treemap": "^1.1.1",
+        "echarts": "^4.9.0",
+        "mutationobserver-shim": "^0.3.7",
+        "node-dijkstra": "^2.5.0",
+        "react-activation": "^0.9.4",
+        "react-transition-group": "^4.4.1",
+        "simplify-js": "^1.2.4"
+    },
+    "scripts": {
+        "start": "cross-env REACT_APP_ENV=dev react-app-rewired start",
+        "start:mock": " cross-env REACT_APP_ENV=mock react-app-rewired start",
+        "build": "react-app-rewired build",
+        "test": "react-app-rewired test",
+        "lint": "eslint \"src/**/*.+(js|jsx)\"",
+        "lint:fix": "eslint --fix \"src/**/*.+(js|jsx)\"",
+        "format": "prettier --write \"src/**/*.+(js|jsx|less|css)\"",
+        "style": "stylelint --fix \"src/**/*.+(css|less)\" --syntax less",
+        "commit": "git-cz",
+        "deploy": "node ./deploy.js",
+        "release": "standard-version",
+        "analyze": "source-map-explorer ./build/static/js/*"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}

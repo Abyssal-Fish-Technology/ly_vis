@@ -1,0 +1,130 @@
+.relation-chart {
+    :global {
+        background: var(--bg-default);
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        .graph-tool {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+            color: var(--text-desc);
+            .graph-tool-item {
+                cursor: pointer;
+                position: relative;
+                overflow: visible;
+                margin: 0 10px;
+                .anticon {
+                    font-size: 16px;
+                }
+                .graph-tool-item-fa {
+                    position: relative;
+                    overflow: hidden;
+                    height: 30px;
+                    .graph-tool-item-child .anticon {
+                        flex-direction: column;
+                        float: none;
+                        transition: all 0.3s;
+                        margin-top: 10px;
+                        opacity: 0;
+                        display: flex;
+                        &:nth-child(odd) {
+                            transform: translate3d(100%, 0, 0);
+                        }
+                        &:nth-child(even) {
+                            transform: translate3d(-100%, 0, 0);
+                        }
+                    }
+                    &:hover {
+                        overflow: visible;
+                        .graph-tool-item-child .anticon {
+                            opacity: 1;
+                            font-size: 16px;
+                            transform: translate3d(0, 0, 0);
+                        }
+                    }
+                }
+            }
+        }
+        .graph-content {
+            flex: 1;
+            position: relative;
+            svg {
+                text {
+                    fill: var(--text-main);
+                }
+                .selectNode {
+                    rect {
+                        stroke-width: 3px !important;
+                    }
+                }
+                .selectLink {
+                    opacity: 1 !important;
+                    path {
+                        stroke-width: 3px !important;
+                    }
+                }
+                .graph-node {
+                    cursor: grab;
+                }
+                .link {
+                    .path {
+                        stroke: var(--color-red);
+                        stroke-width: 1px;
+                        fill: none;
+                    }
+                    .arrowhead {
+                        fill: var(--color-red);
+                    }
+                }
+                .label {
+                    text {
+                        font-size: 12px;
+                        fill: var(--color-red);
+                    }
+                }
+                .victimDevice {
+                    .label-container {
+                        stroke: var(--color-blue);
+                        fill: rgba(var(--color-rgb-blue), 0.2);
+                        stroke-width: 1px;
+                    }
+                    .label {
+                        text {
+                            font-size: 12px;
+                            fill: var(--color-blue);
+                        }
+                    }
+                }
+                .attackDevice {
+                    .label-container {
+                        stroke: var(--color-red);
+                        fill: rgba(var(--color-rgb-red), 0.2);
+                        stroke-width: 1px;
+                    }
+                    .label {
+                        text {
+                            font-size: 12px;
+                            fill: var(--color-red);
+                        }
+                    }
+                }
+            }
+            .contextmenu {
+                position: absolute;
+                visibility: hidden;
+                .contextmenu-item {
+                    cursor: pointer;
+                }
+            }
+            .relation-tooltips {
+                position: absolute;
+                .tooltips-item {
+                    display: flex;
+                }
+            }
+        }
+    }
+}

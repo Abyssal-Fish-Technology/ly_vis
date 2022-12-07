@@ -1,0 +1,85 @@
+
+.event-type-modify-modal {
+    :global {
+        .modify-body {
+            user-select: none;
+            .modify-body-item {
+                .header {
+                    display: flex;
+                    justify-content: space-between;
+                    line-height: 30px;
+                    .title {
+                        font-weight: bolder;
+                    }
+                    .desc {
+                        color: var(--text-desc);
+                        font-style: italic;
+                    }
+                }
+                .body {
+                    min-height: 60px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: 10px;
+                    box-shadow: var(--shadow-1-inset);
+                    border-radius: 10px;
+                    background: var(--bg-body);
+                }
+
+                margin-bottom: 10px;
+                &:nth-last-child(1) {
+                    margin-bottom: 0;
+                }
+            }
+            .modify-show {
+                .body {
+                    // background: var(--bg-);
+                }
+            }
+            .modify-unshow {
+                .body {
+                    background: var(--bg-body);
+                }
+            }
+        }
+    }
+}
+.card-small-item {
+    :global {
+        display: grid;
+        grid-template-columns: 60px auto;
+        grid-template-rows: 40% 60%;
+        text-align: center;
+        white-space: nowrap;
+        align-items: center;
+        cursor: grab;
+        margin: 4px;
+        .card-small-icon {
+            height: 60px;
+            width: 60px;
+            background: var(--bg-default);
+            border-radius: 10px;
+            font-size: 38px;
+            line-height: 60px;
+            text-align: center;
+            color: var(--color-lightgray);
+            grid-row-start: 1;
+            grid-row-end: 3;
+            position: relative;
+            box-shadow: var(--shadow-1-down);
+        }
+        .card-small-name {
+            width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: table-cell;
+            vertical-align: middle;
+            color: var(--text-desc);
+            margin: 0 4px;
+        }
+        .ant-statistic {
+            min-width: 70px;
+            padding: 0 5px;
+        }
+    }
+}

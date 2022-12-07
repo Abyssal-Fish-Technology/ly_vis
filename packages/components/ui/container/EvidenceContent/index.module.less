@@ -1,0 +1,71 @@
+.evidence-modal-container {
+    :global {
+        overflow-y: scroll;
+        white-space: normal !important;
+        min-height: 150px;
+        .ant-descriptions-item-label {
+            white-space: nowrap;
+        }
+        .ant-descriptions-item-content {
+            min-width: 150px;
+        }
+        .description-content {
+            position: relative;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding: 10px 30px 10px 10px;
+            border-radius: 4px;
+            border: solid 1px var(--border-default);
+            background: var(--bg-body);
+            max-height: calc(50vh);
+            margin: 0 10px;
+            width: 100%;
+            &.http-content {
+                max-height: calc(40vh);
+            }
+            &.parse-before {
+                height: 80px;
+            }
+            .anticon-copy {
+                position: sticky;
+                top: 0;
+                float: right;
+                cursor: pointer;
+                color: var(--text-blue);
+                font-size: 14px;
+                margin-right: -20px;
+            }
+            .cap-item-label {
+                display: inline-block;
+                font-weight: bolder;
+                white-space: normal;
+                vertical-align: top;
+                margin-right: 3px;
+                word-break: break-all;
+            }
+            .header-p {
+                margin-bottom: 5px;
+            }
+            .cap-item-value {
+                margin-left: 8px;
+                word-break: break-all;
+            }
+            .payload-content {
+                padding-left: 16px;
+                .payload-content-item {
+                    display: grid;
+                    grid-column-gap: 3px;
+                    margin-bottom: 5px;
+                }
+                .payload-item-label {
+                    font-weight: 400;
+                    color: var(--text-desc);
+                    text-align: right;
+                }
+                .payload-item-value {
+                    word-break: break-all;
+                }
+            }
+        }
+    }
+}

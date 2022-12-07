@@ -1,0 +1,30 @@
+.chart {
+    :global {
+        .bg {
+            .bg-rect {
+                stroke: var(--border-default);
+                fill: var(--bg-default);
+            }
+            // .node-rect {
+            // fill: var(--bg-active);
+            // }
+            .arrow {
+                stroke: var(--color-red);
+                fill: none;
+            }
+            .track-links {
+                stroke: var(--text-active);
+                fill: none;
+                path {
+                    stroke-dasharray: 5;
+                }
+                circle {
+                    fill: #fff;
+                }
+            }
+        }
+        .device-label {
+            cursor: pointer;
+        }
+    }
+}

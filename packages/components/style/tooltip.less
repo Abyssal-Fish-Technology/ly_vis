@@ -1,0 +1,63 @@
+
+@bgColor: var(--bg-default);
+@Padding: 10px;
+@BorderRadius: 4px;
+@border: solid 1px var(--border-body);
+@color: var(--text-main);
+@boxShadow: var(--shadow-1-down);
+@BasicStyle: {
+    padding: @Padding;
+    border-radius: @BorderRadius;
+    color: @color;
+    border: @border;
+    background-color: @bgColor;
+    box-shadow: @boxShadow;
+}
+.ant-tooltip {
+    .ant-tooltip-inner {
+        @BasicStyle();
+    }
+    .ant-tooltip-arrow-content {
+        background-color: @bgColor;
+    }
+}
+.global-tooltips {
+    @BasicStyle();
+
+    position: absolute;
+    line-height: 30px;
+    white-space: nowrap;
+    transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), top 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.echart-tooltips {
+    @BasicStyle();
+
+    margin: -8px;
+    .title {
+        max-width: 240px;
+        word-break: break-all;
+        white-space: break-spaces;
+    }
+    .dot-item {
+        display: flex;
+        align-items: center;
+        padding: 0 5px;
+        .dot {
+            display: inline-block;
+            height: 6px;
+            width: 6px;
+            border-radius: 99px;
+            margin-right: 10px;
+        }
+        .dot-item-name {
+            margin-right: 5px;
+            display: inline-block;
+        }
+        .dot-item-percent {
+            margin-left: 5px;
+        }
+        .dot-item-value {
+            margin-left: 10px;
+        }
+    }
+}

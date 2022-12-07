@@ -1,0 +1,42 @@
+.configCenter {
+    :global {
+        .describe-content {
+            width: 100%;
+            letter-spacing: 1px;
+            line-height: 22px;
+            padding: 12px 16px;
+            .other-content {
+                position: relative;
+                min-height: 20px;
+                .other-btn {
+                    position: absolute;
+                    right: 15px;
+                    top: -10px;
+                    animation: bounce-down 1.5s linear infinite alternate;
+                }
+                .ant-collapse-content-box {
+                    padding: 10px 0 0 0;
+                }
+                .paragraph-content {
+                    color: var(--text-main);
+                    width: 85%;
+                    text-indent: 30px;
+                }
+                .paragraph-title {
+                    color: var(--text-main);
+                }
+            }
+            .strong-text {
+                font-weight: bold;
+            }
+        }
+        .jump-span {
+            cursor: pointer;
+            color: var(--text-link);
+            text-decoration: underline;
+        }
+        .ant-collapse-header {
+            display: none;
+        }
+    }
+}

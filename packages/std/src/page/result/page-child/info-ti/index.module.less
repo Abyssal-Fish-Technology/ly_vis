@@ -1,0 +1,56 @@
+.page {
+    :global {
+        .ti-top {
+            display: flex;
+            justify-content: space-between;
+            height: 200px;
+            .ti-basic {
+                display: flex;
+                flex-wrap: wrap;
+                .ti-basic-item {
+                    width: 100%;
+                    height: 50px;
+                    line-height: 50px;
+                    .ti-basic-text {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+        .ti-center {
+            .ti-center-item {
+                display: grid;
+                min-height: 200px;
+            }
+            .list-tag {
+                line-height: 30px;
+                padding-bottom: 16px;
+                padding-left: 16px;
+                .ant-anchor {
+                    color: inherit;
+                    display: flex;
+                    align-items: baseline;
+                    margin: 10px 0;
+                    .ant-anchor-ink {
+                        &::before {
+                            background-color: transparent;
+                        }
+                    }
+                }
+                .list-tag-item {
+                    background-color: var(--bg-default);
+                    .list-tag-name {
+                        cursor: pointer;
+                        &:nth-child(3) {
+                            margin-left: 6px;
+                        }
+                    }
+                }
+            }
+        }
+        .ti-score {
+            width: 200px;
+            height: 200px;
+        }
+    }
+}

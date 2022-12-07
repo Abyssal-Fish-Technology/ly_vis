@@ -1,0 +1,72 @@
+.rule {
+    :global {
+        .filter-form {
+            margin-bottom: 20px;
+        }
+        .rule-body {
+            .ant-list-pagination {
+                margin-top: 0;
+            }
+            .rule-item {
+                padding: 0 10px;
+                border-radius: 6px;
+                white-space: nowrap;
+                border: solid 1px var(--border-default);
+                color: var(--text-desc);
+                .rule-header {
+                    display: flex;
+                    color: var(--text-title);
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 10px 0;
+                    .rule-header-left {
+                        width: 90%;
+                        display: flex;
+                        justify-content: flex-start;
+                        .rule-title {
+                            font-size: 14px;
+                            font-weight: bolder;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            margin-right: 10px;
+                            max-width: 50%;
+                        }
+                        .rule-type {
+                            transform: scale(0.7);
+                            transform-origin: center left;
+                            margin-right: -10px;
+                        }
+                    }
+                    .rule-set {
+                        cursor: pointer;
+                    }
+                }
+                .rule-info {
+                    display: flex;
+                    margin: 5px 0;
+                    .rule-info-item {
+                        flex-grow: 1;
+                        .rule-info-value {
+                            display: inline-block;
+                            font-size: 20px;
+                            color: var(--text-active);
+                        }
+                    }
+                }
+                .rule-chart {
+                    .rule-chart-body {
+                        height: 50px;
+                    }
+                }
+            }
+            .rule-body-time-title {
+                margin-bottom: 15px;
+                color: var(--text-desc);
+                .rule-body-time-text {
+                    color: var(--text-title);
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+@firstNavHeight: 50px;
+@secondNavHeight: 45px;
+.app-layout {
+    color: var(--text-main);
+    :global {
+        .ant-menu-submenu-popup > .ant-menu {
+            background-color: var(--bg-default);
+            box-shadow: var(--shadow-1-down);
+        }
+        .app-content {
+            background: var(--bg-body);
+            min-height: calc(100vh - @firstNavHeight - @secondNavHeight);
+            padding: 20px;
+            margin-top: calc(@firstNavHeight + @secondNavHeight);
+            .app-content-container {
+                position: relative;
+                .ka-wrapper,
+                .ka-content {
+                    min-height: 100%;
+                }
+            }
+        }
+        .app-nav-child {
+            background: var(--bg-default);
+            position: fixed;
+            top: @firstNavHeight;
+            z-index: 6;
+            width: 100%;
+            align-items: center;
+            height: @secondNavHeight;
+            box-shadow: var(--shadow-1-down);
+            .app-nav-child {
+                display: flex;
+                .app-nav-child-left {
+                    flex: auto;
+                    max-width: 50%;
+                }
+            }
+        }
+    }
+}

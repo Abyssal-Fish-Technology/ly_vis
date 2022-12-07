@@ -1,0 +1,29 @@
+.toolboxs {
+    :global {
+        position: fixed;
+        top: 57px;
+        right: 0;
+        z-index: 7;
+        color: var(--text-desc);
+        .toolbox-form {
+            .toolbox-node {
+                width: 80px;
+            }
+            .toolbox-refresh {
+                cursor: pointer;
+                font-size: 20px;
+            }
+        }
+        .page-loading {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            right: 0;
+            height: 0;
+            z-index: 99;
+        }
+        .app-loading {
+            height: calc(100vh - 50px);
+        }
+    }
+}

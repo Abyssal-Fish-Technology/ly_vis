@@ -1,0 +1,34 @@
+.searchInner {
+    :global {
+        display: flex;
+        line-height: 30px;
+        .litterSize {
+            white-space: nowrap;
+        }
+        .search-inner-key {
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+        }
+        .search-inner-unit {
+            color: var(--text-desc);
+        }
+    }
+}
+.connection-detail {
+    :global {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .anticon-swap-left {
+            &:first-child {
+                transform: rotate(270deg);
+                margin-right: -3px;
+            }
+            &:nth-child(2) {
+                transform: rotate(90deg);
+                margin-left: -3px;
+            }
+        }
+    }
+}

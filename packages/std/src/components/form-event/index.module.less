@@ -1,0 +1,27 @@
+.event-config-form {
+    :global {
+        .event-time-range-group {
+            display: flex;
+            flex-direction: column;
+            max-height: 42px;
+            overflow-y: visible;
+            .event-time-range-item {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                .ant-form-item {
+                    margin-right: 0;
+                    .ant-form-item-control {
+                        margin-right: 2em;
+                    }
+                }
+                .time-range-item-icon {
+                    position: absolute;
+                    right: 0;
+                    top: 1em;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,31 @@
+.step-form {
+    height: 100%;
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    :global {
+        .step-form-container {
+            margin: 40px 20px 0;
+            min-height: 100px;
+            flex: 1;
+            .step-form-container-content {
+                height: calc(100% - 55px);
+                overflow: auto;
+            }
+            .step-form-controller {
+                margin-top: 20px;
+                display: flex;
+                justify-content: space-evenly;
+            }
+        }
+        .step-form-success {
+            .ant-result-extra {
+                display: flex;
+                justify-content: space-evenly;
+            }
+            .ant-result-title {
+                color: var(--text-main);
+            }
+        }
+    }
+}

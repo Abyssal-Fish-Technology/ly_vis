@@ -1,0 +1,205 @@
+@import '~antd/es/style/themes/default.less';
+@import './tooltip.less';
+@import './reset/index.less';
+@import '../charts/charts.less';
+* {
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 8px !important;
+        background: transparent;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--bg-body);
+        border-radius: 12px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--bg-hover);
+        border-radius: 12px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--bg-desc);
+        border-radius: 12px;
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: var(--bg-default);
+    }
+}
+html,
+body {
+    height: unset;
+}
+body {
+    background-color: var(--bg-body) !important;
+    color: var(--text-main);
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+svg#test {
+    position: absolute;
+    top: -10px;
+}
+.zIndex {
+    z-index: 3 !important;
+}
+//该样式是对menu的submenu样式，因为它在body下面。且拿不到外层的div
+.device-op-sub-menu {
+    background-color: var(--bg-default);
+    .ant-menu-vertical {
+        min-width: 30px;
+    }
+    .ant-menu-item,
+    .ant-menu-submenu-title {
+        color: var(--text-main);
+        &:hover {
+            background-color: var(--bg-hover);
+        }
+
+        height: 24px !important;
+        line-height: 24px !important;
+    }
+    .normal-menu-item {
+        padding: 0 30px 0 5px;
+    }
+    .last-menu-item {
+        padding: 0 10px 0 5px;
+    }
+    .ant-menu-item-disabled {
+        color: var(--text-disabled);
+    }
+}
+
+// form
+.form-in-modal {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    width: 96%;
+    div.ant-form-item {
+        margin-right: 0;
+        width: 48%;
+        &:nth-of-type(odd) {
+            margin-right: 2%;
+        }
+        &:not(.ant-form-item-with-help) {
+            margin-bottom: 10px;
+        }
+    }
+    .ant-time-picker {
+        width: 100%;
+    }
+}
+
+//自定义loading
+.app-loading {
+    position: relative;
+    &::after {
+        position: absolute;
+        z-index: 4;
+        content: ' ';
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        background: url('./image/loading.gif') no-repeat center;
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        z-index: 3;
+        background: rgba(var(--bg-default-rgb), 0.8);
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@animate-container-height: 90vh;
+@transition-effect-time: 0.4s;
+// 以前页面切换时的动画，目前没用，先放在这
+.transition-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    perspective: 500px;
+}
+.child-animate-enter {
+    order: 1;
+    transform-origin: center top;
+    transform-style: preserve-3d;
+    animation: page-enter @transition-effect-time ease-out forwards;
+}
+.child-animate-enter-active {
+    height: @animate-container-height !important;
+    overflow: hidden;
+}
+.child-animate-exit {
+    order: 0;
+    z-index: 0;
+    transform-origin: center bottom;
+    transform-style: preserve-3d;
+    animation: page-exit @transition-effect-time ease-out forwards;
+}
+.child-animate-exit-active {
+    height: @animate-container-height !important;
+    overflow: hidden;
+}
+
+@OperateHover: {
+    text-decoration: underline;
+    animation: zoomout 0.1s ease-out forwards;
+    color: var(--text-link) !important;
+    &::after {
+        color: var(--text-link) !important;
+    }
+}
+.operate-content-default {
+    cursor: pointer;
+    color: var(--text-main);
+    &:hover {
+        @OperateHover();
+    }
+}
+.operate-content-active {
+    color: var(--text-link);
+    cursor: pointer;
+    &:hover {
+        @OperateHover();
+    }
+}
+.operate-content-hover {
+    cursor: pointer;
+    &:hover {
+        color: var(--text-link) !important;
+    }
+}
+.operate-content-move {
+    cursor: move;
+}
+
+@keyframes page-enter {
+    0% {
+        transform: rotateX(-35deg);
+    }
+    100% {
+        transform: translateY(-@animate-container-height) rotateX(0);
+    }
+}
+
+@keyframes page-exit {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-@animate-container-height) rotateX(35deg);
+    }
+}
+
+@keyframes bounce-down {
+    25% { transform: translateY(5px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(5px); }
+    100% { transform: translateY(0); }
+}

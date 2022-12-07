@@ -1,0 +1,128 @@
+.page {
+    :global {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        .page-header {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            .page-header-value {
+                font-size: 24px;
+                margin-right: 20px;
+                color: var(--color-blue);
+            }
+        }
+        .page-basic {
+            display: flex;
+            padding: 20px 0 0 20px;
+            white-space: nowrap;
+            position: relative;
+            min-height: 40px;
+            .page-basic-info {
+                display: flex;
+                flex-wrap: wrap;
+                flex: 1;
+                z-index: 1;
+                overflow: hidden;
+                .page-basic-item {
+                    display: flex;
+                    width: 33.333%;
+                    margin: 10px 0;
+                    .page-basic-item-label {
+                        font-weight: bold;
+                        color: var(--text-desc);
+                    }
+                    .page-basic-item-value {
+                        margin-left: 20px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+            .ti-red {
+                color: var(--color-red);
+                border-color: var(--color-red);
+            }
+            .ti-green {
+                color: var(--color-green);
+                border-color: var(--color-green);
+            }
+            .ti-blue {
+                color: var(--color-blue);
+                border-color: var(--color-blue);
+            }
+            .unknow {
+                color: var(--color-gray);
+                border-color: var(--color-gray);
+            }
+            .asset {
+                color: var(--color-blue);
+                border-color: var(--color-blue);
+            }
+        }
+        .section-border {
+            border: 1px solid var(--border-default);
+            border-radius: 5px;
+        }
+        .page-feature {
+            .page-feature-card {
+                display: flex;
+                height: 170px;
+                margin: 10px;
+                .section-border;
+                .page-feature-card-header {
+                    flex: 1;
+                    display: flex;
+                    flex-flow: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding-left: 30px;
+                    padding-right: 30px;
+                    .card-header-icon {
+                        font-size: 5em;
+                        color: inherit;
+                    }
+                    .card-header-name {
+                        margin-top: 10px;
+                        font-weight: bold;
+                        white-space: nowrap;
+                        color: inherit;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+                .page-feature-card-content {
+                    flex: 2;
+                    display: flex;
+                    flex-flow: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    .card-content-item {
+                        line-height: 24px;
+                        .card-content-item-label {
+                            font-weight: bold;
+                            color: var(--text-desc);
+                        }
+                        .card-content-item-value {
+                            padding-left: 5px;
+                            .ant-statistic {
+                                display: inline-block;
+                                .ant-statistic-content-value {
+                                    font-size: 20px;
+                                    color: var(--color-main);
+                                }
+                            }
+                        }
+                    }
+                }
+                &.disabled .ant-statistic-content-value {
+                    opacity: 0.6;
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+@colormain:var(--text-main);
+@bgdefault:var(--bg-default);
+@borderhover:var(--border-hover);
+@bordercolordefault:var(--border-default);
+.ant-pagination {
+    color: @colormain;
+}
+.ant-pagination-simple .ant-pagination-simple-pager input {
+    background-color: @bgdefault;
+    border-color: @bordercolordefault;
+    color: @colormain;
+    &:hover {
+        border-color: @borderhover;
+    }
+}
+.ant-pagination-prev,
+.ant-pagination-next,
+.ant-pagination-jump-prev,
+.ant-pagination-jump-next {
+    color: @colormain;
+}
+.ant-pagination-disabled .ant-pagination-item-link,
+.ant-pagination-disabled:hover .ant-pagination-item-link,
+.ant-pagination-disabled:focus .ant-pagination-item-link {
+    color: var(--text-disabled);
+    border-color: var(--border-disabled);
+}
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+    background-color: @bgdefault;
+    border-color: @bordercolordefault;
+}
+.ant-pagination-prev button,
+.ant-pagination-next button {
+    color: @colormain;
+}
+.ant-pagination-item {
+    background-color: @bgdefault;
+    border-color: @bordercolordefault;
+    a {
+        color: @colormain;
+    }
+}
+.ant-pagination-item-active {
+    // background-color: var(--bg-desc);
+    border-color: var(--border-active);
+    a {
+        color: var(--text-active);
+    }
+}
+.ant-pagination-item:focus,
+.ant-pagination-item:hover {
+    border-color: @borderhover;
+    a {
+        color: var(--text-hover);
+    }
+}
+.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis,
+.ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis {
+    color: var(--text-desc);
+}

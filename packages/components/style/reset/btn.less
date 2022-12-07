@@ -1,0 +1,77 @@
+// 按钮
+.ant-btn {
+    background-color: var(--bg-default);
+    border-color: var(--border-default);
+    color: var(--text-main);
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: var(--bg-default);
+        border-color: var(--border-default);
+        color: var(--text-main);
+    }
+}
+.ant-btn-primary {
+    background-color: var(--text-blue);
+    border-color: var(--border-blue);
+    color: var(--text-white);
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: var(--text-blue);
+        border-color: var(--border-blue);
+        color: var(--text-white);
+    }
+}
+.ant-btn-dangerous {
+    color: var(--text-red);
+    border-color: var(--border-red);
+    background-color: transparent;
+    &:hover,
+    &:focus,
+    &:active {
+        color: var(--text-red);
+        border-color: var(--border-red);
+        background-color: transparent;
+    }
+}
+.ant-btn-background-ghost.ant-btn-primary {
+    background-color: transparent;
+    border-color: var(--color-blue);
+    color: var(--color-blue);
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: transparent;
+        border-color: var(--color-blue);
+        color: var(--color-blue);
+    }
+}
+.ant-btn-link {
+    color: var(--text-link);
+    border-color: transparent;
+    background: transparent;
+    &:hover,
+    &:focus,
+    &:active {
+        color: var(--text-link);
+        border-color: transparent;
+        background: transparent;
+    }
+}
+.ant-btn-dangerous.ant-btn-link {
+    color: var(--text-red);
+    &:hover,
+    &:focus,
+    &:active {
+        color: var(--text-red);
+    }
+}
+.ant-btn-primary[disabled],
+.ant-btn-primary[disabled]:hover,
+.ant-btn-primary[disabled]:focus,
+.ant-btn-primary[disabled]:active {
+    color: var(--text-disabled);
+    background-color: var(--bg-disabled);
+    border-color: var(--border-disabled);
+}

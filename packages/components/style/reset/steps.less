@@ -1,0 +1,39 @@
+//steps 步骤条
+@borderdefaultcolor:var(--border-default);
+@textmain:var(--text-main);
+@textdesc:var(--text-desc);
+@borderactive:var(--border-active);
+.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title {
+    color: @textmain;
+}
+.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
+    background-color: @borderactive;
+}
+.ant-steps-item-wait > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
+    background-color: @borderdefaultcolor;
+}
+.ant-steps-item-wait > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title {
+    color: @textdesc;
+}
+.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title {
+    color: @textmain;
+}
+.ant-steps {
+    .ant-steps-item-process,
+    .ant-steps-item-finish {
+        .ant-steps-item-icon {
+            background-color: var(--bg-active);
+            border-color: @borderactive;
+            .ant-steps-icon {
+                color: var(--text-white);
+            }
+        }
+    }
+    .ant-steps-item-wait .ant-steps-item-icon {
+        background-color: var(--bg-default);
+        border-color: @borderdefaultcolor;
+        .ant-steps-icon {
+            color: @textdesc;
+        }
+    }
+}

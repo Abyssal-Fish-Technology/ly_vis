@@ -1,0 +1,79 @@
+.host {
+    :global {
+        height: 100%;
+        text {
+            fill: var(--text-main);
+        }
+        .sankey-node {
+            rect {
+                stroke: var(--bg-desc);
+            }
+        }
+        .link {
+            fill: none;
+        }
+        .chart-tools {
+            display: flex;
+            align-items: center;
+            .anticon {
+                font-size: 14px;
+            }
+            .chart-apt {
+                color: var(--text-active);
+                .anticon {
+                    font-size: 14px;
+                    margin-right: 4px;
+                }
+            }
+            .chart-select {
+                margin-left: 20px;
+                margin-right: 10px;
+                .ant-select {
+                    min-width: 100px;
+                    margin-left: 10px;
+                }
+            }
+        }
+        .sankey-chart {
+            height: 100%;
+            position: relative;
+            .chart-title {
+                display: flex;
+                justify-content: space-between;
+                height: 20px;
+                .anticon-swap {
+                    transform: rotate(90deg);
+                }
+                .chart-title-name {
+                    margin: 0 4px;
+                }
+            }
+            .event-host-container {
+                position: absolute;
+                top: 20px;
+                bottom: 0;
+                width: 100%;
+                .event-host-tooltips {
+                    .tooltips-op {
+                        display: flex;
+                        align-items: center;
+                        .anticon-table {
+                            font-size: 14px;
+                            margin-right: 4px;
+                        }
+                    }
+                    .tooltips-item {
+                        display: flex;
+                        justify-content: space-between;
+                        .tootlips-label {
+                            margin-right: 10px;
+                        }
+                    }
+                    & > div {
+                        border-bottom: solid 1px var(--border-default-weight);
+                    }
+                }
+            }
+        }
+    }
+}

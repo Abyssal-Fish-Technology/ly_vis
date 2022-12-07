@@ -1,0 +1,6 @@
+export { default as BasicEchart } from './echarts-components/chart-basic'
+export { default as BarChart } from './echarts-components/chart-bar'
+export { default as RingChart } from './echarts-components/chart-ring'
+export { default as DeviceBarChart } from './echarts-components/device-bar-chart'
+export { default as BasicCustomChart } from './custom-components'
+export { default as LineChart } from './echarts-components/chart-line'

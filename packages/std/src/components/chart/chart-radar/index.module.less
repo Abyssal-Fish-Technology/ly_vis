@@ -1,0 +1,32 @@
+.radar {
+    :global {
+        .chart-line {
+            fill: none;
+            stroke: #aaa;
+            stroke-width: 1px;
+        }
+        .radar-line {
+            stroke: #70a5e2;
+            stroke-width: 2px;
+        }
+        .axis {
+            color: #aaa;
+            .tick line {
+                display: none;
+            }
+            .tick text {
+                text-anchor: end;
+                transform: translateX(5px) rotate(180deg);
+            }
+            &.hide-tick {
+                .tick {
+                    display: none;
+                }
+            }
+        }
+        .radar-label {
+            font-size: 14px;
+            fill: #aaa;
+        }
+    }
+}

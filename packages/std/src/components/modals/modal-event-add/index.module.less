@@ -1,0 +1,27 @@
+.event-step-modal {
+    top: 50px;
+    :global {
+        .event-config-form-step {
+            .event-time-range-group {
+                max-height: 42px;
+                display: flex;
+                flex-direction: column;
+                .event-time-range-item {
+                    width: 100%;
+                    position: relative;
+                    .ant-form-item {
+                        width: 100%;
+                        .ant-form-item-control {
+                            margin-right: 2em;
+                        }
+                    }
+                    .time-range-item-icon {
+                        position: absolute;
+                        right: 0;
+                        top: 1em;
+                    }
+                }
+            }
+        }
+    }
+}

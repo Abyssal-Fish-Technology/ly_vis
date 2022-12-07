@@ -1,0 +1,57 @@
+.alarm-timing-chart {
+    :global {
+        position: relative;
+        .xAxis-label {
+            fill: var(--text-main);
+            text-anchor: end;
+            dominant-baseline: central;
+        }
+        .xAxis-item {
+            path {
+                stroke: var(--border-default);
+            }
+            line {
+                stroke: var(--border-default);
+            }
+        }
+        .label-line {
+            stroke: var(--color-lightgray);
+            stroke-width: 1;
+        }
+        .split-g {
+            line {
+                stroke-width: 1px;
+                stroke: var(--border-default);
+                stroke-dasharray: 5, 3;
+            }
+            text {
+                text-anchor: middle;
+                font-size: 10px;
+                fill: var(--text-desc);
+            }
+        }
+        .selection {
+            fill-opacity: 0.5;
+            stroke: var(--border-body);
+        }
+        .path-node {
+            fill: var(--color-blue);
+            stroke: var(--color-blue);
+            stroke-width: 1;
+            stroke-opacity: 0.5;
+        }
+        .tips-time {
+            color: rgb(var(--text-color));
+            line-height: 20px;
+        }
+        .tips-container {
+            color: var(--text-desc);
+            line-height: 20px;
+            .tip-alarm-value {
+                color: var(--text-title);
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }
+    }
+}

@@ -1,0 +1,59 @@
+@tagcursor:pointer;
+.form-filter {
+    &:global(.fold) {
+        :global {
+            .minor {
+                height: 0;
+                overflow: hidden;
+                margin: 0 !important;
+            }
+        }
+    }
+    :global {
+        .filter-tag {
+            cursor: @tagcursor;
+        }
+        .ant-form-item {
+            .ant-form-item {
+                margin-bottom: 0 !important;
+            }
+        }
+        .operate-button {
+            text-align: center;
+            margin-bottom: 0 !important;
+            .operate-item {
+                margin: 0 10px;
+            }
+            .collapse {
+                cursor: pointer;
+            }
+        }
+        .ant-form-item-control-input-content {
+            line-height: 32px;
+        }
+        .tag-content {
+            margin: -5px 0 5px 0 !important;
+        }
+    }
+}
+.form-filter-show {
+    background-color: rgba(var(--color-rgb-blue), 0.2);
+    padding: 8px;
+    border-radius: 6px;
+    border: solid 1px var(--color-blue);
+    margin-bottom: 20px;
+    :global {
+        .form-filter-show-tag {
+            background-color: var(--color-blue);
+            color: var(--text-white);
+            border-color: transparent;
+            cursor: @tagcursor;
+            .anticon {
+                color: var(--text-white);
+            }
+        }
+        .split {
+            margin-right: 10px;
+        }
+    }
+}

@@ -1,0 +1,153 @@
+.config-device {
+    :global {
+        height: 100%;
+        .app-section-content {
+            display: grid;
+            grid-template-columns: 150px calc(100% - 150px);
+            grid-template-rows: 30px calc(100% - 30px);
+        }
+        .device-legend {
+            display: flex;
+            justify-content: center;
+            grid-column-start: 2;
+            grid-column-end: 2;
+            .device-legend-item {
+                margin-right: 20px;
+                display: flex;
+                align-items: center;
+                &:nth-last-child(1) {
+                    margin-right: 0;
+                }
+                .legend-sign {
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 10px;
+                    display: inline-block;
+                    margin-right: 6px;
+                    &.normal {
+                        background-color: var(--bg-active);
+                    }
+                    &.unnoraml {
+                        background-color: var(--color-red);
+                    }
+                    &.disabled {
+                        background-color: var(--bg-desc);
+                    }
+                }
+                .legend-label {
+                    color: var(--color-main);
+                }
+            }
+        }
+        .device-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            .device-icon-item {
+                margin: 15px 0;
+                .device-icon-sign {
+                    margin: 0 auto;
+                    height: 55px;
+                    width: 55px;
+                    line-height: 55px;
+                    font-size: 30px;
+                    box-shadow: var(--shadow-2-down);
+                    border-radius: 10px;
+                    color: var(--text-active);
+                }
+                .device-icon-label {
+                    margin: 10px 0;
+                }
+            }
+        }
+        .device-graph {
+            height: 100%;
+            position: relative;
+            margin-left: 20px;
+            display: flex;
+            .device-svg {
+                position: absolute;
+                .link {
+                    stroke-opacity: 0.5;
+                }
+            }
+            .device-graph-space {
+                height: 100%;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+            }
+            .device-item {
+                width: 250px;
+                padding: 10px;
+                display: flex;
+                justify-content: space-around;
+                color: var(--text-white);
+                border-radius: 10px;
+                background-color: rgba(var(--color-rgb-blue), 0.9);
+                position: relative;
+                &.unnormal {
+                    background-color: rgba(var(--color-rgb-red), 0.9);
+                }
+                &.disabled {
+                    background-color: rgba(var(--color-rgb-gray), 0.8);
+                }
+                .ant-switch {
+                    background-color: var(--color-red);
+                    transform: scale(0.8);
+                    transform-origin: center right;
+                }
+                .ant-switch-checked {
+                    background: var(--color-orange);
+                }
+                .device-item-setting {
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                    cursor: pointer;
+                }
+                .device-item-restart {
+                    transform: scale(0.7) !important;
+                    transform-origin: center right !important;
+                }
+                .device-item-icon {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: center;
+                    width: 30%;
+                    .anticon {
+                        font-size: 50px;
+                        margin-bottom: 10px;
+                    }
+                }
+                .device-item-info {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    flex: 1;
+                    padding: 0 20px;
+                    .device-item-info-item {
+                        white-space: nowrap;
+                        justify-content: space-between;
+                        display: flex;
+                        .device-item-info-label {
+                            font-weight: bolder;
+                        }
+                        .device-item-info-value {
+                            .ant-btn {
+                                margin-left: 6px;
+                                color: var(--text-white);
+                                transform: scale(0.8);
+                                transform-origin: center left;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

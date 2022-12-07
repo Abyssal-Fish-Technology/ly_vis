@@ -1,0 +1,74 @@
+
+// 日历input
+.ant-picker {
+    border-radius: 4px;
+    background-color: var(--bg-default);
+    border-color: var(--border-default);
+    .ant-picker-input > input {
+        color: var(--text-main);
+    }
+}
+.ant-picker:hover,
+.ant-picker-focused {
+    border-color: var(--border-hover);
+}
+.ant-picker-range .ant-picker-active-bar {
+    background-color: var(--bg-active);
+}
+
+// 日历下拉
+.ant-picker-panel-container {
+    * {
+        border-color: var(--border-default);
+        color: var(--text-main);
+    }
+
+    box-shadow: var(--shadow-1-down);
+    background-color: var(--bg-default);
+    .ant-picker-content th {
+        color: var(--text-desc);
+    }
+    .ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected {
+        .ant-picker-time-panel-cell-inner {
+            background-color: var(--bg-default);
+            color: var(--text-main);
+        }
+    }
+    .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+    .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+    .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+        background-color: var(--bg-active);
+        color: var(--text-reverse);
+    }
+    .ant-picker-cell-disabled::before {
+        background-color: var(--bg-disabled);
+    }
+    .ant-picker-cell-disabled .ant-picker-cell-inner {
+        color: var(--text-desc);
+    }
+    .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-start-single)::before,
+    .ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-range-end-single)::before {
+        background-color: var(--bg-default);
+    }
+    .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+        border: var(--bg-default);
+    }
+    .ant-picker-time-panel-column > li.ant-picker-time-panel-cell .ant-picker-time-panel-cell-inner {
+        color: var(--text-main);
+    }
+    .ant-picker-cell-in-view.ant-picker-cell-in-range::before {
+        background-color: rgba(var(--color-rgb-blue), 0.5);
+    }
+    .ant-picker-cell:hover:not(.ant-picker-cell-in-view) .ant-picker-cell-inner,
+    .ant-picker-cell:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end):not(.ant-picker-cell-range-hover-start):not(.ant-picker-cell-range-hover-end) .ant-picker-cell-inner {
+        background-color: var(--bg-hover);
+    }
+    .ant-picker-time-panel-column > li.ant-picker-time-panel-cell .ant-picker-time-panel-cell-inner:hover {
+        background-color: var(--bg-hover);
+    }
+}
+.ant-picker-ranges .ant-picker-preset > .ant-tag-blue {
+    background: rgba(var(--color-rgb-blue), 0.2);
+    border-color: var(--border-active);
+    color: var(--text-active);
+}

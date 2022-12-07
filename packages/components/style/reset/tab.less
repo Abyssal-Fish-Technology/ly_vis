@@ -1,0 +1,41 @@
+//tabs
+@bordercolordefault:var(--border-default);
+@textlink:var(--text-link);
+.ant-tabs {
+    color: var(--text-desc);
+}
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab,
+.ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab {
+    background-color: var(--bg-default);
+    border-color: @bordercolordefault;
+}
+.ant-tabs-top > .ant-tabs-nav::before,
+.ant-tabs-bottom > .ant-tabs-nav::before,
+.ant-tabs-top > div > .ant-tabs-nav::before,
+.ant-tabs-bottom > div > .ant-tabs-nav::before {
+    border-color: @bordercolordefault;
+}
+.ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab-active,
+.ant-tabs-card.ant-tabs-top > div > .ant-tabs-nav .ant-tabs-tab-active {
+    border-color: var(--border-active);
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: @textlink;
+}
+.ant-tabs-tab:hover {
+    color: @textlink;
+}
+.ant-tabs-tab-btn:focus,
+.ant-tabs-tab-remove:focus,
+.ant-tabs-tab-btn:active,
+.ant-tabs-tab-remove:active {
+    color: @textlink;
+}
+.ant-tabs-ink-bar {
+    background-color: var(--bg-active);
+}
+.ant-tabs-left {
+    .ant-tabs-content-holder {
+        border-left-color: @bordercolordefault;
+    }
+}

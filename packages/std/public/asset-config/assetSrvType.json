@@ -1,0 +1,302 @@
+{
+    "数据库": [
+        {
+            "port": 389,
+            "desc": "ldap"
+        },
+        {
+            "port": 1433,
+            "desc": "SQL Server"
+        },
+        {
+            "port": 1521,
+            "desc": "Oracle"
+        },
+        {
+            "port": 1527,
+            "desc": "derby"
+        },
+        {
+            "port": 3306,
+            "desc": "MySql"
+        },
+        {
+            "port": 5000,
+            "desc": "Sybase/DB2"
+        },
+        {
+            "port": 5432,
+            "desc": "PostgreSQL"
+        },
+        {
+            "port": 5984,
+            "desc": "CouchDB"
+        },
+        {
+            "port": 6379,
+            "desc": "Redis"
+        },
+        {
+            "port": 9042,
+            "desc": "cassandra"
+        },
+        {
+            "port": 9083,
+            "desc": "Hive"
+        },
+        {
+            "port": 9092,
+            "desc": "pointbase"
+        },
+        {
+            "port": 9200,
+            "desc": "elasticsearch"
+        },
+        {
+            "port": 16010,
+            "desc": "HBase"
+        },
+        {
+            "port": 11211,
+            "desc": "memcached"
+        },
+        {
+            "port": 27017,
+            "desc": "MongoDB"
+        }
+    ],
+    "打印机": [
+        {
+            "port": 9100,
+            "desc": "打印机"
+        },
+        {
+            "port": 9101,
+            "desc": "打印机"
+        },
+        {
+            "port": 9102,
+            "desc": "打印机"
+        },
+        {
+            "port": 9103,
+            "desc": "打印机"
+        },
+        {
+            "port": 9104,
+            "desc": "打印机"
+        },
+        {
+            "port": 9105,
+            "desc": "打印机"
+        },
+        {
+            "port": 9106,
+            "desc": "打印机"
+        },
+        {
+            "port": 9107,
+            "desc": "打印机"
+        }
+    ],
+    "邮箱服务": [
+        {
+            "port": 25,
+            "desc": "SMTP"
+        },
+        {
+            "port": 109,
+            "desc": "POP2"
+        },
+        {
+            "port": 110,
+            "desc": "POP3"
+        },
+        {
+            "port": 143,
+            "desc": "IMAP"
+        },
+        {
+            "port": 465,
+            "desc": "SMTPS"
+        },
+        {
+            "port": 993,
+            "desc": "IMAPS"
+        },
+        {
+            "port": 995,
+            "desc": "POP3S"
+        }
+    ],
+    "应用服务": [
+        {
+            "port": 21,
+            "desc": "FTP"
+        },
+        {
+            "port": 22,
+            "desc": "SSH"
+        },
+        {
+            "port": 23,
+            "desc": "Telnet"
+        },
+        {
+            "port": 25,
+            "desc": "SMTP"
+        },
+        {
+            "port": 43,
+            "desc": "WhoIs"
+        },
+        {
+            "port": 53,
+            "desc": "DNS"
+        },
+        {
+            "port": 68,
+            "desc": "dhcp"
+        },
+        {
+            "port": 69,
+            "desc": "TFTP"
+        },
+        {
+            "port": 80,
+            "desc": "HTTP"
+        },
+        {
+            "port": 119,
+            "desc": "Network News Transfer Protocol"
+        },
+        {
+            "port": 123,
+            "desc": "NTP"
+        },
+        {
+            "port": 135,
+            "desc": "Location Service"
+        },
+        {
+            "port": 137,
+            "desc": "NetBios"
+        },
+        {
+            "port": 161,
+            "desc": "SNMP"
+        },
+        {
+            "port": 162,
+            "desc": "SNMP Trap"
+        },
+        {
+            "port": 443,
+            "desc": "HTTPS"
+        },
+        {
+            "port": 445,
+            "desc": "SMB"
+        },
+        {
+            "port": 873,
+            "desc": "Rsync"
+        },
+        {
+            "port": 1080,
+            "desc": "Socks"
+        },
+        {
+            "port": 1090,
+            "desc": "RMI"
+        },
+        {
+            "port": 1099,
+            "desc": "RMI"
+        },
+        {
+            "port": 1701,
+            "desc": "Layer Two Tunneling Protocol(L2TP)(第2层隧道协议)"
+        },
+        {
+            "port": 2181,
+            "desc": "Zookeeper"
+        },
+        {
+            "port": 2375,
+            "desc": "Docker"
+        },
+        {
+            "port": 2504,
+            "desc": "Network Load Balancing(网络平衡负荷)"
+        },
+        {
+            "port": 3389,
+            "desc": "远程桌面"
+        },
+        {
+            "port": 4000,
+            "desc": "QQ客户端"
+        },
+        {
+            "port": 5060,
+            "desc": "SIP"
+        },
+        {
+            "port": 5631,
+            "desc": "pcanywhere"
+        },
+        {
+            "port": 5632,
+            "desc": "pcanywhere"
+        },
+        {
+            "port": 5900,
+            "desc": "Vnc"
+        },
+        {
+            "port": 5938,
+            "desc": "TeamViewer"
+        },
+        {
+            "port": 6000,
+            "desc": "X11"
+        },
+        {
+            "port": 7001,
+            "desc": "weblogic"
+        },
+        {
+            "port": 8000,
+            "desc": "jdwp"
+        },
+        {
+            "port": 8080,
+            "desc": "HTTP"
+        },
+        {
+            "port": 8161,
+            "desc": "ActiveMQ"
+        },
+        {
+            "port": 8983,
+            "desc": "solr"
+        },
+        {
+            "port": 9043,
+            "desc": "webSphere"
+        },
+        {
+            "port": 50000,
+            "desc": "SAP"
+        },
+        {
+            "port": 50070,
+            "desc": "hadoop"
+        },
+        {
+            "port": "tls",
+            "desc": "tls"
+        }
+    ]
+}

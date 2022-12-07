@@ -1,0 +1,137 @@
+@import '../../../../style//tooltip.less';
+.asset-table {
+    :global {
+        // margin-bottom: 20px;
+        .export-content {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .chart-title {
+            text-align: center;
+            font-weight: bolder;
+        }
+    }
+}
+.asset-table-expand {
+    :global {
+        .chart-container {
+            div {
+                &:last-child {
+                    display: none;
+                    padding: @Padding !important;
+                    border-radius: @BorderRadius !important;
+                    color: @color !important;
+                    border: @border !important;
+                    background-color: @bgColor !important;
+                    box-shadow: @boxShadow !important;
+                }
+            }
+        }
+    }
+}
+.asset-time-chart-container {
+    :global {
+        padding-top: 15px;
+        position: relative;
+        .asset-time-chart {
+            .split-g {
+                line {
+                    stroke-width: 1px;
+                    stroke: var(--border-default);
+                    stroke-dasharray: 5, 3;
+                }
+                text {
+                    text-anchor: middle;
+                    font-size: 10px;
+                    fill: var(--text-desc);
+                }
+            }
+            circle {
+                stroke: var(--color-blue);
+                fill: var(--bg-default);
+            }
+            .duration-line {
+                stroke: var(--color-blue);
+                stroke-width: 1px;
+            }
+            .label-line {
+                stroke: var(--color-blue);
+                stroke-width: 1px;
+                fill: none;
+            }
+            .xAxis-label {
+                fill: var(--text-main);
+                text-anchor: end;
+                dominant-baseline: central;
+            }
+            .xAxis-item {
+                path {
+                    stroke: var(--border-default);
+                }
+                line {
+                    stroke: var(--border-default);
+                }
+            }
+        }
+        .tips {
+            position: absolute;
+            cursor: move;
+            &.show {
+                z-index: 2;
+                .content {
+                    width: 400px;
+                    display: flex;
+                    justify-content: space-around;
+                    max-height: 100px;
+                    overflow-y: auto;
+                    .detail-info,
+                    .main-info {
+                        max-width: 49%;
+                    }
+                    .gap {
+                        border-right: dashed 1px var(--border-active);
+                        height: 60px;
+                        align-self: center;
+                    }
+                }
+            }
+            .content {
+                width: 140px;
+                background-color: var(--color-blue-opacity);
+                border-radius: 4px;
+                border: solid 1px var(--border-blue);
+                padding: 2px;
+                transform: scale(0.8);
+                transform-origin: center bottom;
+                z-index: 1;
+                .content-item {
+                    display: flex;
+                    .content-item-label {
+                        max-width: 95px;
+                    }
+                    .content-item-value {
+                        white-space: pre-wrap;
+                        word-break: break-all;
+                        .anticon {
+                            margin-left: 4px;
+                            color: var(--text-red);
+                            opacity: 0;
+                        }
+                        &:hover {
+                            .anticon {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .refresh-icon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+
+// 覆盖某些国旗
+.flag-icon {
+    margin: 0 5px;
+    &.flag-icon-hk,
+    &.flag-icon-china,
+    &.flag-icon-tw {
+        background-image: url(./icon-custom/icon-china.svg);
+    }
+    .flag-cover {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+// 自定义
+.flag-icon-unknow {
+    background-image: url(./icon-custom/icon-unkow.svg);
+}
+.flag-icon-lan {
+    background-size: 100%;
+    background-image: url(./icon-custom/icon-lan.svg);
+}

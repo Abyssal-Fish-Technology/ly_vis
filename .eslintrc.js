@@ -1,0 +1,56 @@
+module.exports = {
+    env: {
+        browser: true,
+        es6: true,
+    },
+    extends: ['react-app', 'airbnb', 'plugin:prettier/recommended'],
+    globals: {
+        Atomics: 'readonly',
+        SharedArrayBuffer: 'readonly',
+    },
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true,
+        },
+        ecmaVersion: 11,
+        sourceType: 'module',
+    },
+    plugins: ['react'],
+    rules: {
+        'prettier/prettier': 'error',
+        'react/jsx-indent': [2, 4],
+        'react/jsx-indent-props': [2, 4],
+        'react/jsx-props-no-spreading': 0,
+        'react/jsx-wrap-multilines': [
+            'error',
+            { declaration: false, assignment: false },
+        ],
+        'react/jsx-curly-newline': 'off',
+        'react/jsx-one-expression-per-line': 'off',
+        'react/destructuring-assignment': [
+            'off',
+            'always',
+            { ignoreClassFields: true },
+        ],
+        'react/no-this-in-sfc': 'off',
+        'react/no-children-prop': 'off',
+
+        'import/no-unresolved': [2, { ignore: ['^@/', './index.module.less'] }],
+        'import/no-extraneous-dependencies': [0],
+        'import/extensions': [0],
+        'max-classes-per-file': [0],
+        'jsx-a11y/click-events-have-key-events': [0],
+        'jsx-a11y/no-static-element-interactions': [0],
+        'jsx-a11y/no-noninteractive-element-interactions': [0],
+        'jsx-a11y/mouse-events-have-key-events': [0],
+        'no-param-reassign': [2, { props: false }],
+        'no-underscore-dangle': 'off',
+        // 'camelcase': [2, { "properties": "never", "ignoreDestructuring": true }],
+        camelcase: [0],
+        'react/prop-types': [0, {}],
+        'import/prefer-default-export': 'off',
+        'no-bitwise': [0],
+        'no-console': [0],
+        'no-use-before-define': ['error', { functions: false, classes: true }],
+    },
+}

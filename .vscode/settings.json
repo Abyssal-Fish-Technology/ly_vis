@@ -1,0 +1,12 @@
+{
+    "emmet.syntaxProfiles": {
+        "jsx": {
+            "attr_quotes": "single",//emmet语法，自动生成语句的时候采用单引号
+            "self_closing_tag": true
+        },
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.stylelint": true,
+        "source.fixAll.eslint": true
+    }
+}

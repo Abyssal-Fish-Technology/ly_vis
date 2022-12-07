@@ -1,0 +1,129 @@
+.event-detail {
+    :global {
+        .page-top {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-height: 800px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            .page-top-center {
+                flex: 1;
+                min-width: 300px;
+                margin-right: 20px;
+                overflow-y: scroll;
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+            .page-top-right {
+                width: 300px;
+            }
+        }
+        .analysis-section {
+            margin-bottom: 20px;
+            min-height: 252px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+            .split-g {
+                line {
+                    stroke-width: 1px;
+                    stroke: var(--border-default);
+                    stroke-dasharray: 5, 3;
+                }
+                text {
+                    text-anchor: middle;
+                    font-size: 10px;
+                    fill: var(--text-desc);
+                }
+            }
+            .refresh-icon {
+                font-size: 16px;
+                cursor: pointer;
+                &:hover {
+                    color: var(--text-hover);
+                }
+            }
+            .extra-content {
+                .analysis-title {
+                    color: var(--text-title);
+                    font-size: 14px;
+                    font-weight: bold;
+                    width: 200px;
+                }
+                .time-tips {
+                    color: var(--text-main);
+                    font-size: 13px;
+                }
+                .legend-item {
+                    display: flex;
+                    align-items: center;
+                    .red-legend,
+                    .blue-legend {
+                        height: 4px;
+                        width: 16px;
+                        display: inline-block;
+                        margin-left: 5px;
+                    }
+                    .red-legend {
+                        background-color: var(--color-red);
+                    }
+                    .blue-legend {
+                        background-color: var(--color-blue);
+                    }
+                }
+            }
+            .click-btn {
+                cursor: pointer;
+                &:hover {
+                    color: var(--text-hover);
+                }
+            }
+            .analysis-container {
+                display: flex;
+                justify-content: space-between;
+                .analysis-chart {
+                    width: calc(100% - 200px);
+                    margin-right: 20px;
+                }
+                .analysis-desc {
+                    flex: 1;
+                    .analysis-desc-part {
+                        margin-bottom: 12px;
+                        margin-left: 6px;
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                    .analysis-desc-secondtitle {
+                        font-weight: bold;
+                    }
+                    .analysis-desc-item {
+                        display: flex;
+                        line-height: 26px;
+                        margin-left: 6px;
+                        white-space: nowrap;
+                        .analysis-desc-label {
+                            margin-right: 10px;
+                            color: var(--text-desc);
+                            white-space: nowrap;
+                        }
+                        .analysis-desc-unit {
+                            margin-left: 4px;
+                            color: var(--text-desc);
+                        }
+                        .split-tag {
+                            margin: 0 4px;
+                            color: var(--text-desc);
+                        }
+                        .feature-value {
+                            font-weight: bold;
+                            color: var(--text-main);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

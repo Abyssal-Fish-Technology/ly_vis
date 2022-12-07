@@ -1,0 +1,45 @@
+.statistic {
+    :global {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .card-small-item {
+            display: grid;
+            grid-template-columns: 60px auto;
+            grid-template-rows: 40% 60%;
+            text-align: center;
+            white-space: nowrap;
+            align-items: center;
+            .card-small-icon {
+                height: 60px;
+                width: 60px;
+                background: var(--bg-default);
+                border-radius: 10px;
+                font-size: 38px;
+                line-height: 60px;
+                text-align: center;
+                color: var(--color-lightgray);
+                grid-row-start: 1;
+                grid-row-end: 3;
+                position: relative;
+                box-shadow: var(--shadow-1-down);
+            }
+            .card-small-name {
+                width: 100%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: table-cell;
+                vertical-align: middle;
+                color: var(--text-desc);
+            }
+            .ant-statistic {
+                min-width: 70px;
+                padding: 0 5px;
+            }
+        }
+        .statistic-split {
+            height: 40px;
+            border-left: solid 2px var(--border-default);
+        }
+    }
+}

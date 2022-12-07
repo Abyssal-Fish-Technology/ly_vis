@@ -1,0 +1,74 @@
+.event-info {
+    :global {
+        height: 100%;
+        .event-info-top {
+            position: relative;
+            padding-bottom: 10px;
+            &::after {
+                position: absolute;
+                bottom: 0;
+                left: -20px;
+                content: '';
+                border-bottom: solid 1px var(--border-default);
+                width: 300px;
+            }
+            .ant-descriptions {
+                position: relative;
+                z-index: 2;
+            }
+            .event-id {
+                color: var(--text-active);
+            }
+            .attack-color {
+                color: var(--text-red);
+            }
+            .pro-status-box {
+                position: absolute;
+                z-index: 1;
+                top: -20px;
+                right: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                border: 4px solid var(--border-default);
+                .pro-status-content {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 95px;
+                    width: 95px;
+                    border-radius: 50%;
+                    border: 4px dashed var(--border-default);
+                    .pro-status-text {
+                        transform: rotate(45deg);
+                        font-size: 22px;
+                        color: var(--color-lightgray);
+                    }
+                }
+            }
+        }
+        .event-info-center {
+            padding-top: 0;
+            .ant-tabs-top > .ant-tabs-nav::before {
+                border-bottom: none;
+            }
+            .ant-tabs-tab {
+                margin: 0 25px;
+                padding: 12px 0 5px;
+            }
+            .proc-comment {
+                resize: none;
+                height: 80px;
+                background-color: var(--bg-body);
+            }
+        }
+        .event-info-bottom {
+            display: flex;
+            justify-content: center;
+            padding: 50px 0 30px 0;
+        }
+    }
+}

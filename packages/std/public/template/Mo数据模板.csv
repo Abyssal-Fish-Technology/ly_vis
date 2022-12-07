@@ -1,0 +1,2 @@
+moip,moport,pip,pport,protocol,groupid,direction,desc
+1.1.1.1,80,2.2.2.2,8080,TCP,1,ALL,测试模板

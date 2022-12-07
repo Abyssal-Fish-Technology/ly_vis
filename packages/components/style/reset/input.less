@@ -1,0 +1,68 @@
+// ============== input ==============
+.ant-input {
+    background-color: var(--bg-default);
+    color: var(--text-main);
+    border-color: var(--border-default);
+    border-radius: 4px;
+    &:hover,
+    &:focus {
+        border-color: var(--border-hover);
+        box-shadow: none;
+    }
+}
+.ant-input-focused,
+.ant-input-affix-wrapper-focused {
+    border-color: var(--border-hover);
+    box-shadow: none;
+}
+.ant-input-affix-wrapper {
+    border-radius: 4px;
+    background-color: var(--bg-default);
+    border-color: var(--border-default);
+    &:hover,
+    &:focus {
+        border-color: var(--border-hover);
+        box-shadow: none;
+    }
+    .anticon {
+        font-size: 16px;
+        margin-right: 8px;
+        color: var(--color-lightgray);
+    }
+}
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled) {
+    &:hover {
+        border-color: var(--border-hover);
+        box-shadow: none;
+    }
+}
+.ant-input-clear-icon {
+    color: var(--text-desc);
+}
+
+// ============== Number Input ==============
+.ant-input-number {
+    background-color: var(--bg-default);
+    border-color: var(--border-default);
+    color: var(--text-main);
+    &:hover {
+        border-color: var(--border-hover);
+    }
+}
+.ant-input-number-handler-wrap {
+    background-color: var(--bg-color-desc);
+    border-color: var(--border-default);
+}
+.ant-input-number-handler-down {
+    border-color: var(--border-default);
+}
+.ant-input-number-handler-up-inner,
+.ant-input-number-handler-down-inner {
+    color: var(--text-desc);
+}
+
+// ============== Group Input ==============
+.ant-input-group-addon {
+    background-color: var(--bg-default);
+    border-color: var(--border-default);
+}

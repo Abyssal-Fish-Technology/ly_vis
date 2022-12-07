@@ -1,0 +1,96 @@
+.pagetab {
+    :global {
+        height: 45px;
+        display: flex;
+        position: relative;
+        .select {
+            height: 100%;
+            width: 35px;
+            border-right: solid 1px var(--border-default);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .content {
+            margin-left: 10px;
+            overflow-x: scroll;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+        .select-list {
+            background: var(--bg-default);
+            box-shadow: var(--shadow-2-down);
+            .select-list-item {
+                padding: 0 4px;
+                padding-left: 0;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                justify-content: flex-start;
+                border-width: 1px;
+                .item-check {
+                    width: 35px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .circle {
+                        height: 14px;
+                        width: 14px;
+                        border-radius: 50%;
+                        background: var(--bg-body);
+                        border: solid 1px var(--border-default);
+                    }
+                }
+                .item-content {
+                    margin-left: 10px;
+                }
+                &.active {
+                    background: var(--bg-default);
+                    .circle {
+                        border: solid 5px var(--border-active);
+                    }
+                }
+            }
+        }
+    }
+}
+.pagetag-list {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    :global {
+        .pagetag-item {
+            padding: 5px 10px;
+            border: solid 1px var(--border-default);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            .pagetag-item-close {
+                font-size: 8px;
+                margin-left: 6px;
+            }
+            &.active {
+                background: var(--bg-active);
+                color: var(--text-reverse);
+                .pagetag-item-dot {
+                    height: 6px;
+                    width: 6px;
+                    border-radius: 50%;
+                    opacity: 1;
+                    background: #fff;
+                    margin-right: 6px;
+                }
+            }
+        }
+        .pagetag-slice {
+            margin: 0 3px;
+            font-size: 16px;
+            color: var(--text-desc);
+        }
+    }
+}

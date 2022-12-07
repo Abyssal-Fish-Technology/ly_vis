@@ -1,0 +1,103 @@
+.event-type {
+    :global {
+        position: relative;
+        .event-type-container {
+            display: flex;
+            justify-content: space-between;
+            overflow-x: scroll;
+            padding-right: 20px;
+            &.expand {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+            &::-webkit-scrollbar {
+                width: 0 !important;
+                height: 0 !important;
+            }
+
+            -ms-overflow-style: none;
+            overflow: -moz-scrollbars-none;
+        }
+        .event-showall {
+            background-color: var(--bg-body);
+            width: 20px;
+            text-align: center;
+            cursor: pointer;
+            position: absolute;
+            right: -6px;
+            top: 0;
+            bottom: 0;
+            color: var(--text-active);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            .anticon {
+                transform: rotate(-90deg);
+            }
+        }
+        .event-type-item {
+            display: grid;
+            grid-template-columns: 60px auto;
+            grid-template-rows: 40% 60%;
+            text-align: center;
+            white-space: nowrap;
+            align-items: center;
+            .event-item-icon {
+                height: 60px;
+                width: 60px;
+                background: var(--bg-default);
+                border-radius: 10px;
+                font-size: 38px;
+                line-height: 60px;
+                text-align: center;
+                color: var(--color-lightgray);
+                grid-row-start: 1;
+                grid-row-end: 3;
+                position: relative;
+                cursor: pointer;
+                box-shadow: var(--shadow-1-down);
+                .event-item-checked {
+                    height: 16px;
+                    width: 16px;
+                    background: var(--bg-active);
+                    position: absolute;
+                    font-size: 12px;
+                    color: #fff;
+                    left: 0;
+                    top: 0;
+                    border-radius: 4px;
+                    line-height: 16px;
+                }
+            }
+            .event-item-name {
+                width: 100%;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: table-cell;
+                vertical-align: middle;
+                color: var(--text-desc);
+            }
+            .ant-statistic {
+                min-width: 70px;
+                padding: 0 5px;
+            }
+            &.disabled {
+                opacity: 0.6;
+                .event-item-checked {
+                    background: var(--bg-disabled);
+                }
+            }
+            &.zero {
+                .event-item-icon {
+                    cursor: not-allowed;
+                }
+                .ant-statistic-content-value-int {
+                    opacity: 0.4;
+                }
+                .event-item-checked {
+                    background: var(--bg-disabled);
+                }
+            }
+        }
+    }
+}

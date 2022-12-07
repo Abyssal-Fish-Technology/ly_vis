@@ -1,0 +1,36 @@
+@minWidth:1024px;
+@maxWidth:2000px;
+.red-text {
+    color: var(--text-red);
+}
+.blue-text {
+    color: var(--text-blue);
+}
+
+@media only screen and (max-width: @minWidth) {
+    .app-nav-container,
+    .app-nav-child-container,
+    .app-content-container {
+        width: @minWidth;
+        margin: 0 auto;
+    }
+    body {
+        width: @minWidth;
+        overflow-x: scroll;
+        height: calc(100% - 4px);
+        &::-webkit-scrollbar {
+            width: 0;
+            height: 4px !important;
+            display: block;
+        }
+    }
+}
+
+@media only screen and (min-width: @maxWidth) {
+    .app-nav-container,
+    .app-nav-child-container,
+    .app-content-container {
+        width: @maxWidth;
+        margin: 0 auto;
+    }
+}

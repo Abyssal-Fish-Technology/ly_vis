@@ -1,0 +1,57 @@
+.result {
+    :global {
+        height: 100%;
+        width: 100%;
+        // position: absolute;
+        display: flex;
+        flex-direction: column;
+        .result-header {
+            background-color: var(--bg-body);
+            padding: 0 20px;
+            width: 100%;
+        }
+        .result-body {
+            margin-top: 20px;
+            width: 100%;
+            flex: 1;
+            position: relative;
+            .app-section {
+                margin-top: 20px;
+                &:nth-child(1) {
+                    margin-top: 0;
+                }
+            }
+        }
+        .app-loading {
+            &::after {
+                top: 35%;
+            }
+        }
+        .ant-tabs-left {
+            > .ant-tabs-nav {
+                .ant-tabs-tab {
+                    border-radius: 8px !important;
+                    height: 50px;
+                    width: 50px;
+                    padding: 0;
+                    justify-content: center;
+                    align-content: center;
+                    box-shadow: var(--shadow-1-down);
+                    border-width: 0;
+                    .anticon {
+                        font-size: 16px;
+                        margin: 0;
+                    }
+                }
+            }
+            > .ant-tabs-content-holder {
+                border-width: 0;
+                margin-left: 0;
+                padding-left: 45px;
+            }
+            > .ant-tabs-nav .ant-tabs-nav-wrap {
+                overflow: visible;
+            }
+        }
+    }
+}

@@ -1,0 +1,99 @@
+// 一些零散的样式
+a {
+    color: var(--text-active);
+    &:hover {
+        color: var(--text-active);
+    }
+}
+
+// ==============  Switch ==============
+.ant-switch {
+    background-color: var(--color-lightgray);
+    color: var(--text-main);
+}
+.ant-switch-checked {
+    background-color: var(--bg-active);
+}
+.ant-switch-handle::before {
+    background-color: var(--bg-white);
+}
+
+// ============== 统计 ==============
+.ant-statistic-content {
+    color: var(--text-main);
+}
+
+// ============== 描述 ==============
+.ant-descriptions-item-label {
+    color: var(--text-desc);
+}
+.ant-descriptions-item-content {
+    color: var(--text-main);
+}
+.ant-descriptions {
+    .ant-descriptions-title {
+        color: var(--text-title);
+    }
+}
+
+// ============== 排版 ==============
+.ant-typography {
+    color: var(--text-main) !important;
+}
+
+// ============== loading ==============
+.ant-spin-dot-item {
+    background-color: var(--color-blue);
+}
+
+// ============== badge ==============
+.ant-badge-count {
+    color: var(--text-white);
+    background-color: var(--color-red);
+    box-shadow: none;
+    border-color: var(--border-default);
+}
+
+// ============== time line ==============
+.ant-timeline {
+    color: var(--text-desc);
+}
+.ant-timeline-item-tail {
+    border-color: var(--border-default);
+}
+.ant-timeline-item-head {
+    background-color: var(--bg-default);
+}
+.ant-timeline-item-head-blue {
+    border-color: var(--border-active);
+}
+
+// ================ antd card ==========
+.ant-card {
+    background: var(--bg-default);
+    border-radius: 10px;
+    box-shadow: var(--shadow-1-down);
+}
+
+// ============== menu ==============
+.ant-menu {
+    background-color: var(--bg-default) !important;
+    border-right-color: var(--border-body);
+    .ant-menu-submenu-arrow {
+        color: var(--text-main);
+    }
+    .ant-menu-item-disabled {
+        span {
+            color: var(--text-disabled);
+        }
+    }
+}
+
+//  =========== Divider =========
+.ant-divider {
+    .ant-divider-inner-text {
+        span {
+            color: var(--text-main);
+        }
+    }
+}

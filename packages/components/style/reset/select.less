@@ -1,0 +1,54 @@
+// ============== 下拉选择器 select ==============
+@borderradius:4px;
+:focus {
+    outline: none;
+}
+.ant-select-arrow {
+    color: var(--text-desc);
+}
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    background-color: var(--bg-default);
+    border-color: var(--border-default);
+    color: var(--text-main);
+    border-radius: @borderradius;
+}
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+    border-color: var(--border-hover);
+    border-radius: @borderradius;
+}
+// 下拉选择器的下拉列表
+.ant-select-dropdown {
+    background-color: var(--bg-default);
+    border-color: var(--border-default);
+    box-shadow: var(--shadow-1-down);
+    .ant-select-item {
+        color: var(--text-main);
+    }
+    .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+        background-color: var(--bg-selected);
+    }
+    .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+        background-color: var(--bg-hover);
+    }
+}
+
+// ============== 多选下拉 ==============
+.ant-select-multiple .ant-select-selector {
+    background-color: var(--bg-default);
+    border-color: var(--border-default);
+    color: var(--text-main);
+    border-radius: @borderradius;
+}
+.ant-select-multiple .ant-select-selection-item {
+    background-color: var(--bg-default);
+    border-color: var(--border-default);
+    color: var(--text-main);
+}
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    background: var(--bg-default);
+    border: 1px solid var(--border-default);
+    border-radius: @borderradius;
+}
+.ant-select-multiple .ant-select-selection-item-remove {
+    color: var(--text-white);
+}

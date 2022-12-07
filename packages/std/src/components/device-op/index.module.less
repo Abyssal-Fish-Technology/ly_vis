@@ -1,0 +1,47 @@
+.tab-container {
+    :global {
+        .basic-center {
+            height: 450px;
+            width: 100%;
+            overflow: auto;
+            padding: 5px 20px;
+            .basic-center-ti-top {
+                position: relative;
+                min-height: 120px;
+                display: flex;
+                align-items: center;
+                .basic-center-ti-top-center {
+                    width: 80%;
+                    .ant-descriptions-row > td {
+                        padding-bottom: 24px;
+                    }
+                }
+                .basic-center-ti-top-right {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    width: 20%;
+                    height: 180px;
+                }
+            }
+            .basic-chart-title {
+                width: 100%;
+                font-size: 14px;
+                font-weight: bold;
+                color: var(--text-title);
+                text-align: center;
+                line-height: 30px;
+            }
+            .basic-center-ti-center {
+                min-height: 100px;
+                .timeline-container {
+                    width: 100%;
+                    padding: 20px;
+                    .line-time {
+                        margin-top: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

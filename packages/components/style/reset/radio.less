@@ -1,0 +1,66 @@
+.ant-radio-wrapper {
+    color: var(--text-desc);
+}
+.ant-radio-inner {
+    background: var(--bg-default);
+    border-color: var(--border-default);
+}
+.ant-radio-checked .ant-radio-inner {
+    border-color: var(--border-active);
+}
+.ant-radio-inner::after {
+    background-color: var(--color-blue);
+}
+.ant-radio-wrapper:hover .ant-radio {
+    border-color: var(--border-hover);
+}
+.ant-radio-disabled + span {
+    color: var(--text-disabled);
+}
+.ant-radio-disabled .ant-radio-inner {
+    background-color: var(--text-disabled);
+    border-color: var(--border-disabled) !important;
+}
+.ant-radio-disabled .ant-radio-inner::after {
+    background-color: var(--text-disabled);
+}
+.ant-radio-wrapper:hover .ant-radio,
+.ant-radio:hover .ant-radio-inner,
+.ant-radio-input:focus + .ant-radio-inner {
+    border-color: var(--border-hover);
+}
+
+// ============== Radio Button ==============
+.ant-radio-button-wrapper-checked:not([class*=' ant-radio-button-wrapper-disabled']).ant-radio-button-wrapper:first-child {
+    border-color: var(--border-active);
+    border-right-color: var(--border-active);
+}
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    color: var(--text-active);
+    background: var(--bg-default);
+    border-color: var(--border-active);
+}
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+    color: var(--text-active);
+    border-color: var(--border-active);
+}
+.ant-radio-button-wrapper:hover {
+    color: var(--text-active);
+}
+.ant-radio-button-wrapper {
+    background: var(--bg-main);
+    color: var(--text-main);
+    border-color: var(--border-default);
+}
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover::before {
+    background-color: var(--border-active);
+}
+.ant-radio-button-wrapper:not(:first-child)::before {
+    background-color: var(--border-default);
+}
+.ant-radio-button-wrapper:first-child {
+    border-left-color: var(--border-default);
+}
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
+    background-color: var(--border-active);
+}

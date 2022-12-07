@@ -1,0 +1,10 @@
+**/*.svg
+package.json
+/dist
+.eslintignore
+*.png
+.editorconfig
+.gitignore
+.prettierignore
+*.lock
+yarn-error.log

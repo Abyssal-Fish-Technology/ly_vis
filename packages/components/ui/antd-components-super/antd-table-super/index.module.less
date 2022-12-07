@@ -1,0 +1,26 @@
+.antd-table-super {
+    :global {
+        .select-info-box {
+            color: var(--text-desc);
+            .select-number {
+                color: var(--text-blue);
+                margin: 0 5px;
+            }
+        }
+        .table-ellipsis {
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: top;
+        }
+    }
+}
+.hide-box-shadow {
+    :global {
+        .ant-pro-table {
+            & > .ant-card {
+                box-shadow: none;
+            }
+        }
+    }
+}

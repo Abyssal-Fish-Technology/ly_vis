@@ -1,0 +1,177 @@
+.login-page {
+    height: 100vh;
+    background-color: var(--bg-default);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // flex-direction: column;
+    :global {
+        @font-face {
+            font-family: YuanTi;
+            src:
+                url(./font/FangYuanZhunYuanTi-2.eot),
+                url(./font/FangYuanZhunYuanTi-2.ttf),
+                url(./font/FangYuanZhunYuanTi-2.woff);
+        }
+
+        @font-face {
+            font-family: YuanHei;
+            src:
+                url(./font/JustFontFenYuanZiTi-2.eot),
+                url(./font/JustFontFenYuanZiTi-2.ttf),
+                url(./font/JustFontFenYuanZiTi-2.woff);
+        }
+
+        @font-face {
+            font-family: newCambria;
+            src:
+                url(./font/Cambria.eot),
+                url(./font/Cambria.ttf),
+                url(./font/Cambria.woff);
+        }
+        .login_left {
+            position: relative;
+            flex: 1;
+            height: 100vh;
+            background: linear-gradient(to bottom, #1d2751, #2747d7);
+            .login-left-top {
+                position: absolute;
+                top: 38px;
+                left: 50px;
+                .login-left-logo {
+                    display: inline-block;
+                    vertical-align: top;
+                    color: var(--color-white-2);
+                    font-size: 1.35rem;
+                    font-family: YuanHei, sans-serif;
+                    line-height: 28px;
+                    letter-spacing: 1px;
+                }
+                .login-left-logo-tip {
+                    display: inline-block;
+                    vertical-align: top;
+                    height: 28px;
+                    margin-left: 5px;
+                    div {
+                        height: 14px;
+                        color: var(--color-white-2);
+                        line-height: 14px;
+                        transform: scale(0.83);
+                    }
+                    :first-child {
+                        font-family: newCambria, sans-serif;
+                        letter-spacing: 3px;
+                    }
+                    :last-child {
+                        font-family: newCambria, sans-serif;
+                        letter-spacing: 1px;
+                    }
+                }
+            }
+            .login-left-center {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding: 0 15% 0 18%;
+                .login-left-center-item {
+                    margin-bottom: 50px;
+                    div {
+                        color: var(--color-white-1);
+                        font-family: YuanTi, serif;
+                        letter-spacing: 1px;
+                    }
+                    .item-title {
+                        font-size: 1.5rem;
+                        line-height: 32px;
+                        text-shadow: var(--shadow-1-down);
+                        margin-bottom: 10px;
+                    }
+                    .item-text {
+                        font-size: 0.875rem;
+                        line-height: 22px;
+                    }
+                }
+            }
+        }
+        .login_right {
+            flex: 1;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: var(--bg-body);
+            .company-text {
+                position: absolute;
+                width: 100%;
+                bottom: 50px;
+                left: 0;
+                text-align: center;
+                font-family: Han Sans CN, 'Times New Roman', Arial, Helvetica, sans-serif;
+                color: var(--color-gray);
+                font-size: 0.75rem;
+            }
+        }
+        .login-form {
+            margin-top: -10%;
+            width: 50%;
+            max-width: 400px;
+            .login-title {
+                text-align: center;
+                position: relative;
+                color: var(--text-title);
+                .login-title-logo {
+                    text-align: center;
+                    :first-child {
+                        font-size: 1.8rem;
+                        font-family: YuanHei, sans-serif;
+                        line-height: 30px;
+                        letter-spacing: 8px;
+                        text-indent: 5px;
+                        color: var(--text-title);
+                    }
+                    :last-child {
+                        transform: scale(0.83);
+                        font-family: newCambria, sans-serif;
+                        line-height: 12px;
+                        letter-spacing: 1px;
+                        color: var(--color-gray);
+                    }
+                }
+                .version-text {
+                    display: inline-block;
+                    position: absolute;
+                    top: 10px;
+                    left: 60%;
+                    line-height: 20px;
+                    padding: 0 10px;
+                    height: 20px;
+                    border-radius: 3px;
+                    background-color: var(--color-blue);
+                    font-family: Han Sans CN, 'Times New Roman', Arial, Helvetica, sans-serif;
+                    color: var(--color-lightgray);
+                    transform: scale(0.83);
+                }
+            }
+            .ant-form-item-required {
+                font-family: sans-serif;
+                color: var(--color-gray);
+                letter-spacing: 1px;
+            }
+            .password-item {
+                padding-bottom: 20px;
+            }
+            .logo-item {
+                margin-bottom: 15px;
+            }
+        }
+        .login-form-button {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+            content: '';
+        }
+    }
+}

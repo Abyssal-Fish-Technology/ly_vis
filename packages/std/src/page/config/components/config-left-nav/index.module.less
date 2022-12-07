@@ -1,0 +1,37 @@
+.configNav {
+    :global {
+        width: 100%;
+        .nav-tree-box {
+            padding: 10px 0;
+            .nav-type-container {
+                margin-bottom: 15px;
+                .nav-type-title {
+                    font-size: 0.875rem;
+                    font-weight: bold;
+                    color: var(--text-title);
+                    margin-bottom: 10px;
+                }
+                .nav-type-ul {
+                    list-style-type: none;
+                    padding-left: 0;
+                    li {
+                        font-size: 0.75rem;
+                        cursor: pointer;
+                        line-height: 26px;
+                        color: var(--text-desc);
+                        &:hover {
+                            color: var(--text-hover);
+                        }
+                        .nav-text {
+                            margin-left: 10px;
+                            letter-spacing: 1px;
+                        }
+                    }
+                    .li-active {
+                        color: var(--text-active);
+                    }
+                }
+            }
+        }
+    }
+}
