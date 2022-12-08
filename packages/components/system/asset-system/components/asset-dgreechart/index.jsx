@@ -224,8 +224,8 @@ export default function AssetRelation(props) {
             g.graph().height * initialScale + minHeight
         )
         setHeight(g.graph().height * initialScale + minHeight)
-        selectAll('g.node').on('click', d => {
-            const node = chartData.find(d1 => d1.id === d)
+        selectAll('g.node').on('click', (event, id) => {
+            const node = chartData.find(d1 => d1.id === id)
             if (node.isAggre) {
                 const useIgnore = ignorePid.filter(
                     d1 => d1.node.id !== node.pnode.node.id
