@@ -202,16 +202,6 @@ function SearchForm({
             }
         }, 100)
     }, [formValue, searchType])
-    useEffect(() => {
-        if (conditionValue) {
-            const { feature = [], proto } = conditionValue
-            formConditon.setFieldsValue({
-                ...conditionValue,
-                feature,
-                proto: proto || '',
-            })
-        }
-    }, [conditionValue, formConditon])
 
     const ipInput = (
         <IpInput
@@ -365,22 +355,31 @@ function SearchForm({
     }
 
     const initialValues = useMemo(() => {
-        return {
-            starttime: [
-                moment(rountTime5Min(moment().subtract(1, 'd').unix()) * 1000),
-                moment(rountTime5Min(moment().unix()) * 1000),
-            ],
-            devid: configStore.device.length ? configStore.device[0].id : null,
-            proto: '',
-            feature: useFeature.map(d => d.key),
-            limit: 0,
-        }
+        return conditionValue
+            ? { ...conditionValue }
+            : {
+                  starttime: [
+                      moment(
+                          rountTime5Min(moment().subtract(1, 'd').unix()) * 1000
+                      ),
+                      moment(rountTime5Min(moment().unix()) * 1000),
+                  ],
+                  devid: configStore.device.length
+                      ? configStore.device[0].id
+                      : null,
+                  proto: '',
+                  feature: calcualteNowFeature('ip').map(d => d.key),
+                  limit: 0,
+              }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [useFeature, configStore.device])
+    }, [configStore.device, conditionValue])
 
     useEffect(() => {
         formConditon.setFieldsValue(initialValues)
     }, [conditionVis, formConditon, initialValues])
+    useEffect(() => {
+        formConditon.setFieldsValue({ feature: useFeature.map(d => d.key) })
+    }, [formConditon, useFeature])
     return (
         <>
             {!simple ? (

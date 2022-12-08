@@ -77,7 +77,6 @@ function NavSearch() {
                             { isNav: true }
                         )
                     }}
-                    conditionValue={{}}
                 />
             </div>
         </span>
