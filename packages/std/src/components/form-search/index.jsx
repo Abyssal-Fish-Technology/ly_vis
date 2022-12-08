@@ -539,7 +539,21 @@ function SearchForm({
                     <Form
                         className='search-value'
                         form={formValue}
-                        onFinish={onSearchFinish}
+                        onFinish={values => {
+                            const nowValues = formValue.getFieldsValue()
+
+                            const result = chain(nowValues)
+                                .entries()
+                                .reduce((obj, item) => {
+                                    const [key, value] = item
+                                    obj[key] = formatStringSpace(value)
+                                    return obj
+                                }, {})
+                                .value()
+
+                            formValue.setFieldsValue(result)
+                            onSearchFinish(values)
+                        }}
                         onValuesChange={onValuesChange}
                         layout='inline'
                     >
@@ -583,32 +597,20 @@ function SearchForm({
                             >
                                 {formObj[searchType]}
                             </div>
-                            <SearchOutlined
+                            <Button
+                                icon={<SearchOutlined />}
+                                htmlType='submit'
+                                type='text'
+                                style={{
+                                    background: 'rgba(0,0,0,0)',
+                                    border: 'none',
+                                }}
                                 onClick={() => {
-                                    const nowValues = formValue.getFieldsValue()
-
-                                    const result = chain(nowValues)
-                                        .entries()
-                                        .reduce((obj, item) => {
-                                            const [key, value] = item
-                                            obj[key] = formatStringSpace(value)
-                                            return obj
-                                        }, {})
-                                        .value()
-
-                                    formValue.setFieldsValue(result)
-                                    formValue
-                                        .validateFields()
-                                        .then(() => {
-                                            formValue.submit()
+                                    formValue.validateFields().catch(error => {
+                                        error.errorFields.forEach(d => {
+                                            message.error(d.errors.toString())
                                         })
-                                        .catch(error => {
-                                            error.errorFields.forEach(d => {
-                                                message.error(
-                                                    d.errors.toString()
-                                                )
-                                            })
-                                        })
+                                    })
                                 }}
                             />
                         </div>
