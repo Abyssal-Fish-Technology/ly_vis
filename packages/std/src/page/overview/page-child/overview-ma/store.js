@@ -71,8 +71,8 @@ export default class OverviewMaStore {
                 name: '资产配置',
                 values: [
                     {
-                        desc: '资产IP',
-                        unit: '条',
+                        desc: '资产组',
+                        unit: '个',
                         value: 0,
                     },
                 ],

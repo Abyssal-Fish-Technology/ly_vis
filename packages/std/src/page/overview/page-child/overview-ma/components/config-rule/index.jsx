@@ -163,7 +163,7 @@ const ConfigRuleFilter = inject('overviewMaStore')(
         }, [form])
 
         return (
-            <Section title='筛选查询' className='filter-form'>
+            <Section title='事件规则有效性' className='filter-form'>
                 <FormFilter
                     getForm={getForm}
                     formContent={filterCondition}
