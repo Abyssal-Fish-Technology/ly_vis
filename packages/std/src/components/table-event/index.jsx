@@ -156,20 +156,20 @@ function EventTable({ data, isFormat = false, resultParams = false }) {
                 width: 'auto',
                 render: (d, row) => {
                     const obj = {
-                        未处理: 'unprocessed',
-                        已处理: 'processed',
-                        已确认: 'assigned',
+                        unprocessed: '激活',
+                        processed: '处理',
+                        assigned: '确认',
                     }
-                    const [okText, calText] = Object.keys(obj).filter(
-                        d1 => d1 !== row.show_proc_status
+                    const [okStatus, calStatus] = Object.keys(obj).filter(
+                        d1 => d1 !== row.proc_status
                     )
 
                     return (
                         <EventConfirm
-                            okText={okText}
-                            calText={calText}
-                            okStatus={obj[okText]}
-                            calStatus={obj[calText]}
+                            okText={obj[okStatus]}
+                            calText={obj[calStatus]}
+                            okStatus={okStatus}
+                            calStatus={calStatus}
                             id={row.id}
                             changeLoading={setloading}
                         >
@@ -242,7 +242,7 @@ function EventTable({ data, isFormat = false, resultParams = false }) {
                     processEvent('unprocessed')
                 }}
             >
-                未处理
+                激活
             </Button>
             <Button
                 size='small'
@@ -252,7 +252,7 @@ function EventTable({ data, isFormat = false, resultParams = false }) {
                     processEvent('assigned')
                 }}
             >
-                已确认
+                确认
             </Button>
             <Button
                 size='small'
@@ -261,7 +261,7 @@ function EventTable({ data, isFormat = false, resultParams = false }) {
                     processEvent('processed')
                 }}
             >
-                已处理
+                处理
             </Button>
         </Space>
     )

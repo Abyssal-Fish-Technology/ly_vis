@@ -5,8 +5,8 @@ import React, { useCallback } from 'react'
 
 export default function EventConfirm({
     children,
-    okText = '已处理',
-    calText = '已确认',
+    okText = '处理',
+    calText = '确认',
     okStatus = 'processed',
     calStatus = 'assigned',
     id,

@@ -76,15 +76,15 @@ function EventInfo({ originRecordData }) {
     const tabList = useMemo(() => {
         return [
             {
-                tab: '未处理',
+                tab: '激活',
                 key: 'unprocessed',
             },
             {
-                tab: '已确认',
+                tab: '确认',
                 key: 'assigned',
             },
             {
-                tab: '已处理',
+                tab: '处理',
                 key: 'processed',
             },
         ]
