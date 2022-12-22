@@ -131,10 +131,9 @@ export default function requestConfig({
         },
         error => {
             // 外放访问受限时，threatinfo接口不能使用，这里做特殊处理，防止接口报错以及页面渲染出错
-            const {
-                config: { url },
-                message: timeoutMessage,
-            } = error.toJSON()
+            // 去掉error.toJSON()，使用toJSON是为了查看error包含的错误信息(axios文档中给的方法)，但是当error中没有toJSON方法时就会报错(Object.keys()可以查看)
+            const { config = {}, message: timeoutMessage = '' } = error || {}
+            const { url = '' } = config
             if (timeoutMessage.includes('timeout') && url === 'threatinfo') {
                 return Promise.resolve([])
             }
