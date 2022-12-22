@@ -6,7 +6,7 @@ import EventRank from '../event-rank'
 
 function EventChart({ classifyData, changeFormCondition }) {
     return (
-        <Section style={{ marginBottom: '15px' }}>
+        <Section style={{ marginBottom: '20px' }}>
             <div className='event-list-chart'>
                 <div className='event-list-chart-item'>
                     <EventRank type='attackDevice' />

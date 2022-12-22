@@ -176,7 +176,7 @@ function EventFitler({
             },
             {
                 name: 'moid',
-                label: 'Mo相关事件',
+                label: '追踪目标',
                 content: (
                     <MoSelect
                         inputProps={{
