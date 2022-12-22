@@ -108,11 +108,6 @@ const moGroupColumns = [
     },
 ]
 
-const publicProperty = {
-    addAuth: ['sysadmin', 'analyser'],
-    deleteAuth: ['sysadmin', 'analyser'],
-}
-
 function deleteFn(rows, modalType, changeData) {
     const api = modalType === 'moGroup' ? mogroupApi : moApi
     const promiseArr = []
@@ -253,7 +248,6 @@ class ConfigMoStore {
                             isActive: true,
                             columns: moColumns,
                             ExpandableCard,
-                            ...publicProperty,
                         }
                     }),
                 },
@@ -289,7 +283,7 @@ class ConfigMoStore {
                             deleteDataFn: deleteFn,
                             isActive: false,
                             columns: moGroupColumns,
-                            ...publicProperty,
+
                             editAuth: [],
                         },
                     ],

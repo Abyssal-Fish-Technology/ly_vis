@@ -43,12 +43,6 @@ const bwlistColumns = [
     },
 ]
 
-const publicProperty = {
-    addAuth: ['sysadmin', 'analyser'],
-    editAuth: ['sysadmin', 'analyser'],
-    deleteAuth: ['sysadmin', 'analyser'],
-}
-
 export const bwlistConfigData = {
     title: '黑白名单',
     path: '/config/bwlist',
@@ -80,7 +74,6 @@ export const bwlistConfigData = {
                     api: whitelistApi,
                     isActive: true,
                     columns: bwlistColumns,
-                    ...publicProperty,
                 },
                 {
                     title: '黑名单',
@@ -116,7 +109,6 @@ export const bwlistConfigData = {
                     openModalFun: openAddBlackModal,
                     isActive: false,
                     columns: bwlistColumns,
-                    ...publicProperty,
                 },
             ],
         },

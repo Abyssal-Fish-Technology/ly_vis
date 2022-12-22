@@ -15,6 +15,7 @@ import moment from 'moment'
 import { TagAttribute } from '@shadowflow/components/ui/tag'
 import FormFilter from '@shadowflow/components/ui/form/form-filter'
 import UnitContainer from '@shadowflow/components/ui/container/unit-container'
+import withAuth from '@shadowflow/components/ui/container/with-auth'
 import style from './index.module.less'
 
 function EventChart({ data }) {
@@ -69,7 +70,7 @@ function EventChart({ data }) {
     return <LineChart data={data} option={option} />
 }
 
-function RuleItem({ data }) {
+const RuleItem = withAuth(({ data, userAuth = {} }) => {
     return (
         <div className='rule-item' key={data.id}>
             <div className='rule-header'>
@@ -82,13 +83,15 @@ function RuleItem({ data }) {
                     </TagAttribute>
                 </div>
                 <div className='rule-set operate-content-default'>
-                    <TriggerEventModal
-                        type={data.event_type}
-                        id={data.id}
-                        op='mod'
-                    >
-                        <EditOutlined />
-                    </TriggerEventModal>
+                    {userAuth.handle_auth && (
+                        <TriggerEventModal
+                            type={data.event_type}
+                            id={data.id}
+                            op='mod'
+                        >
+                            <EditOutlined />
+                        </TriggerEventModal>
+                    )}
                 </div>
             </div>
             <div className='rule-info'>
@@ -112,7 +115,7 @@ function RuleItem({ data }) {
             </div>
         </div>
     )
-}
+})
 
 const ConfigRuleFilter = inject('overviewMaStore')(
     observer(({ overviewMaStore }) => {

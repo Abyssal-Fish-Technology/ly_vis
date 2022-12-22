@@ -109,37 +109,7 @@ export default function EventTableSimple({
         <AntdTableSuper
             ipKeys={['attackIp', 'victimIp']}
             loading={loading}
-            title={() => (
-                <div className='table-header'>
-                    <span className='table-title'>{title}</span>
-                    <span className='table-op'>
-                        <Button
-                            size='small'
-                            type='primary'
-                            disabled={selectRowKey.length < 1}
-                        >
-                            <Popconfirm
-                                title='修改处理状态'
-                                icon={
-                                    <ExclamationCircleOutlined
-                                        style={{ color: 'orange' }}
-                                    />
-                                }
-                                okText='已处理'
-                                cancelText='已确认'
-                                onCancel={() => {
-                                    processEvent('assigned')
-                                }}
-                                onConfirm={() => {
-                                    processEvent('processed')
-                                }}
-                            >
-                                批量处理
-                            </Popconfirm>
-                        </Button>
-                    </span>
-                </div>
-            )}
+            headerTitle={title}
             rowKey='id'
             rowSelection={{
                 type: 'checkbox',
@@ -165,6 +135,33 @@ export default function EventTableSimple({
             }}
             tableAlertRender={false}
             showBoxShadow={false}
+            toolBarRender={() => [
+                <Button
+                    key='auth'
+                    size='small'
+                    type='primary'
+                    disabled={selectRowKey.length < 1}
+                >
+                    <Popconfirm
+                        title='修改处理状态'
+                        icon={
+                            <ExclamationCircleOutlined
+                                style={{ color: 'orange' }}
+                            />
+                        }
+                        okText='已处理'
+                        cancelText='已确认'
+                        onCancel={() => {
+                            processEvent('assigned')
+                        }}
+                        onConfirm={() => {
+                            processEvent('processed')
+                        }}
+                    >
+                        批量处理
+                    </Popconfirm>
+                </Button>,
+            ]}
         />
     )
 }

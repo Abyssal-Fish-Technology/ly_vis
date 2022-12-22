@@ -175,12 +175,6 @@ const ignoreColumns = [
     },
 ]
 
-const publicProperty = {
-    addAuth: ['sysadmin', 'analyser'],
-    editAuth: ['sysadmin', 'analyser'],
-    deleteAuth: ['sysadmin', 'analyser'],
-}
-
 function onDeleteFn(rows, eventType, changeData) {
     const promiseArr = []
     rows.forEach(d => {
@@ -457,7 +451,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: true,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: '包特征识别',
@@ -478,9 +471,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    addAuth: [],
-                    editAuth: ['sysadmin', 'analyser'],
-                    deleteAuth: [],
                 },
                 {
                     title: 'DGA事件',
@@ -512,7 +502,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: 'dns事件',
@@ -546,7 +535,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: 'dns隧道事件',
@@ -582,7 +570,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: 'dns隧道ai事件',
@@ -610,7 +597,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: '服务器外联事件',
@@ -643,7 +629,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: 'ICMP隧道',
@@ -678,7 +663,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: 'IP扫描',
@@ -710,7 +694,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: '追踪事件',
@@ -745,7 +728,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: '端口扫描',
@@ -777,7 +759,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: '异常服务',
@@ -805,7 +786,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: '情报命中',
@@ -833,7 +813,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: 'URL内容识别',
@@ -861,7 +840,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    ...publicProperty,
                 },
                 {
                     title: '挖矿',
@@ -882,9 +860,6 @@ export const eventConfigData = {
                     ExpandableCard,
                     isActive: false,
                     columns: eventColumns,
-                    addAuth: [],
-                    editAuth: ['sysadmin', 'analyser'],
-                    deleteAuth: [],
                 },
             ],
         },
@@ -915,7 +890,6 @@ export const eventConfigData = {
                     deleteDataFn: deleteAction,
                     isActive: false,
                     columns: actiovColumns,
-                    ...publicProperty,
                 },
                 {
                     title: '事件忽略',
@@ -941,7 +915,6 @@ export const eventConfigData = {
                     openModalFun: openAddEventIgnoreModal,
                     isActive: false,
                     columns: ignoreColumns,
-                    ...publicProperty,
                 },
             ],
         },

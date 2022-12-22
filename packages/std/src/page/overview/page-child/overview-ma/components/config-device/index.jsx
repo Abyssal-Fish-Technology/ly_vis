@@ -10,9 +10,10 @@ import {
 import { Button, message, Switch } from 'antd'
 import { sankeyLinkHorizontal } from 'd3-sankey'
 import { inject, observer } from 'mobx-react'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useActivate, useUnactivate } from 'react-activation'
 import { BasicCustomChart } from '@shadowflow/components/charts'
+import withAuth from '@shadowflow/components/ui/container/with-auth'
 import style from './index.module.less'
 
 const legendData = [
@@ -225,183 +226,203 @@ export default inject(stores => ({
     deviceData: stores.overviewMaStore.deviceData,
 }))(observer(ConfigDevice))
 
-const DeviceItem = inject(stores => ({
-    changeData: stores.configStore.changeData,
-    changeDeviceDetailData: stores.overviewMaStore.changeDeviceDetailData,
-}))(function DeviceItem({ css, data, changeData, changeDeviceDetailData }) {
-    const { name, status, id, type, detailInfo, tid, realId } = data
-    const [loadingObj, setloadingObj] = useState(
-        detailInfo.reduce((obj, d) => {
-            obj[d.id] = false
-            return obj
-        }, {})
-    )
+const DeviceItem = withAuth(
+    inject(stores => ({
+        changeData: stores.configStore.changeData,
+        changeDeviceDetailData: stores.overviewMaStore.changeDeviceDetailData,
+    }))(function DeviceItem({
+        css,
+        data,
+        changeData,
+        changeDeviceDetailData,
+        userAuth = {},
+    }) {
+        const { admin_auth = false } = useMemo(() => userAuth, [userAuth])
+        const { name, status, id, type, detailInfo, tid, realId } = data
+        const [loadingObj, setloadingObj] = useState(
+            detailInfo.reduce((obj, d) => {
+                obj[d.id] = false
+                return obj
+            }, {})
+        )
 
-    function changeLoading(key, isloading) {
-        const newObj = {
-            ...loadingObj,
-            [key]: isloading,
+        function changeLoading(key, isloading) {
+            const newObj = {
+                ...loadingObj,
+                [key]: isloading,
+            }
+            setloadingObj(newObj)
         }
-        setloadingObj(newObj)
-    }
 
-    const [loading, setloading] = useState(false)
+        const [loading, setloading] = useState(false)
 
-    const callback = {
-        agent: {
-            api: proxyApi,
-            type: 'proxy',
-        },
-        probe: {
-            api: deviceApi,
-            type: 'device',
-        },
-    }
+        const callback = {
+            agent: {
+                api: proxyApi,
+                type: 'proxy',
+            },
+            probe: {
+                api: deviceApi,
+                type: 'device',
+            },
+        }
 
-    return (
-        <div
-            className={`device-item ${status === '正常' ? '' : 'disabled'}`}
-            style={{ ...css }}
-            id={id}
-        >
-            {/* <SettingOutlined className='device-item-setting' /> */}
-            <div className='device-item-icon'>
-                {deviceIcon[type].icon}
-                <span>
-                    {name}
-                    {type !== 'server' && (
-                        <Switch
-                            size='small'
-                            checkedChildren='启用'
-                            unCheckedChildren='禁用'
-                            checked={status === '正常'}
-                            loading={loading}
-                            onChange={isDisabled => {
-                                setloading(true)
-                                callback[type]
-                                    .api({
-                                        op: 'mod',
-                                        id: realId,
-                                        disabled: isDisabled ? 'N' : 'Y',
-                                    })
-                                    .then(res => {
-                                        if (res === '[{executed}]') {
-                                            setloading(false)
-                                            callback[type]
-                                                .api({
-                                                    op: 'get',
-                                                })
-                                                .then(res2 => {
-                                                    changeData({
-                                                        [callback[type]
-                                                            .type]: res2,
+        return (
+            <div
+                className={`device-item ${status === '正常' ? '' : 'disabled'}`}
+                style={{ ...css }}
+                id={id}
+            >
+                {/* <SettingOutlined className='device-item-setting' /> */}
+                <div className='device-item-icon'>
+                    {deviceIcon[type].icon}
+                    <span>
+                        {name}
+                        {type !== 'server' && (
+                            <Switch
+                                disabled={!admin_auth}
+                                size='small'
+                                checkedChildren='启用'
+                                unCheckedChildren='禁用'
+                                checked={status === '正常'}
+                                loading={loading}
+                                onChange={isDisabled => {
+                                    setloading(true)
+                                    callback[type]
+                                        .api({
+                                            op: 'mod',
+                                            id: realId,
+                                            disabled: isDisabled ? 'N' : 'Y',
+                                        })
+                                        .then(res => {
+                                            if (res === '[{executed}]') {
+                                                setloading(false)
+                                                callback[type]
+                                                    .api({
+                                                        op: 'get',
                                                     })
-                                                })
-                                        }
-                                    })
-                            }}
-                        />
-                    )}
-                </span>
-            </div>
-            <div className='device-item-info'>
-                {detailInfo.map(d => {
-                    return (
-                        <span key={d.id} className='device-item-info-item'>
-                            <span className='device-item-info-label'>
-                                {d.name}:
-                            </span>
-                            <span className='device-item-info-value'>
-                                {d.type === 'disk' && d.status}
-                                {d.type === 'http' && (
-                                    <div className='device-item-restart'>
-                                        {d.status === 'active'
-                                            ? '开启中'
-                                            : '已关闭'}
-                                        <Button
-                                            ghost
-                                            size='small'
-                                            icon={<ReloadOutlined />}
-                                            loading={loadingObj[d.id]}
-                                            onClick={() => {
-                                                changeLoading(d.id, true)
-                                                sctlRestart({
-                                                    type: 'http',
-                                                    tid,
-                                                })
-                                                RequestStore.cancel()
-                                                setTimeout(() => {
-                                                    changeLoading(d.id, false)
-                                                    message.success(
-                                                        '重启成功, 请在2分钟后刷新页面!'
-                                                    )
-                                                }, 1000)
-                                                // const test = setInterval(() => {
-                                                //     sctlStat({
-                                                //         type: 'http',
-                                                //         tid,
-                                                //     }).then(res => {
-                                                //         console.log(res)
-                                                //         clearInterval(test)
-                                                //         overviewMaStore.changeDeviceDetailData(
-                                                //             id,
-                                                //             d.id,
-                                                //             res[0].status
-                                                //         )
-                                                //         message.success(
-                                                //             '重启成功'
-                                                //         )
-                                                //     })
-                                                // }, 500)
-                                            }}
-                                        />
-                                    </div>
-                                )}
-                                {!['disk', 'http'].includes(d.type) && (
-                                    <Switch
-                                        onChange={turnOn => {
-                                            changeLoading(d.id, true)
-                                            sctlStart({
-                                                type: d.type,
-                                                tid,
-                                                op: turnOn ? 'start' : 'stop',
-                                            })
-                                                .then(res => {
-                                                    if (
-                                                        res[0] &&
-                                                        res[0].result ===
-                                                            'succeed'
-                                                    ) {
-                                                        changeDeviceDetailData(
-                                                            id,
+                                                    .then(res2 => {
+                                                        changeData({
+                                                            [callback[type]
+                                                                .type]: res2,
+                                                        })
+                                                    })
+                                            }
+                                        })
+                                }}
+                            />
+                        )}
+                    </span>
+                </div>
+                <div className='device-item-info'>
+                    {detailInfo.map(d => {
+                        return (
+                            <span key={d.id} className='device-item-info-item'>
+                                <span className='device-item-info-label'>
+                                    {d.name}:
+                                </span>
+                                <span className='device-item-info-value'>
+                                    {d.type === 'disk' && d.status}
+                                    {d.type === 'http' && (
+                                        <div className='device-item-restart'>
+                                            {d.status === 'active'
+                                                ? '开启中'
+                                                : '已关闭'}
+                                            <Button
+                                                disabled={!admin_auth}
+                                                ghost
+                                                size='small'
+                                                icon={<ReloadOutlined />}
+                                                loading={loadingObj[d.id]}
+                                                onClick={() => {
+                                                    changeLoading(d.id, true)
+                                                    sctlRestart({
+                                                        type: 'http',
+                                                        tid,
+                                                    })
+                                                    RequestStore.cancel()
+                                                    setTimeout(() => {
+                                                        changeLoading(
                                                             d.id,
-                                                            res[0].status
+                                                            false
                                                         )
                                                         message.success(
-                                                            '修改成功!'
+                                                            '重启成功, 请在2分钟后刷新页面!'
                                                         )
-                                                    } else {
-                                                        message.warning(
-                                                            '修改失败!'
+                                                    }, 1000)
+                                                    // const test = setInterval(() => {
+                                                    //     sctlStat({
+                                                    //         type: 'http',
+                                                    //         tid,
+                                                    //     }).then(res => {
+                                                    //         console.log(res)
+                                                    //         clearInterval(test)
+                                                    //         overviewMaStore.changeDeviceDetailData(
+                                                    //             id,
+                                                    //             d.id,
+                                                    //             res[0].status
+                                                    //         )
+                                                    //         message.success(
+                                                    //             '重启成功'
+                                                    //         )
+                                                    //     })
+                                                    // }, 500)
+                                                }}
+                                            />
+                                        </div>
+                                    )}
+                                    {!['disk', 'http'].includes(d.type) && (
+                                        <Switch
+                                            disabled={!admin_auth}
+                                            onChange={turnOn => {
+                                                changeLoading(d.id, true)
+                                                sctlStart({
+                                                    type: d.type,
+                                                    tid,
+                                                    op: turnOn
+                                                        ? 'start'
+                                                        : 'stop',
+                                                })
+                                                    .then(res => {
+                                                        if (
+                                                            res[0] &&
+                                                            res[0].result ===
+                                                                'succeed'
+                                                        ) {
+                                                            changeDeviceDetailData(
+                                                                id,
+                                                                d.id,
+                                                                res[0].status
+                                                            )
+                                                            message.success(
+                                                                '修改成功!'
+                                                            )
+                                                        } else {
+                                                            message.warning(
+                                                                '修改失败!'
+                                                            )
+                                                        }
+                                                    })
+                                                    .finally(() => {
+                                                        changeLoading(
+                                                            d.id,
+                                                            false
                                                         )
-                                                    }
-                                                })
-                                                .finally(() => {
-                                                    changeLoading(d.id, false)
-                                                })
-                                        }}
-                                        loading={loadingObj[d.id]}
-                                        size='small'
-                                        checked={d.status === 'active'}
-                                        checkedChildren='开'
-                                        unCheckedChildren='关'
-                                    />
-                                )}
+                                                    })
+                                            }}
+                                            loading={loadingObj[d.id]}
+                                            size='small'
+                                            checked={d.status === 'active'}
+                                            checkedChildren='开'
+                                            unCheckedChildren='关'
+                                        />
+                                    )}
+                                </span>
                             </span>
-                        </span>
-                    )
-                })}
+                        )
+                    })}
+                </div>
             </div>
-        </div>
-    )
-})
+        )
+    })
+)

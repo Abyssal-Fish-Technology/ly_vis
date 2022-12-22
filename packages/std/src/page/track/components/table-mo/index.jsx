@@ -24,6 +24,7 @@ import { openMoModal } from '@/components/modals/modal-config-mo'
 import { TagAttribute } from '@shadowflow/components/ui/tag'
 import { DeviceOperate } from '@shadowflow/components/ui/table/device-op-menu-template'
 import RowOperate from '@shadowflow/components/ui/table/row-op'
+import withAuth from '@shadowflow/components/ui/container/with-auth'
 import ExpandCard from '../expand-card'
 import { UpdateGroup } from '../group-modal'
 
@@ -41,7 +42,8 @@ function DeleteTrigger(props) {
     )
 }
 
-function TableMo({ data, params, changeData, devid }) {
+function TableMo({ data, params, changeData, devid, userAuth = {} }) {
+    const { handle_auth = false } = useMemo(() => userAuth, [userAuth])
     const [pageData, setPageData] = useState({})
     const updateList = useCallback(() => {
         moApi().then(res => {
@@ -358,9 +360,10 @@ function TableMo({ data, params, changeData, devid }) {
                 render: (t, row) => (
                     <div
                         onClick={e => e.stopPropagation()}
-                        className='operate-content-active'
+                        className={handle_auth ? 'operate-content-active' : ''}
                     >
                         <Dropdown
+                            disabled={!handle_auth}
                             arrow
                             placement='bottomCenter'
                             overlay={
@@ -400,7 +403,7 @@ function TableMo({ data, params, changeData, devid }) {
                                 >
                                     {t.length}
                                 </span>
-                                <SettingOutlined />
+                                {handle_auth && <SettingOutlined />}
                             </div>
                         </Dropdown>
                     </div>
@@ -410,6 +413,7 @@ function TableMo({ data, params, changeData, devid }) {
             {
                 title: '操作',
                 dataIndex: 'id',
+                key: 'auth_operate',
                 width: 60,
                 render: (t, d) => (
                     <RowOperate
@@ -424,8 +428,10 @@ function TableMo({ data, params, changeData, devid }) {
                                 },
                                 icon: <EditOutlined />,
                                 child: '修改',
+                                key: 'auth_mod',
                             },
                             {
+                                key: 'auth_del',
                                 child: (
                                     <Popconfirm
                                         title='你确定要删除吗？'
@@ -452,7 +458,7 @@ function TableMo({ data, params, changeData, devid }) {
                 fixed: 'right',
             },
         ]
-    }, [deleteMo, eventInfoSortData, params])
+    }, [deleteMo, eventInfoSortData, handle_auth, params])
     const [selection, setselection] = useState([])
     const [expandedRowKeys, setExpandedRowKeys] = useState([])
 
@@ -497,6 +503,7 @@ function TableMo({ data, params, changeData, devid }) {
             columns={columns}
             toolBarRender={() => [
                 <Button
+                    key='add'
                     icon={<PlusOutlined />}
                     onClick={() => {
                         openMoModal()
@@ -505,6 +512,7 @@ function TableMo({ data, params, changeData, devid }) {
                     新增追踪条目
                 </Button>,
                 <Button
+                    key='batch_add'
                     icon={<UploadOutlined />}
                     onClick={() => {
                         showImportModal(devid, updateList)
@@ -560,9 +568,11 @@ function TableMo({ data, params, changeData, devid }) {
         />
     )
 }
-export default inject(stores => ({
-    data: stores.trackStore.tableData,
-    params: stores.trackStore.params,
-    changeData: stores.configStore.changeData,
-    devid: stores.trackStore.params.devid,
-}))(observer(TableMo))
+export default withAuth(
+    inject(stores => ({
+        data: stores.trackStore.tableData,
+        params: stores.trackStore.params,
+        changeData: stores.configStore.changeData,
+        devid: stores.trackStore.params.devid,
+    }))(observer(TableMo))
+)

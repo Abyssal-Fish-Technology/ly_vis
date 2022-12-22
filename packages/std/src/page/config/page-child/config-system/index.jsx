@@ -154,6 +154,7 @@ const deviceColumns = [
     {
         title: '禁止使用',
         dataIndex: 'disabled',
+        key: 'auth_admin',
         sorter: valueSort('disabled'),
         render: (t, row) => (
             <ControlDisabled record={row} dataName='device' api={deviceApi} />
@@ -197,6 +198,7 @@ const proxyColumns = [
         title: '禁止使用',
         dataIndex: 'disabled',
         sorter: valueSort('disabled'),
+        key: 'auth_admin',
         render: (t, row) => (
             <ControlDisabled record={row} dataName='proxy' api={proxyApi} />
         ),
@@ -242,6 +244,7 @@ const userColumns = [
         title: '禁止使用',
         dataIndex: 'disabled',
         sorter: valueSort('disabled'),
+        key: 'auth_admin',
         render: (t, row) => (
             <ControlDisabled record={row} dataName='userList' api={userApi} />
         ),
@@ -260,16 +263,11 @@ const userColumns = [
         title: '锁定操作',
         dataIndex: 'lockedtime',
         align: 'center',
+        key: 'auth_admin',
         sorter: valueSort('lockedtime'),
         render: (t, row) => <LockedComponent record={row} />,
     },
 ]
-
-const publicProperty = {
-    addAuth: ['sysadmin', 'analyser'],
-    editAuth: ['sysadmin', 'analyser'],
-    deleteAuth: ['sysadmin', 'analyser'],
-}
 
 export const systemConfigData = {
     title: '系统',
@@ -303,7 +301,6 @@ export const systemConfigData = {
                     api: deviceApi,
                     isActive: true,
                     columns: deviceColumns,
-                    ...publicProperty,
                 },
                 {
                     title: '分析节点',
@@ -329,7 +326,6 @@ export const systemConfigData = {
                     openModalFun: openAddProxyModal,
                     isActive: false,
                     columns: proxyColumns,
-                    ...publicProperty,
                 },
             ],
         },
@@ -361,7 +357,6 @@ export const systemConfigData = {
                     api: userApi,
                     isActive: false,
                     columns: userColumns,
-                    ...publicProperty,
                 },
             ],
         },

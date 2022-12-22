@@ -2,6 +2,7 @@ import { TriggerEventModal } from '@/components/modals'
 import { singleHandleEvent } from '@/utils/methods-event'
 import { SettingOutlined } from '@ant-design/icons'
 import { translateEventProcess } from '@shadowflow/components/system/event-system'
+import withAuth from '@shadowflow/components/ui/container/with-auth'
 import { HackerIcon } from '@shadowflow/components/ui/icon/icon-util'
 import Section from '@shadowflow/components/ui/layout/section'
 import { TagAttribute } from '@shadowflow/components/ui/tag'
@@ -13,7 +14,8 @@ import style from './index.module.less'
 
 const { TabPane } = Tabs
 const { TextArea } = Input
-function EventInfo({ originRecordData }) {
+function EventInfo({ originRecordData, userAuth = {} }) {
+    const { handle_auth = false } = useMemo(() => userAuth, [userAuth])
     const descriptionsList = useMemo(() => {
         const {
             show_type,
@@ -56,7 +58,7 @@ function EventInfo({ originRecordData }) {
             持续时长: show_duration,
             活跃状态: show_is_alive,
             扩展信息: extraInfo,
-            检出配置: (
+            检出配置: handle_auth ? (
                 <>
                     <span>{`${show_type}配置`}</span>
                     <TriggerEventModal type={type} id={event_id} op='mod'>
@@ -69,9 +71,11 @@ function EventInfo({ originRecordData }) {
                         </Tooltip>
                     </TriggerEventModal>
                 </>
+            ) : (
+                '无'
             ),
         }
-    }, [originRecordData])
+    }, [handle_auth, originRecordData])
 
     const tabList = useMemo(() => {
         return [
@@ -130,55 +134,57 @@ function EventInfo({ originRecordData }) {
                     })}
                 </Descriptions>
             </div>
-            <div className='event-info-center'>
-                <Tabs
-                    activeKey={currentStatus}
-                    centered
-                    tabBarStyle={{ marginBottom: '5px' }}
-                    onTabClick={setCurrentStatus}
-                >
-                    {tabList.map(tabItem => {
-                        return (
-                            <TabPane tab={tabItem.tab} key={tabItem.key}>
-                                <TextArea
-                                    defaultValue={
-                                        originRecordData.proc_status ===
-                                        tabItem.key
-                                            ? originRecordData.proc_comment
-                                            : ''
-                                    }
-                                    id={`${tabItem.key}_id`}
-                                    className='proc-comment'
-                                />
-                                <div
-                                    style={{
-                                        textAlign: 'right',
-                                        marginTop: '10px',
-                                    }}
-                                >
-                                    <Button
-                                        type='primary'
-                                        onClick={() => {
-                                            singleHandleEvent({
-                                                proc_status: tabItem.key,
-                                                id: originRecordData.id,
-                                                changeLoading: setStatusLoading,
-                                                proc_comment: document.querySelector(
-                                                    `#${tabItem.key}_id`
-                                                ).value,
-                                            }).then(() => {
-                                                setStatusLoading(false)
-                                            })
+            {handle_auth && (
+                <div className='event-info-center'>
+                    <Tabs
+                        activeKey={currentStatus}
+                        centered
+                        tabBarStyle={{ marginBottom: '5px' }}
+                        onTabClick={setCurrentStatus}
+                    >
+                        {tabList.map(tabItem => {
+                            return (
+                                <TabPane tab={tabItem.tab} key={tabItem.key}>
+                                    <TextArea
+                                        defaultValue={
+                                            originRecordData.proc_status ===
+                                            tabItem.key
+                                                ? originRecordData.proc_comment
+                                                : ''
+                                        }
+                                        id={`${tabItem.key}_id`}
+                                        className='proc-comment'
+                                    />
+                                    <div
+                                        style={{
+                                            textAlign: 'right',
+                                            marginTop: '10px',
                                         }}
                                     >
-                                        事件处置
-                                    </Button>
-                                </div>
-                            </TabPane>
-                        )
-                    })}
-                </Tabs>
-            </div>
+                                        <Button
+                                            type='primary'
+                                            onClick={() => {
+                                                singleHandleEvent({
+                                                    proc_status: tabItem.key,
+                                                    id: originRecordData.id,
+                                                    changeLoading: setStatusLoading,
+                                                    proc_comment: document.querySelector(
+                                                        `#${tabItem.key}_id`
+                                                    ).value,
+                                                }).then(() => {
+                                                    setStatusLoading(false)
+                                                })
+                                            }}
+                                        >
+                                            事件处置
+                                        </Button>
+                                    </div>
+                                </TabPane>
+                            )
+                        })}
+                    </Tabs>
+                </div>
+            )}
             <div className='event-info-bottom'>
                 <Space size='middle'>
                     <ViewReport eventData={originRecordData} />
@@ -188,6 +194,8 @@ function EventInfo({ originRecordData }) {
     )
 }
 
-export default inject(stores => ({
-    originRecordData: stores.eventDetailStore.originRecordData,
-}))(observer(EventInfo))
+export default withAuth(
+    inject(stores => ({
+        originRecordData: stores.eventDetailStore.originRecordData,
+    }))(observer(EventInfo))
+)

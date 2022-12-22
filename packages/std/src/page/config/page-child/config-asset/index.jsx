@@ -24,12 +24,6 @@ const internalIpColumns = [
     },
 ]
 
-const publicProperty = {
-    addAuth: ['sysadmin', 'analyser'],
-    editAuth: ['sysadmin', 'analyser'],
-    deleteAuth: ['sysadmin', 'analyser'],
-}
-
 export const assetConfigData = {
     title: '资产',
     path: '/config/asset',
@@ -62,7 +56,6 @@ export const assetConfigData = {
                     api: internalApi,
                     isActive: true,
                     columns: internalIpColumns,
-                    ...publicProperty,
                 },
             ],
         },

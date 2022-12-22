@@ -4,7 +4,6 @@ import {
     EditOutlined,
     InfoCircleFilled,
 } from '@ant-design/icons'
-import { getUserAuth } from '@shadowflow/components/utils/universal/methods-storage'
 import { Button, message, Popconfirm } from 'antd'
 import { inject, observer } from 'mobx-react'
 import React, { useCallback, useMemo, useState, useEffect } from 'react'
@@ -17,9 +16,6 @@ function ConfigTable({
     columns, // 表格列
     api, // 删除用的api
     openModalFun, // 添加弹窗打开方法
-    addAuth = ['sysadmin'], // 添加按钮权限
-    editAuth = ['sysadmin'], // 修改按钮权限
-    deleteAuth = ['sysadmin'], // 删除按钮权限
     ExpandableCard = null, // 展开信息组件
     deleteCallback = null, // 删除方法回调
     configDataKey = '', // 当前table数据在configStore中变量名称
@@ -28,9 +24,6 @@ function ConfigTable({
     editFn = null, // 外部传入的编辑方法，和删除方法一样
     configStore, // inject传入的configStore
 }) {
-    const userLevel = useMemo(() => {
-        return getUserAuth()
-    }, [])
     const { changeData, moGroup = [] } = configStore
     const [nowConfigKey = '', configDataType = ''] = useMemo(
         () => configDataKey.split('|'),
@@ -97,8 +90,8 @@ function ConfigTable({
         const nowColumns = [
             ...columns,
             {
-                title: () => '操作',
-                key: 'operate',
+                title: '操作',
+                key: 'auth',
                 align: 'center',
                 fixed: 'right',
                 width: 80,
@@ -106,6 +99,7 @@ function ConfigTable({
                     <RowOperate
                         operations={[
                             {
+                                key: nowConfigKey === 'userList' ? '' : 'auth',
                                 click: () => {
                                     return editFn
                                         ? editFn(row)
@@ -118,9 +112,12 @@ function ConfigTable({
                                 },
                                 icon: <EditOutlined />,
                                 child: '修改',
-                                authority: editAuth.includes(userLevel),
                             },
                             {
+                                key:
+                                    nowConfigKey === 'userList'
+                                        ? 'auth_admin'
+                                        : 'auth',
                                 child: (
                                     <Popconfirm
                                         title='你确定要删除吗？'
@@ -148,7 +145,6 @@ function ConfigTable({
                                         </span>
                                     </Popconfirm>
                                 ),
-                                authority: deleteAuth.includes(userLevel),
                             },
                         ]}
                     />
@@ -158,9 +154,7 @@ function ConfigTable({
         return nowColumns
     }, [
         columns,
-        editAuth,
-        userLevel,
-        deleteAuth,
+        nowConfigKey,
         editFn,
         openModalFun,
         modalType,
@@ -191,31 +185,24 @@ function ConfigTable({
             rowKey='id'
             columns={currentColumns}
             dataSource={useConfigTableData}
-            toolBarRender={() => {
-                const barArr = []
-                if (addAuth.includes(userLevel)) {
-                    barArr.push(
-                        <Button
-                            type='primary'
-                            onClick={() => {
-                                const addParams = { type: modalType || '' }
-                                if (modalType === 'mo') {
-                                    const { id = '' } =
-                                        find(
-                                            moGroup,
-                                            d => d.name === configDataType
-                                        ) || {}
-                                    addParams.data = { groupid: id }
-                                }
-                                openModalFun(addParams)
-                            }}
-                        >
-                            新增{buttonText}
-                        </Button>
-                    )
-                }
-                return barArr
-            }}
+            toolBarRender={() => [
+                <Button
+                    key='add'
+                    type='primary'
+                    onClick={() => {
+                        const addParams = { type: modalType || '' }
+                        if (modalType === 'mo') {
+                            const { id = '' } =
+                                find(moGroup, d => d.name === configDataType) ||
+                                {}
+                            addParams.data = { groupid: id }
+                        }
+                        openModalFun(addParams)
+                    }}
+                >
+                    新增{buttonText}
+                </Button>,
+            ]}
             selectionCallBack={keys => {
                 setselection(keys)
             }}
@@ -235,34 +222,32 @@ function ConfigTable({
             }}
             tableAlertOptionRender={() => {
                 return (
-                    deleteAuth.includes(userLevel) && (
-                        <div className='select-option'>
-                            <DeleteTrigger
-                                callback={() => {
-                                    return deleteDataFn
-                                        ? deleteDataFn(
-                                              useConfigTableData.filter(d =>
-                                                  selection.includes(d.id)
-                                              ),
-                                              modalType,
-                                              changeData
-                                          ).then(() => {
-                                              setselection([])
-                                          })
-                                        : onDelete(selection)
-                                }}
+                    <div className='select-option'>
+                        <DeleteTrigger
+                            callback={() => {
+                                return deleteDataFn
+                                    ? deleteDataFn(
+                                          useConfigTableData.filter(d =>
+                                              selection.includes(d.id)
+                                          ),
+                                          modalType,
+                                          changeData
+                                      ).then(() => {
+                                          setselection([])
+                                      })
+                                    : onDelete(selection)
+                            }}
+                        >
+                            <Button
+                                type='link'
+                                danger
+                                size='small'
+                                icon={<InfoCircleFilled />}
                             >
-                                <Button
-                                    type='link'
-                                    danger
-                                    size='small'
-                                    icon={<InfoCircleFilled />}
-                                >
-                                    批量删除
-                                </Button>
-                            </DeleteTrigger>
-                        </div>
-                    )
+                                批量删除
+                            </Button>
+                        </DeleteTrigger>
+                    </div>
                 )
             }}
             expandedRowKeys={expandedRowKeys}
@@ -285,6 +270,7 @@ function ConfigTable({
                     : null
             }
             showBoxShadow={false}
+            onlyAdmin={['device', 'proxy', 'userList'].includes(nowConfigKey)}
         />
     )
 }

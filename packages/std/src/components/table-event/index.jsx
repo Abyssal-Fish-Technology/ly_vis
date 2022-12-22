@@ -151,6 +151,7 @@ function EventTable({ data, isFormat = false, resultParams = false }) {
             },
             {
                 title: '处理状态',
+                key: 'auth',
                 dataIndex: 'show_proc_status',
                 fixed: 'right',
                 width: 'auto',
