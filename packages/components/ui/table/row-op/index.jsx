@@ -1,25 +1,26 @@
 import { MoreOutlined } from '@ant-design/icons'
-import { Dropdown, Menu, message } from 'antd'
+import { Dropdown, Menu } from 'antd'
 import React, { useRef, useMemo } from 'react'
+import withAuth from '../../container/with-auth'
 import style from './index.module.less'
 
-export default function RowOperate({ operations = [] }) {
+function RowOperate({ operations = [], userAuth = {} }) {
     const container = useRef(null)
-    const useOperations = useMemo(
-        () => operations.filter(d => d.authority !== false),
-        [operations]
-    )
+    const useOperations = useMemo(() => {
+        const { handle_auth = false, admin_auth = false } = userAuth
+        return operations.filter(d => {
+            const { key = '' } = d
+            if (key.includes('auth_admin')) {
+                return admin_auth
+            }
+            if (key.includes('auth')) {
+                return handle_auth
+            }
+            return true
+        })
+    }, [operations, userAuth])
     return (
-        <div
-            onClick={e => {
-                e.stopPropagation()
-                if (!useOperations.length) {
-                    message.warning('暂无操作权限，请联系管理员！')
-                }
-            }}
-            ref={container}
-            className='operate-content-active'
-        >
+        <div ref={container} className='operate-content-active'>
             {useOperations.length === 1 ? (
                 <span
                     onClick={useOperations[0].click}
@@ -75,3 +76,5 @@ export default function RowOperate({ operations = [] }) {
         </div>
     )
 }
+
+export default withAuth(RowOperate)

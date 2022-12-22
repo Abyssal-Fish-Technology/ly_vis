@@ -14,6 +14,7 @@ import { Button } from 'antd'
 import FlagIcon from '../../icon/icon-flag'
 import ExportTableComponent from '../../table/export-table'
 import style from './index.module.less'
+import withAuth from '../../container/with-auth'
 
 const FlagCodeContext = createContext({})
 const { Provider: FlagProvider } = FlagCodeContext
@@ -41,7 +42,7 @@ const { Provider: FlagProvider } = FlagCodeContext
  * @param {tableProps | Object}  其它的 table配置
  * @returns
  */
-export default function AntdTableSuper({
+function AntdTableSuper({
     ipKeys = [],
     rowKey = '',
     options = { reload: false, fullScreen: false },
@@ -71,9 +72,11 @@ export default function AntdTableSuper({
     tableAlertOptionRender = false,
     changePageCallBack = false,
     showBoxShadow = true,
+    userAuth = {},
     ...tableProps
 }) {
     const paginationRef = useRef()
+    const { handle_auth = false } = useMemo(() => userAuth, [userAuth])
     const [page, setPage] = useState({ size: 10, page: 1 })
 
     const usePagination = useMemo(() => {
@@ -171,6 +174,22 @@ export default function AntdTableSuper({
 
     const useColumns = useMemo(() => {
         const result = columns.map(d => {
+            const { key = '' } = d
+            if (key.includes('auth')) {
+                const { operations = false } = d.render({}, {}).props
+                const authOperations = operations
+                    ? operations.filter(d2 => {
+                          const { key: key2 = '' } = d2
+                          return key2.includes('auth') ? handle_auth : true
+                      })
+                    : []
+                if (
+                    (!authOperations.length && operations) ||
+                    (!operations && !handle_auth)
+                ) {
+                    return false
+                }
+            }
             const { render = '' } = d
             return {
                 ...d,
@@ -189,19 +208,21 @@ export default function AntdTableSuper({
         })
 
         return result
-    }, [columns])
+    }, [columns, handle_auth])
 
     const useToolBarRender = useMemo(() => {
         const toolArr = []
         if (toolBarRender) {
-            toolArr.push(...toolBarRender())
+            const initArr = toolBarRender().filter(d => {
+                return d.key ? handle_auth : true
+            })
+            toolArr.push(...initArr)
             if (exportParams) {
                 toolArr.push(<ExportTableComponent {...exportParams} />)
             }
         }
         return toolBarRender ? () => toolArr : false
-    }, [exportParams, toolBarRender])
-
+    }, [exportParams, toolBarRender, handle_auth])
     return (
         <div
             className={`${style['antd-table-super']} ${
@@ -220,7 +241,7 @@ export default function AntdTableSuper({
                     pagination={usePagination}
                     toolBarRender={useToolBarRender}
                     rowSelection={
-                        selectionCallBack
+                        (selectionCallBack && handle_auth) || exportParams
                             ? {
                                   selectedRowKeys,
                                   onChange: (keys, rows) => {
@@ -231,8 +252,10 @@ export default function AntdTableSuper({
                               }
                             : false
                     }
-                    tableAlertRender={tableAlertRender}
-                    tableAlertOptionRender={tableAlertOptionRender}
+                    tableAlertRender={handle_auth ? tableAlertRender : false}
+                    tableAlertOptionRender={
+                        handle_auth ? tableAlertOptionRender : false
+                    }
                     sortDirections={sortDirections}
                     {...tableProps}
                 />
@@ -240,6 +263,8 @@ export default function AntdTableSuper({
         </div>
     )
 }
+
+export default withAuth(AntdTableSuper)
 
 // columns的render中渲染
 export function TdFlag({ ip }) {
