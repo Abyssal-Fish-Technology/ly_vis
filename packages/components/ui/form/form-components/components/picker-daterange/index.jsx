@@ -2,6 +2,7 @@ import { DatePicker } from 'antd'
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import { not10Length } from '@shadowflow/components/utils/universal/methods-time'
+import style from './index.module.less'
 
 const { RangePicker } = DatePicker
 
@@ -43,6 +44,8 @@ export default function DateTimeRangePicker({
     }
     return (
         <RangePicker
+            suffixIcon={false}
+            className={style['range-picker-container']}
             value={timeValue}
             allowClear={false}
             showTime={showTime}

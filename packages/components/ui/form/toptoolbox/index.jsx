@@ -99,7 +99,6 @@ const Toptoolbox = ({
                 name='time'
                 key='time'
                 inputProps={{
-                    className: 'toolbox-time',
                     result: formCondition,
                     openChange: getFiledValue,
                 }}
