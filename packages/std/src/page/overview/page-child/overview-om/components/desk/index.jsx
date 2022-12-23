@@ -244,10 +244,10 @@ function Desk({ data, params }) {
     const tableRef = useRef(null)
     const [contentHeight, setContentHeight] = useState(200)
     useEffect(() => {
-        setTimeout(() => {
+        if (tableRef.current) {
             const { height } = tableRef.current.getBoundingClientRect()
             setContentHeight(height - 120)
-        }, 200)
+        }
     }, [tableRef])
     return (
         <Section title='工作台' className={style.desk}>

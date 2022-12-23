@@ -293,6 +293,15 @@ export default class OverviewOmStore {
             .map(d => d.value)
         const links = chain(this.eventData)
             .filter(d => this.top10.includes(d.victimDevice))
+            .map(d => {
+                const { asset_desc = [] } = d
+                const resultArr = []
+                asset_desc.forEach(d2 => {
+                    resultArr.push({ ...d, asset_desc: [d2] })
+                })
+                return resultArr
+            })
+            .flatten()
             .reduce((obj, d) => {
                 const lineId = d.id
                 for (let i = 0; i < useKey.length - 1; i += 1) {
@@ -300,9 +309,11 @@ export default class OverviewOmStore {
                     const targetKey = useKey[i + 1]
                     const source = `${sourceKey}${joinSign}${d[sourceKey]}`
                     const target = `${targetKey}${joinSign}${d[targetKey]}`
-                    const key = `${source}${joinSign}${target}${joinSign}${lineId}`
+                    const resultLineId = `${lineId}-${d.asset_desc}`
+
+                    const key = `${source}${joinSign}${target}${joinSign}${resultLineId}`
                     obj[key] = {
-                        lineId,
+                        lineId: resultLineId,
                         source,
                         target,
                         value: obj[key] ? obj[key].value + 1 : 1,
@@ -402,6 +413,16 @@ export default class OverviewOmStore {
 
     calculateRankData = (sortName, rawData) => {
         const resultData = chain(rawData)
+            .map(d => {
+                if (sortName === 'asset_desc') {
+                    return d.asset_desc.map(d2 => ({
+                        ...d,
+                        asset_desc: [d2],
+                    }))
+                }
+                return d
+            })
+            .flatten()
             .reduce((obj, d) => {
                 const name = d[sortName]
                 if (name === '' || !this.top10.includes(d.victimDevice))
