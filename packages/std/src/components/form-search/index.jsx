@@ -14,7 +14,7 @@ import {
 } from 'antd'
 import moment from 'moment'
 import { observer } from 'mobx-react'
-import { chain, pickBy } from 'lodash'
+import { chain, isEmpty, pickBy } from 'lodash'
 import {
     IpInput,
     PortInput,
@@ -156,7 +156,7 @@ const calcualteNowFeature = type => {
 function SearchForm({
     onFinish,
     searchValue,
-    conditionValue,
+    conditionValue = {},
     defaultCollapse = true,
     simple = false,
 }) {
@@ -351,7 +351,7 @@ function SearchForm({
     }
 
     const initialValues = useMemo(() => {
-        return conditionValue
+        return !isEmpty(conditionValue)
             ? { ...conditionValue }
             : {
                   starttime: [
@@ -373,6 +373,7 @@ function SearchForm({
     useEffect(() => {
         formConditon.setFieldsValue(initialValues)
     }, [conditionVis, formConditon, initialValues])
+
     useEffect(() => {
         formConditon.setFieldsValue({ feature: useFeature.map(d => d.key) })
     }, [formConditon, useFeature])
