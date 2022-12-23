@@ -134,34 +134,6 @@ export const dns = data => {
         .orderBy('count', 'desc')
         .value()
 }
-export const dns_tun = data => {
-    return chain(data)
-        .reduce((aggreObj, item) => {
-            const key = `${item.fqname}-${item.sip}`
-            const tempData = sortBy(
-                [item].concat(aggreObj[key] ? aggreObj[key].data : []),
-                'time'
-            )
-            aggreObj[key] = {
-                qname: item.fqname,
-                data: tempData,
-                sip: item.sip,
-                type: 'dns_tun',
-            }
-            return aggreObj
-        }, {})
-        .values()
-        .each(d => {
-            const dataArr = d.data
-            calculatePublicFields(d)
-            const lastTimeData = maxBy(dataArr, 'time')
-            d.lastTime = lastTimeData.time
-            d.showLastTime = formatTimestamp(d.lastTime)
-        })
-        .values()
-        .orderBy('count', 'desc')
-        .value()
-}
 
 export const scan = data => {
     return chain(data)

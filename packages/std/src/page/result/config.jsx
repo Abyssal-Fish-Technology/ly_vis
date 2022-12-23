@@ -562,82 +562,6 @@ const dnsDet = [
     ...commomCol,
 ]
 
-// dns_tun
-const dns_tunCol = [
-    {
-        title: '发起IP',
-        dataIndex: 'sip',
-        sorter: valueSort('sip'),
-        width: 160,
-        render: t => <DeviceRender device={t} />,
-    },
-    {
-        title: '父（子）域名',
-        dataIndex: 'qname',
-        sorter: valueSort('qname'),
-        width: 200,
-        render: t => <DeviceRender device={t} isIp={false} />,
-    },
-    {
-        title: '活跃动作',
-        dataIndex: 'count',
-        align: 'center',
-        sorter: valueSort('count'),
-    },
-    {
-        title: 'Last Time',
-        dataIndex: 'showLastTime',
-        sorter: valueSort('lastTime'),
-    },
-    ...commomCol,
-]
-const dns_tunDet = [
-    {
-        title: '发起IP',
-        dataIndex: 'sip',
-        sorter: valueSort('sip'),
-        width: 160,
-        render: t => <DeviceRender device={t} />,
-    },
-    {
-        title: 'DNS',
-        dataIndex: 'fqname',
-        sorter: valueSort('fqname'),
-        width: 200,
-        render: t => <DeviceRender device={t} isIp={false} />,
-    },
-    {
-        title: 'DNS服务器',
-        dataIndex: 'dip',
-        sorter: valueSort('dip'),
-        width: 160,
-        render: t => <DeviceRender device={t} />,
-    },
-    {
-        title: '端口',
-        dataIndex: 'dport',
-        sorter: valueSort('dport'),
-        width: 80,
-        render: t => <DeviceRender device={t} isIp={false} />,
-    },
-    {
-        title: '隧道评分',
-        dataIndex: 'score',
-        sorter: valueSort('score'),
-    },
-    {
-        title: '请求频率',
-        dataIndex: 'fratio',
-        sorter: valueSort('fratio'),
-    },
-    {
-        title: 'Time',
-        dataIndex: 'showTime',
-        sorter: valueSort('time'),
-    },
-    ...commomCol,
-]
-
 // 添加表格筛选
 ;[
     susCol,
@@ -652,8 +576,6 @@ const dns_tunDet = [
     tcpinitDet,
     dnsCol,
     dnsDet,
-    dns_tunCol,
-    dns_tunDet,
 ].forEach(d => {
     //  表头筛选
     GetColumnSearchProps(d, [
@@ -673,39 +595,34 @@ const dns_tunDet = [
 // 总变量
 export const featureObj = {
     sus: {
-        name: '威胁连接',
+        name: '风险通讯',
         key: 'sus',
         columns: [susCol, susDet],
     },
     black: {
-        name: '黑名单连接',
+        name: '黑名单通讯',
         key: 'black',
         columns: [blackCol, blackeDet],
     },
     scan: {
-        name: '扫描连接',
+        name: '扫描通讯',
         key: 'scan',
         columns: [scanCol, scanDet],
     },
     tcpinit: {
-        name: 'TCP连接',
+        name: 'TCP通讯记录',
         key: 'tcpinit',
         columns: [tcpinitCol, tcpinitDet],
     },
     service: {
-        name: '服务',
+        name: '服务记录',
         key: 'service',
         columns: [serviceCol, serviceDet],
     },
     dns: {
-        name: 'DNS连接',
+        name: 'DNS查询记录',
         key: 'dns',
         columns: [dnsCol, dnsDet],
-    },
-    dns_tun: {
-        name: 'DNS隧道连接',
-        key: 'dns_tun',
-        columns: [dns_tunCol, dns_tunDet],
     },
 }
 
@@ -723,14 +640,14 @@ export const translateFeture = type => {
 export const topnFeature = {
     sus: {
         type: 'sus',
-        name: '威胁连接',
+        name: '风险通讯',
         id: 0,
         anchor: 'search-topn-sus', // 锚点
         tooltip: '威胁流量',
         // 切换不同表格类型的tab
         tabs: [
             {
-                tab: '全部连接',
+                tab: '全部通讯',
                 key: 'all',
             },
             {
@@ -788,7 +705,7 @@ export const topnFeature = {
     },
     black: {
         type: 'black',
-        name: '黑名单连接',
+        name: '黑名单通讯',
         id: 1,
         anchor: 'search-topn-black',
         tooltip: '黑名单流量',
@@ -916,7 +833,7 @@ export const topnFeature = {
     },
     scan: {
         type: 'scan',
-        name: '扫描记录',
+        name: '扫描通讯',
         id: 3,
         anchor: 'search-topn-scan',
         tooltip: '扫描流量',
@@ -932,7 +849,7 @@ export const topnFeature = {
     },
     tcpinit: {
         type: 'tcpinit',
-        name: 'TCP连接记录',
+        name: 'TCP通讯记录',
         id: 4,
         anchor: 'search-topn-tcpinit',
         tooltip: '发起动作',
@@ -956,7 +873,7 @@ export const topnFeature = {
     },
     dns: {
         type: 'dns',
-        name: 'DNS连接记录',
+        name: 'DNS查询记录',
         id: 5,
         anchor: 'search-topn-dns',
         tooltip: '',
@@ -968,22 +885,6 @@ export const topnFeature = {
         ],
         column: dnsCol,
         detailColumn: dnsDet,
-        footerContent: '',
-    },
-    dns_tun: {
-        type: 'dns_tun',
-        name: 'DNS隧道连接记录',
-        id: 6,
-        anchor: 'search-topn-dnstun',
-        tooltip: '',
-        tabs: [
-            {
-                tab: '全部连接',
-                key: 'all',
-            },
-        ],
-        column: dns_tunCol,
-        detailColumn: dns_tunDet,
         footerContent: '',
     },
 }

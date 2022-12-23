@@ -21,7 +21,7 @@ const searchTypeArr = [
     {
         name: '端口',
         key: 'port',
-        exclude: ['sus', 'black', 'dns', 'dns_tun'],
+        exclude: ['sus', 'black', 'dns'],
     },
     {
         name: '域名',
@@ -63,15 +63,7 @@ class ResultStore {
         starttime: [moment().subtract(4, 'h'), moment()],
         devid: configStore.device[0] ? configStore.device[0].id : null,
         proto: null,
-        feature: [
-            'sus',
-            'black',
-            'service',
-            'scan',
-            'tcpinit',
-            'dns',
-            'dns_tun',
-        ],
+        feature: ['sus', 'black', 'service', 'scan', 'tcpinit', 'dns'],
         limit: 0,
     }
 
@@ -363,14 +355,6 @@ class ResultStore {
                 }
                 if (dns) {
                     params.qname = dns
-                }
-                break
-            case 'dns_tun':
-                if (ip) {
-                    params.ip = ip
-                }
-                if (dns) {
-                    params.fqname = dns
                 }
                 break
             case 'sus':

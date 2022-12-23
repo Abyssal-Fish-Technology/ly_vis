@@ -11,7 +11,6 @@ import {
     DNSIcon,
     TCPIcon,
     BlackListIcon,
-    DNSTunIcon,
 } from '@shadowflow/components/ui/icon/icon-util'
 import { map } from 'lodash'
 import { TagAttribute } from '@shadowflow/components/ui/tag'
@@ -27,7 +26,6 @@ const featureIconMap = {
     scan: <SecurityScanOutlined />,
     tcpinit: <TCPIcon />,
     dns: <DNSIcon />,
-    dns_tun: <DNSTunIcon />,
 }
 
 function ResultBasic(props) {

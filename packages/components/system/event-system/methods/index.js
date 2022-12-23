@@ -259,7 +259,7 @@ export function getEventFeatureParams(event, selectDevice) {
             ...featureParams,
             sip: victimIp,
             qname: type === 'mining' ? extendInfo2 : extendInfo1,
-            type: ['dns', 'mining'].includes(type) ? 'dns' : 'dns_tun',
+            type: 'dns',
         }
     }
     switch (event.type) {

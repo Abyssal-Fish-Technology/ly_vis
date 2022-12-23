@@ -36,11 +36,11 @@ const { RangePicker } = DatePicker
 
 const featureArr = [
     {
-        name: '威胁连接',
+        name: '风险通讯',
         key: 'sus',
     },
     {
-        name: '黑名单连接',
+        name: '黑名单通讯',
         key: 'black',
     },
     {
@@ -48,20 +48,16 @@ const featureArr = [
         key: 'service',
     },
     {
-        name: '扫描记录',
+        name: '扫描通讯',
         key: 'scan',
     },
     {
-        name: 'TCP连接记录',
+        name: 'TCP通讯记录',
         key: 'tcpinit',
     },
     {
-        name: 'DNS连接记录',
+        name: 'DNS查询记录',
         key: 'dns',
-    },
-    {
-        name: 'DNS隧道连接记录',
-        key: 'dns_tun',
     },
 ]
 
