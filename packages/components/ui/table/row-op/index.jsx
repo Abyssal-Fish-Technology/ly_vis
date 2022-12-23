@@ -53,7 +53,12 @@ function RowOperate({ operations = [], userAuth = {} }) {
                                 } = operItem
                                 return (
                                     <Menu.Item
-                                        onClick={click}
+                                        onClick={e => {
+                                            e.domEvent.stopPropagation()
+                                            if (click) {
+                                                click()
+                                            }
+                                        }}
                                         icon={icon}
                                         key={keyValue || child}
                                     >
