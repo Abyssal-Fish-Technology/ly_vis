@@ -23,7 +23,12 @@ function RowOperate({ operations = [], userAuth = {} }) {
         <div ref={container} className='operate-content-active'>
             {useOperations.length === 1 ? (
                 <span
-                    onClick={useOperations[0].click}
+                    onClick={e => {
+                        e.stopPropagation()
+                        if (useOperations[0].click) {
+                            useOperations[0].click()
+                        }
+                    }}
                     className={style['operate-content-span']}
                 >
                     {useOperations[0].icon || null}
@@ -32,7 +37,8 @@ function RowOperate({ operations = [], userAuth = {} }) {
             ) : (
                 <Dropdown
                     disabled={!useOperations.length}
-                    onClick={() => {
+                    onClick={e => {
+                        e.stopPropagation()
                         const classList = container.current.parentElement.parentElement.parentElement.querySelectorAll(
                             '.ant-table-cell-fix-right'
                         )
