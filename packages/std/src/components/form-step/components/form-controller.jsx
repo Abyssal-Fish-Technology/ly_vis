@@ -60,7 +60,6 @@ export default function FormController() {
                 },
                 () => {
                     setConfirmLoading(false)
-                    message.error('提交失败，请重试！')
                 }
             )
         },
