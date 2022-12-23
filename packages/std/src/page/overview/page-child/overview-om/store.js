@@ -297,7 +297,11 @@ export default class OverviewOmStore {
                 const { asset_desc = [] } = d
                 const resultArr = []
                 asset_desc.forEach(d2 => {
-                    resultArr.push({ ...d, asset_desc: [d2] })
+                    resultArr.push({
+                        ...d,
+                        asset_desc: [d2],
+                        isSplit: asset_desc.length > 1,
+                    })
                 })
                 return resultArr
             })
@@ -310,13 +314,13 @@ export default class OverviewOmStore {
                     const source = `${sourceKey}${joinSign}${d[sourceKey]}`
                     const target = `${targetKey}${joinSign}${d[targetKey]}`
                     const resultLineId = `${lineId}-${d.asset_desc}`
-
+                    const addNum = d.isSplit ? 0.5 : 1
                     const key = `${source}${joinSign}${target}${joinSign}${resultLineId}`
                     obj[key] = {
                         lineId: resultLineId,
                         source,
                         target,
-                        value: obj[key] ? obj[key].value + 1 : 1,
+                        value: obj[key] ? obj[key].value + addNum : addNum,
                     }
                 }
                 return obj
