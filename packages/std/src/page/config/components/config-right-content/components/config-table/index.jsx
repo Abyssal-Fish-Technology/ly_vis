@@ -95,60 +95,61 @@ function ConfigTable({
                 align: 'center',
                 fixed: 'right',
                 width: 80,
-                render: (t, row) => (
-                    <RowOperate
-                        operations={[
-                            {
-                                key: nowConfigKey === 'userList' ? '' : 'auth',
-                                click: () => {
-                                    return editFn
-                                        ? editFn(row)
-                                        : openModalFun({
-                                              op: 'mod',
-                                              data: row,
-                                              id: row.id,
-                                              type: modalType || '',
-                                          })
-                                },
-                                icon: <EditOutlined />,
-                                child: '修改',
-                            },
-                            {
-                                key:
-                                    nowConfigKey === 'userList'
-                                        ? 'auth_admin'
-                                        : 'auth',
-                                child: (
-                                    <Popconfirm
-                                        title='你确定要删除吗？'
-                                        okText='确定'
-                                        cancelText='取消'
-                                        onConfirm={() => {
-                                            return deleteDataFn
-                                                ? deleteDataFn(
-                                                      [row],
-                                                      modalType,
-                                                      changeData
-                                                  ).then(() => {
-                                                      setselection([])
-                                                  })
-                                                : onDelete([row.id])
+                render: (t, row) => {
+                    const rowArr = [
+                        {
+                            key:
+                                nowConfigKey === 'userList'
+                                    ? 'auth_admin'
+                                    : 'auth',
+                            child: (
+                                <Popconfirm
+                                    title='你确定要删除吗？'
+                                    okText='确定'
+                                    cancelText='取消'
+                                    onConfirm={() => {
+                                        return deleteDataFn
+                                            ? deleteDataFn(
+                                                  [row],
+                                                  modalType,
+                                                  changeData
+                                              ).then(() => {
+                                                  setselection([])
+                                              })
+                                            : onDelete([row.id])
+                                    }}
+                                >
+                                    <span
+                                        onClick={e2 => {
+                                            e2.stopPropagation()
                                         }}
                                     >
-                                        <span
-                                            onClick={e2 => {
-                                                e2.stopPropagation()
-                                            }}
-                                        >
-                                            <DeleteOutlined />
-                                            删除
-                                        </span>
-                                    </Popconfirm>
-                                ),
+                                        <DeleteOutlined />
+                                        删除
+                                    </span>
+                                </Popconfirm>
+                            ),
+                        },
+                    ]
+                    if (nowConfigKey !== 'moGroup') {
+                        rowArr.unshift({
+                            key: nowConfigKey === 'userList' ? '' : 'auth',
+                            click: () => {
+                                return editFn
+                                    ? editFn(row)
+                                    : openModalFun({
+                                          op: 'mod',
+                                          data: row,
+                                          id: row.id,
+                                          type: modalType || '',
+                                      })
                             },
-                        ]}
-                    />
-                ),
+                            icon: <EditOutlined />,
+                            child: '修改',
+                        })
+                    }
+                    return <RowOperate operations={rowArr} />
+                },
             },
         ]
         return nowColumns
