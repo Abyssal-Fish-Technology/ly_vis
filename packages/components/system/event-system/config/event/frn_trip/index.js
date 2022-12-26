@@ -50,7 +50,7 @@ const detailConfigForms = [
 
 const FrnTripEvent = {
     type: 'frn_trip',
-    name: '服务器外联',
+    name: '服务器外连',
     objOrder: [0, 1, 2, 3],
     detailConfigColumns,
     detailConfigForms,

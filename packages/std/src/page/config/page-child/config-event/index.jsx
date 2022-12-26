@@ -599,7 +599,7 @@ export const eventConfigData = {
                     columns: eventColumns,
                 },
                 {
-                    title: '服务器外联事件',
+                    title: '服务器外连事件',
                     key: 'event|frn_trip',
                     modalType: 'frn_trip',
                     CreateDescribe: () => {
@@ -607,7 +607,7 @@ export const eventConfigData = {
                             <>
                                 <div>功能简介：</div>
                                 <div className='paragraph-content'>
-                                    本页面是配置服务器外联事件的告警规则，对指定服务器主动外联的流量进行检测，根据流量分析结果，在规定时间内超过规定的阈值后即产生告警事件。
+                                    本页面是配置服务器外连事件的告警规则，对指定服务器主动外连的流量进行检测，根据流量分析结果，在规定时间内超过规定的阈值后即产生告警事件。
                                 </div>
                                 <div className='paragraph-content '>
                                     支持
@@ -617,8 +617,8 @@ export const eventConfigData = {
                                     操作。
                                 </div>
                                 <ConfigCollapse
-                                    title='服务器外联防护'
-                                    context='服务器外联防护是一种针对内网服务器的保护机制，可以有效识别服务器的主动外联行为，为管理员检查服务器提供依据，
+                                    title='服务器外连防护'
+                                    context='服务器外连防护是一种针对内网服务器的保护机制，可以有效识别服务器的主动外连行为，为管理员检查服务器提供依据，
                                     进而防止服务器成为僵尸网络的一部分，对外发动攻击或对内进行渗透。'
                                 />
                             </>
