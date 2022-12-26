@@ -138,9 +138,7 @@ function PageHeader({ navText = [], count = 0 }) {
     )
 }
 
-function calcualteIpFilterContent(data) {
-    const devTypeArr = getTagArr(data, 'dev_type')
-    const osTypeArr = getTagArr(data, 'os_type')
+function calcualteIpFilterContent() {
     return [
         {
             name: 'device',
@@ -163,18 +161,7 @@ function calcualteIpFilterContent(data) {
                     value: 0,
                 },
             ],
-        },
-        {
-            name: 'dev_type',
-            label: '设备类型',
-            type: 'tag',
-            tagArr: devTypeArr,
-        },
-        {
-            name: 'os_type',
-            label: '操作系统类型',
-            type: 'tag',
-            tagArr: osTypeArr,
+            basic: true,
         },
     ]
 }

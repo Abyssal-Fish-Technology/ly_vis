@@ -15,7 +15,7 @@ export default function DeviceBadge({
                 break
             case 'asset':
                 resultObj.nowclass = 'ti-blue'
-                resultObj.text = '资产IP'
+                resultObj.text = '资产组'
                 break
             case 'black':
                 resultObj.nowclass = 'ti-black'

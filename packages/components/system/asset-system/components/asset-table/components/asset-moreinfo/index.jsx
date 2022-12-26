@@ -5,7 +5,7 @@ import style from './index.module.less'
 export default function AssetMoreInfo({ data, closeCallback, keyMap }) {
     return (
         <Drawer
-            title='资产弹窗'
+            title='详细信息'
             placement='right'
             onClose={closeCallback}
             visible={data}

@@ -87,7 +87,7 @@ export default inject('configStore')(
         return (
             <AddConfigModal
                 op={op}
-                title='资产IP配置'
+                title='资产组'
                 visible={visible}
                 initialValues={data}
                 forms={forms}

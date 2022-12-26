@@ -170,7 +170,7 @@ function ConfigTable({
             eventIgnore: '事件忽略',
             white: '白名单',
             black: '黑名单',
-            internal: '资产IP',
+            internal: '资产组',
             mo: '追踪条目',
             moGroup: '追踪分组',
             device: '数据节点',

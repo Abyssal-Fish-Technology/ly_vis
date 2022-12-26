@@ -32,9 +32,10 @@ export const assetConfigData = {
             title: '资产配置',
             children: [
                 {
-                    title: '资产IP',
+                    title: '资产组',
                     key: 'internal',
-                    describe: '介绍：这是资产IP',
+                    describe:
+                        '介绍：这是资产分组，配置后在系统中再遇到IP时，就可自动查询它所归属资产组。',
                     CreateDescribe: () => {
                         return (
                             <>
