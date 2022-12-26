@@ -17,10 +17,7 @@ const devServerConfig = () => config => {
         ...config,
         proxy: {
             '/d/': {
-                target:
-                    process.env.REACT_APP_ENV === 'dev'
-                        ? 'http://101.254.236.76:11380/'
-                        : 'http://10.10.1.66:3000/mock/24/',
+                target: 'server',
                 changeOrigin: true,
             },
         },
