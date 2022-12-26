@@ -1,11 +1,5 @@
 # 可视化交互分析界面说明文档
 
-## 预览地址
-
-地址：http://101.254.236.75:12280/ui/
-
-账号：demo / demo@2022
-
 ## 环境介绍
 
 ### 运行环境
@@ -76,6 +70,7 @@ yarn std start
 
 仅介绍开发过程中会涉及到的文件路径：
 
+```java
 - packages // 仓库集合
   - components // 仓库1：公用组件库
     - charts // 图标库
@@ -116,6 +111,7 @@ yarn std start
 - .prettierrc.js // prettier代码规范配置
 - .eslintrc.js // eslint代码规范配置
 - .stylelintrc.js // stylelint/css规范配置
+```
 
 #### Git Commit
 
