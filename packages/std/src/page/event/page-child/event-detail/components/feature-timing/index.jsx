@@ -67,7 +67,7 @@ function FeatureTiming({ originRecordData, alarmParams, changeReportData }) {
                 attackDevice
             )
             const formatDnsFeature = nowData => {
-                return isDnsTypeEvent(type)
+                return isDnsTypeEvent(type) && type !== 'dga'
                     ? nowData.map(d => ({
                           ...d,
                           domain: attackParams.qname,

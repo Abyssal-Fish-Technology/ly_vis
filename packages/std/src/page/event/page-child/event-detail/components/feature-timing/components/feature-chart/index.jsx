@@ -32,7 +32,10 @@ function FeatureChart({ starttime, endtime, featureData, event }) {
             : 'aToV'
     }, [event, featureData])
     const attackName = useMemo(
-        () => (isDnsTypeEvent(event.type) ? '父域名' : '威胁设备'),
+        () =>
+            isDnsTypeEvent(event.type) && event.type !== 'dga'
+                ? '父域名'
+                : '威胁设备',
         [event.type]
     )
     // 数据处理
