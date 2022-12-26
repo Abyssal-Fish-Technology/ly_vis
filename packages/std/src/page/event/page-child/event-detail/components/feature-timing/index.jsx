@@ -1,6 +1,6 @@
 import Section from '@shadowflow/components/ui/layout/section'
 import { Space } from 'antd'
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useMemo } from 'react'
 import { inject, observer } from 'mobx-react'
 import {
     getEventFeatureParams,
@@ -41,7 +41,7 @@ function FeatureTiming({ originRecordData, alarmParams, changeReportData }) {
         obj,
         devid,
         model,
-    } = originRecordData
+    } = useMemo(() => originRecordData, [originRecordData])
 
     const [title, settitle] = useState('TCP主动握手时序分布')
     useEffect(() => {
@@ -66,6 +66,14 @@ function FeatureTiming({ originRecordData, alarmParams, changeReportData }) {
                 simpleEventData,
                 attackDevice
             )
+            const formatDnsFeature = nowData => {
+                return isDnsTypeEvent(type)
+                    ? nowData.map(d => ({
+                          ...d,
+                          domain: attackParams.qname,
+                      }))
+                    : nowData
+            }
             setLoading(true)
             const promise1 = new Promise(resolve => {
                 return featureGet({
@@ -75,7 +83,7 @@ function FeatureTiming({ originRecordData, alarmParams, changeReportData }) {
                     endtime,
                 })
                     .then(res => {
-                        resolve(res)
+                        resolve(formatDnsFeature(res))
                     })
                     .catch(() => {
                         setLoading(false)
@@ -96,7 +104,7 @@ function FeatureTiming({ originRecordData, alarmParams, changeReportData }) {
                           endtime,
                       })
                           .then(res => {
-                              resolve(res)
+                              resolve(formatDnsFeature(res))
                           })
                           .catch(() => {
                               setLoading(false)

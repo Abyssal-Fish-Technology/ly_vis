@@ -14,6 +14,7 @@ import { chain, maxBy } from 'lodash'
 import { inject, observer } from 'mobx-react'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { BasicCustomChart } from '@shadowflow/components/charts'
+import { isDnsTypeEvent } from '@shadowflow/components/system/event-system'
 import style from './index.module.less'
 
 function FeatureChart({ starttime, endtime, featureData, event }) {
@@ -30,12 +31,16 @@ function FeatureChart({ starttime, endtime, featureData, event }) {
             ? 'vToA'
             : 'aToV'
     }, [event, featureData])
+    const attackName = useMemo(
+        () => (isDnsTypeEvent(event.type) ? '父域名' : '威胁设备'),
+        [event.type]
+    )
     // 数据处理
     const useData = useMemo(() => {
         return featureData.map(d => {
-            const attackIp = featureType === 'aToV' ? d.sip : d.dip
+            const attackIp = featureType === 'aToV' ? d.sip : d.domain || d.dip
             const attackPort = featureType === 'aToV' ? '发起' : d.dport
-            const victimIp = featureType === 'vToA' ? d.sip : d.dip
+            const victimIp = featureType === 'vToA' ? d.sip : d.domain || d.dip
             const victimPort = featureType === 'vToA' ? '发起' : d.dport
             const [attackA, attackB, attackC, attackD] = attackIp.split('.')
             const [victimA, victimB, victimC, victimD] = victimIp.split('.')
@@ -123,7 +128,7 @@ function FeatureChart({ starttime, endtime, featureData, event }) {
             },
             {
                 key: 'attack',
-                name: '威胁设备',
+                name: attackName,
                 showAxis: false,
                 isHide: showAttackDeviceDetail,
             },
@@ -188,7 +193,7 @@ function FeatureChart({ starttime, endtime, featureData, event }) {
                 isHide: !showVictimDeviceDetail,
             },
         ]
-    }, [showAttackDeviceDetail, showVictimDeviceDetail])
+    }, [showAttackDeviceDetail, showVictimDeviceDetail, attackName])
 
     const dimensionXScale = useMemo(() => {
         const domain = allAxis.filter(d => !d.isHide).map(d => d.key)
@@ -505,6 +510,7 @@ function FeatureChart({ starttime, endtime, featureData, event }) {
 
                             const transformGap =
                                 type === 'attack' ? gap - 1 : itemGap + 1
+
                             return (
                                 <g
                                     key={key}
@@ -523,8 +529,10 @@ function FeatureChart({ starttime, endtime, featureData, event }) {
                                         dx={groupWidth / 2}
                                     >
                                         {`${
-                                            key === 'attack' ? '威胁' : '受害'
-                                        }设备`}
+                                            key === 'attack'
+                                                ? attackName
+                                                : '受害设备'
+                                        }`}
                                     </text>
                                 </g>
                             )
