@@ -1,11 +1,11 @@
 import React, { useCallback, useMemo } from 'react'
 import { Modal } from 'antd'
 import { inject, observer, Provider } from 'mobx-react'
-import StepFrom from '@/components/form-step'
 import {
     EventConfig,
     eventConfigFormDict,
 } from '@shadowflow/components/system/event-system'
+import StepFrom from '@shadowflow/components/ui/form/form-step'
 import Event from './components/event'
 import EventForm from './components/event-config'
 import eventModalStore from './store'
