@@ -1,31 +1,3 @@
-// 具体的详细配置表格
-const detailConfigColumns = [
-    {
-        title: 'id',
-        dataIndex: 'id',
-    },
-    {
-        title: '最小对端端口数',
-        dataIndex: 'min_peerports',
-    },
-    {
-        title: '最大对端口数',
-        dataIndex: 'max_peerports',
-    },
-    {
-        title: 'sip',
-        dataIndex: '源IP',
-    },
-    {
-        title: 'dip',
-        dataIndex: '目的IP',
-    },
-    {
-        title: '协议',
-        dataIndex: 'protocol',
-    },
-]
-
 // 具体的详细配置Form
 const detailConfigForms = [
     {
@@ -61,7 +33,6 @@ const EventIpScan = {
     type: 'ip_scan',
     name: 'IP扫描',
     objOrder: [2, 3, 0, 1],
-    detailConfigColumns,
     detailConfigForms,
 }
 export default EventIpScan

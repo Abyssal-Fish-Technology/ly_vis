@@ -1,27 +1,3 @@
-// 具体的详细配置表格
-const detailConfigColumns = [
-    {
-        title: 'id',
-        dataIndex: 'id',
-    },
-    {
-        title: 'IP',
-        dataIndex: 'ip',
-    },
-    {
-        title: '请求域名',
-        dataIndex: 'qname',
-    },
-    {
-        title: '请求次数',
-        dataIndex: 'qcount',
-    },
-    {
-        title: '描述信息',
-        dataIndex: 'desc',
-    },
-]
-
 // 具体的详细配置Form
 const detailConfigForms = [
     {
@@ -53,7 +29,6 @@ const DnsEvent = {
     type: 'dns',
     name: 'DNS事件',
     objOrder: [0, 1, 2, 3],
-    detailConfigColumns,
     detailConfigForms,
 }
 

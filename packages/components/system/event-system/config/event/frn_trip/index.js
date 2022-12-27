@@ -1,27 +1,3 @@
-// 具体的详细配置表格
-const detailConfigColumns = [
-    {
-        title: 'id',
-        dataIndex: 'id',
-    },
-    {
-        title: '源IP',
-        dataIndex: 'sip',
-    },
-    {
-        title: '目的IP',
-        dataIndex: 'dip',
-    },
-    {
-        title: '阈值',
-        dataIndex: 'min',
-    },
-    {
-        title: '描述信息',
-        dataIndex: 'desc',
-    },
-]
-
 // 具体的详细配置Form
 const detailConfigForms = [
     {
@@ -52,7 +28,6 @@ const FrnTripEvent = {
     type: 'frn_trip',
     name: '服务器外连',
     objOrder: [0, 1, 2, 3],
-    detailConfigColumns,
     detailConfigForms,
 }
 

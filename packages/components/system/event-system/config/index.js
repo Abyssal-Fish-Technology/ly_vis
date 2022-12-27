@@ -51,9 +51,9 @@ const EventConfig = EventArr.reduce((obj, d) => {
         config: {
             params: {
                 ...EVENT_CONFIG_PARAMS,
+                ...(d.params || {}),
                 event_type: d.type,
             },
-            columns: d.detailConfigColumns,
             forms: d.detailConfigForms,
             dict: d.detailConfigForms.reduce((dict, formItem) => {
                 dict[formItem.valueKey] = formItem.label

@@ -1,27 +1,3 @@
-// 具体的详细配置表格
-const detailConfigColumns = [
-    {
-        title: 'id',
-        dataIndex: 'id',
-    },
-    {
-        title: '源IP',
-        dataIndex: 'sip',
-    },
-    {
-        title: '目的IP',
-        dataIndex: 'dip',
-    },
-    {
-        title: '最小百分比',
-        dataIndex: 'min',
-    },
-    {
-        title: '域名数量',
-        dataIndex: 'qcount',
-    },
-]
-
 // 具体的详细配置Form
 const detailConfigForms = [
     {
@@ -50,7 +26,6 @@ const DgaEvent = {
     type: 'dga',
     name: 'DGA事件',
     objOrder: [0, 1, 2, 3],
-    detailConfigColumns,
     detailConfigForms,
 }
 

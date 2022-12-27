@@ -1,31 +1,3 @@
-// 具体的详细配置表格
-const detailConfigColumns = [
-    {
-        title: 'id',
-        dataIndex: 'id',
-    },
-    {
-        title: '最小端口会话数',
-        dataIndex: 'min_portsessions',
-    },
-    {
-        title: '最大端口会话数',
-        dataIndex: 'max_portsessions',
-    },
-    {
-        title: '端口',
-        dataIndex: 'port',
-    },
-    {
-        title: 'IP',
-        dataIndex: 'ip',
-    },
-    {
-        title: '协议',
-        dataIndex: 'protocol',
-    },
-]
-
 // 具体的详细配置Form
 const detailConfigForms = [
     {
@@ -56,7 +28,6 @@ const EventSrv = {
     type: 'srv',
     name: '异常服务',
     objOrder: [2, 3, 0, 1],
-    detailConfigColumns,
     detailConfigForms,
 }
 

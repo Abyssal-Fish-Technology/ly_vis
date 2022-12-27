@@ -1,23 +1,3 @@
-// 具体的详细配置表格
-const detailConfigColumns = [
-    {
-        title: '',
-        dataIndex: 'id',
-    },
-    {
-        title: 'IP',
-        dataIndex: 'sip',
-    },
-    {
-        title: '对端ip',
-        dataIndex: 'dip',
-    },
-    {
-        title: '相似度',
-        dataIndex: 'min',
-    },
-]
-
 // 具体的详细配置Form
 const detailConfigForms = [
     {
@@ -44,7 +24,6 @@ const EventDnsTunAi = {
     type: 'dnstun_ai',
     name: 'DNS隧道AI事件',
     objOrder: [0, 1, 2, 3],
-    detailConfigColumns,
     detailConfigForms,
 }
 export default EventDnsTunAi

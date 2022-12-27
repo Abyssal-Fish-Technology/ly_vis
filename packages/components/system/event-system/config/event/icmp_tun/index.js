@@ -1,34 +1,3 @@
-// 具体的详细配置表格
-const detailConfigColumns = [
-    {
-        title: '',
-        dataIndex: 'id',
-    },
-    {
-        title: 'sip',
-        dataIndex: '源IP',
-    },
-    {
-        title: 'dip',
-        dataIndex: '目的IP',
-    },
-    {
-        title: 'IF1',
-        dataIndex: '影响因子1',
-    },
-    {
-        title: 'IF2',
-        dataIndex: '影响因子2',
-    },
-    {
-        title: 'IF3',
-        dataIndex: '影响因子3',
-    },
-    {
-        title: 'desc',
-        dataIndex: '描述',
-    },
-]
 // 具体的详细配置Form
 const detailConfigForms = [
     {
@@ -66,7 +35,6 @@ const EventIcmpTun = {
     type: 'icmp_tun',
     name: 'ICMP隧道',
     objOrder: [0, 1, 2, 3],
-    detailConfigColumns,
     detailConfigForms,
 }
 

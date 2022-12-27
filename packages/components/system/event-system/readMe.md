@@ -15,8 +15,6 @@ graph LR
 
 第三层：具体的业务层。深业务数据，只针对于某个项目中或项目中的模块使用。
 
-
-
 Event-System就是在做第二层的事情。也就是浅业务层。
 
 ## 背景
@@ -33,8 +31,6 @@ Event-System就是在做第二层的事情。也就是浅业务层。
 
 而事件子系统就是提供这个收敛的配置数据和一层基础的方法。
 
-
-
 ## 事件系统的功能
 
 ## 文件结构
@@ -47,36 +43,22 @@ Event-System就是在做第二层的事情。也就是浅业务层。
 	/public 
 		-index.js // 一些通用的配置
 	-index.js 将所有的事件配置合并导出为EventConfig
-	
+
 /methods
 	-index.js // 封装的一些底层的事件方法
-	
+
 index.js // 将method和config统一导出
 ```
-
-
 
 ## 使用方法
 
 ### 1、新建配置
 
-在`config/event`下新建事件类型的文件夹和index.js
+在 `config/event`下新建事件类型的文件夹和index.js
 
-每一个EventItem的组成如下，以`黑名单事件`为例：
+每一个EventItem的组成如下，以 `黑名单事件`为例：
 
 ```js
-// 具体的详细配置表格
-const detailConfigColumns = [
-    {
-        title: '最大值',
-        dataIndex: 'max',
-    },
-    {
-        title: '数据单位',
-        dataIndex: 'data_type',
-    },
-]
-
 // 具体的详细配置Form
 const detailConfigForms = [
     {
@@ -93,9 +75,9 @@ const EventBlack = {
     type: 'black',
     name: '黑名单事件',
     objOrder: [0, 1, 2, 3],
-    detailConfigColumns,
     detailConfigForms,
-  	
+    params: {} // 提交的时候的一些默认参数和值。
+  
   	/**
   		以下的共有的参数在config/index.js中会自动生成。
       params: EVENT_PARAMS,
@@ -106,7 +88,6 @@ const EventBlack = {
                 ...EVENT_CONFIG_PARAMS,
                 event_type: d.type,
             },
-            columns: d.detailConfigColumns,
             forms: d.detailConfigForms,
         },
   	*/
@@ -118,6 +99,6 @@ export default EventBlack
 
 ### 2、主动导出
 
-在`config/index.js`的`EventArr`变量中引入该事件类型。
+在 `config/index.js`的 `EventArr`变量中引入该事件类型。
 
 结束

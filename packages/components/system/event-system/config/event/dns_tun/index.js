@@ -1,31 +1,3 @@
-// 具体的详细配置表格
-const detailConfigColumns = [
-    {
-        title: 'id',
-        dataIndex: 'id',
-    },
-    {
-        title: 'IP',
-        dataIndex: 'ip',
-    },
-    {
-        title: '临界域名长度',
-        dataIndex: 'namelen',
-    },
-    {
-        title: '父域名临界请求频度',
-        dataIndex: 'fqcount',
-    },
-    {
-        title: '检出评估值',
-        dataIndex: 'detvalue',
-    },
-    {
-        title: '描述信息',
-        dataIndex: 'desc',
-    },
-]
-
 // 具体的详细配置Form
 const detailConfigForms = [
     {
@@ -60,7 +32,6 @@ const EventDnsTun = {
     type: 'dns_tun',
     name: 'DNS隧道事件',
     objOrder: [0, 1, 2, 3],
-    detailConfigColumns,
     detailConfigForms,
 }
 
