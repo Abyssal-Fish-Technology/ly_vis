@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from 'react'
-import { Button, message } from 'antd'
+import { Button } from 'antd'
 import StepFormContext from '../context'
 
 export default function FormController() {
@@ -42,7 +42,6 @@ export default function FormController() {
                 },
                 () => {
                     setNextLoading(false)
-                    message.error('提交失败，请重试！')
                 }
             )
         },
@@ -60,7 +59,6 @@ export default function FormController() {
                 },
                 () => {
                     setConfirmLoading(false)
-                    message.error('提交失败，请重试！')
                 }
             )
         },
