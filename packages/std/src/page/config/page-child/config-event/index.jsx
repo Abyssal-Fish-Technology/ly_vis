@@ -1,11 +1,11 @@
 import {
-    openAddEventActionModal,
+    // openAddEventActionModal,
     openAddEventIgnoreModal,
     openAddEventModal,
 } from '@/components/modals'
 import {
     eventConfigApi,
-    eventConfigApiAction,
+    // eventConfigApiAction,
     eventConfigApiConfig,
     eventConfigApiIgnore,
 } from '@/service'
@@ -29,7 +29,7 @@ import React, { useCallback, useMemo } from 'react'
 import { JumpSpan } from '../../components/config-right-content/components/config-button'
 import ConfigCollapse from '../../components/config-right-content/components/config-collapse'
 import ConfigTemplate from '../../components/config-template'
-import { ActCell, DeviceCell } from '../../components/table-cell'
+import { DeviceCell } from '../../components/table-cell'
 
 function configApi(eventType) {
     return params => {
@@ -77,34 +77,34 @@ const eventColumns = [
     },
 ]
 
-const actiovColumns = [
-    {
-        title: '描述',
-        dataIndex: 'desc',
-        sorter: valueSort('desc'),
-    },
-    {
-        title: '邮件',
-        dataIndex: 'mail',
-        sorter: valueSort('mail'),
-    },
-    {
-        title: '行动',
-        dataIndex: 'act',
-        sorter: valueSort('act'),
-        render: t => <ActCell id={t} />,
-    },
-    {
-        title: '电话',
-        dataIndex: 'phone',
-        sorter: valueSort('phone'),
-    },
-    {
-        title: 'uid',
-        dataIndex: 'uid',
-        sorter: valueSort('uid'),
-    },
-]
+// const actiovColumns = [
+//     {
+//         title: '描述',
+//         dataIndex: 'desc',
+//         sorter: valueSort('desc'),
+//     },
+//     {
+//         title: '邮件',
+//         dataIndex: 'mail',
+//         sorter: valueSort('mail'),
+//     },
+//     {
+//         title: '行动',
+//         dataIndex: 'act',
+//         sorter: valueSort('act'),
+//         render: t => <ActCell id={t} />,
+//     },
+//     {
+//         title: '电话',
+//         dataIndex: 'phone',
+//         sorter: valueSort('phone'),
+//     },
+//     {
+//         title: 'uid',
+//         dataIndex: 'uid',
+//         sorter: valueSort('uid'),
+//     },
+// ]
 
 const ignoreColumns = [
     {
@@ -213,22 +213,22 @@ function onDeleteFn(rows, eventType, changeData) {
     })
 }
 
-function deleteAction(rows, eventType, changeData) {
-    const promiseArr = []
-    rows.forEach(d => {
-        promiseArr.push(
-            eventConfigApiAction({
-                op: 'del',
-                action_id: d.id,
-            })
-        )
-    })
-    return Promise.all(promiseArr).then(() => {
-        eventConfigApiAction().then(res => {
-            changeData({ eventAction: res })
-        })
-    })
-}
+// function deleteAction(rows, eventType, changeData) {
+//     const promiseArr = []
+//     rows.forEach(d => {
+//         promiseArr.push(
+//             eventConfigApiAction({
+//                 op: 'del',
+//                 action_id: d.id,
+//             })
+//         )
+//     })
+//     return Promise.all(promiseArr).then(() => {
+//         eventConfigApiAction().then(res => {
+//             changeData({ eventAction: res })
+//         })
+//     })
+// }
 
 function eventFormatter(field, value, device, eventAction) {
     let result = ''
@@ -340,23 +340,25 @@ const ExpandableCard = inject('configStore')(
             <Row gutter={[16, 16]}>
                 <Col span={colSpan}>
                     <Descriptions title='告警配置'>
-                        {Object.entries(alarmData).map(recordItem => {
-                            const [key, value] = recordItem
-                            return (
-                                <Descriptions.Item
-                                    label={translateEventConfigLable(key)}
-                                    span={3}
-                                    key={key}
-                                >
-                                    {eventFormatter(
-                                        key,
-                                        value,
-                                        device,
-                                        eventAction
-                                    )}
-                                </Descriptions.Item>
-                            )
-                        })}
+                        {Object.entries(alarmData)
+                            .filter(d => d[0] !== 'action_id')
+                            .map(recordItem => {
+                                const [key, value] = recordItem
+                                return (
+                                    <Descriptions.Item
+                                        label={translateEventConfigLable(key)}
+                                        span={3}
+                                        key={key}
+                                    >
+                                        {eventFormatter(
+                                            key,
+                                            value,
+                                            device,
+                                            eventAction
+                                        )}
+                                    </Descriptions.Item>
+                                )
+                            })}
                     </Descriptions>
                 </Col>
                 {!isEmpty(monitorData) && (
@@ -866,31 +868,31 @@ export const eventConfigData = {
         {
             title: '其他配置',
             children: [
-                {
-                    title: '事件动作',
-                    key: 'eventAction',
-                    CreateDescribe: () => {
-                        return (
-                            <>
-                                <div>功能简介：</div>
-                                <div className='paragraph-content'>
-                                    本页面是配置事件动作。
-                                </div>
-                                <div className='paragraph-content '>
-                                    支持
-                                    <span className='strong-text'>新增</span>、
-                                    <span className='strong-text'>修改</span>、
-                                    <span className='strong-text'>删除</span>
-                                    操作。
-                                </div>
-                            </>
-                        )
-                    },
-                    openModalFun: openAddEventActionModal,
-                    deleteDataFn: deleteAction,
-                    isActive: false,
-                    columns: actiovColumns,
-                },
+                // {
+                //     title: '事件动作',
+                //     key: 'eventAction',
+                //     CreateDescribe: () => {
+                //         return (
+                //             <>
+                //                 <div>功能简介：</div>
+                //                 <div className='paragraph-content'>
+                //                     本页面是配置事件动作。
+                //                 </div>
+                //                 <div className='paragraph-content '>
+                //                     支持
+                //                     <span className='strong-text'>新增</span>、
+                //                     <span className='strong-text'>修改</span>、
+                //                     <span className='strong-text'>删除</span>
+                //                     操作。
+                //                 </div>
+                //             </>
+                //         )
+                //     },
+                //     openModalFun: openAddEventActionModal,
+                //     deleteDataFn: deleteAction,
+                //     isActive: false,
+                //     columns: actiovColumns,
+                // },
                 {
                     title: '事件忽略',
                     key: 'eventIgnore',

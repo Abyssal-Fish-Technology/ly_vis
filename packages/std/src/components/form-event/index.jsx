@@ -9,7 +9,7 @@ import {
 } from '@shadowflow/components/ui/form/form-components'
 import {
     EventLevelSelect,
-    EventActionSelect,
+    // EventActionSelect,
     EventStatus,
 } from '@/components/form-components'
 import style from './index.module.less'
@@ -54,8 +54,19 @@ export default function EventForm({
                 label='事件状态'
                 initialValue='ON'
             />
-            <EventActionSelect name={[namespace, 'action_id']} label='行动' />
+            {/* <EventActionSelect name={[namespace, 'action_id']} label='行动' /> */}
             <WeekSelect name={[namespace, 'weekday']} label='监控星期' />
+
+            <HourPicker
+                name={[namespace, 'stime']}
+                label='开始时间'
+                inputProps={{ allowClear: false }}
+            />
+            <HourPicker
+                name={[namespace, 'etime']}
+                label='结束时间'
+                inputProps={{ allowClear: false }}
+            />
             <Form.Item
                 name={[namespace, 'desc']}
                 label='描述'
@@ -69,16 +80,6 @@ export default function EventForm({
             >
                 <Input allowClear />
             </Form.Item>
-            <HourPicker
-                name={[namespace, 'stime']}
-                label='开始时间'
-                inputProps={{ allowClear: false }}
-            />
-            <HourPicker
-                name={[namespace, 'etime']}
-                label='结束时间'
-                inputProps={{ allowClear: false }}
-            />
             <Form.Item
                 name={[namespace, 'event_type']}
                 label='事件类型'

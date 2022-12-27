@@ -167,7 +167,7 @@ function ConfigTable({
     const buttonText = useMemo(() => {
         const textObj = {
             event: '告警规则',
-            eventAction: '事件动作',
+            // eventAction: '事件动作',
             eventIgnore: '事件忽略',
             white: '白名单',
             black: '黑名单',
