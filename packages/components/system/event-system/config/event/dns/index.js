@@ -1,25 +1,20 @@
 // 具体的详细配置Form
 const detailConfigForms = [
     {
-        label: 'IP',
+        label: '查询DNS的IP',
         valueKey: 'ip',
         placeholder: '发起请求主机范围，ip或者net，多个以逗号分割',
     },
     {
-        label: '请求域名',
+        label: '查询域名',
         valueKey: 'qname',
         placeholder: '域名范围，多个以逗号分割',
     },
     {
-        label: '请求次数',
+        label: '查询次数',
         valueKey: 'qcount',
         placeholder: '请求域名次数',
         required: true,
-    },
-    {
-        label: '描述信息',
-        valueKey: 'desc',
-        placeholder: '',
     },
 ]
 

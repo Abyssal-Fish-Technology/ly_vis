@@ -1,13 +1,13 @@
 // 具体的详细配置Form
 const detailConfigForms = [
     {
-        label: '源IP',
+        label: '服务器IP',
         valueKey: 'sip',
         placeholder: '',
         required: true,
     },
     {
-        label: '目的IP',
+        label: '外连通讯IP',
         valueKey: 'dip',
         placeholder: '',
     },
@@ -15,12 +15,7 @@ const detailConfigForms = [
         label: '阈值',
         valueKey: 'min',
         required: true, // 是否必填,可省略
-        placeholder: '',
-    },
-    {
-        label: '描述信息',
-        valueKey: 'desc',
-        placeholder: '',
+        placeholder: '阈值单位：会话量/5min',
     },
 ]
 

@@ -1,30 +1,25 @@
 // 具体的详细配置Form
 const detailConfigForms = [
     {
-        label: '最小对端IP数',
+        label: '探测IP数量阈值',
         valueKey: 'min_peerips',
         placeholder: '',
         required: true,
     },
     {
-        label: '最大对端IP数',
-        valueKey: 'max_peerips',
-        placeholder: '',
-    },
-    {
-        label: '端口',
+        label: '被扫描端口',
         valueKey: 'port',
         placeholder: '',
     },
     {
-        label: 'IP',
+        label: '扫描源IP',
         valueKey: 'ip',
         placeholder: '',
     },
     {
         label: '协议',
         valueKey: 'protocol',
-        options: ['', 'TCP', 'UDP', 'ICMP', 'GRE', 'ESP'], // 待选值，可省略
+        options: ['', 'TCP', 'UDP', 'ICMP'], // 待选值，可省略
         placeholder: '',
     },
 ]

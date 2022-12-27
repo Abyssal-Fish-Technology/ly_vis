@@ -1,30 +1,25 @@
 // 具体的详细配置Form
 const detailConfigForms = [
     {
-        label: '最小对端端口数',
+        label: '探测端口数量阈值',
         valueKey: 'min_peerports',
         placeholder: '',
         required: true,
     },
     {
-        label: '最大对端口数',
-        valueKey: 'max_peerports',
-        placeholder: '',
-    },
-    {
-        label: '源IP',
+        label: '扫描源IP',
         valueKey: 'sip',
         placeholder: '',
     },
     {
-        label: '目的IP',
+        label: '受害IP',
         valueKey: 'dip',
         placeholder: '',
     },
     {
         label: '协议',
         valueKey: 'protocol',
-        options: ['', 'TCP', 'UDP', 'ICMP', 'GRE', 'ESP'], // 待选值，可省略
+        options: ['', 'TCP', 'UDP', 'ICMP'], // 待选值，可省略
         placeholder: '',
     },
 ]

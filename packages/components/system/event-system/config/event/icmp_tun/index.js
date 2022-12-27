@@ -25,10 +25,6 @@ const detailConfigForms = [
         valueKey: 'IF3',
         placeholder: 'payload长度的种类，默认值5',
     },
-    {
-        label: '描述信息',
-        valueKey: 'desc',
-    },
 ]
 
 const EventIcmpTun = {

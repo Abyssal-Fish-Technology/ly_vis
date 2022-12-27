@@ -1,26 +1,22 @@
 // 具体的详细配置Form
 const detailConfigForms = [
     {
-        label: '最小端口会话数',
+        label: '服务会话数阈值',
         valueKey: 'min_portsessions',
         required: true,
     },
     {
-        label: '最大端口会话数',
-        valueKey: 'max_portsessions',
-    },
-    {
-        label: '端口',
+        label: '服务端口',
         valueKey: 'port',
     },
     {
-        label: 'IP',
+        label: '服务IP',
         valueKey: 'ip',
     },
     {
         label: '协议',
         valueKey: 'protocol',
-        options: ['', 'TCP', 'UDP', 'ICMP', 'GRE', 'ESP'], // 待选值，可省略
+        options: ['', 'TCP', 'UDP', 'ICMP'], // 待选值，可省略
     },
 ]
 
