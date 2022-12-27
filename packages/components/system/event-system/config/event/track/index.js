@@ -5,19 +5,15 @@ const detailConfigForms = [
         valueKey: 'moid',
     },
     {
-        label: '数据类型',
+        label: '数据单位',
         valueKey: 'data_type',
-        options: ['bps', 'pps', 'fps'],
+        options: ['Bps', 'pps', 'fps'],
         required: true,
     },
     {
-        label: '最小值',
+        label: '阈值',
         valueKey: 'min',
         required: true,
-    },
-    {
-        label: '最大值',
-        valueKey: 'max',
     },
 ]
 

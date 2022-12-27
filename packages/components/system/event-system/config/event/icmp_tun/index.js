@@ -14,16 +14,19 @@ const detailConfigForms = [
         label: '影响因子1',
         valueKey: 'IF1',
         placeholder: '异常类型payload内容种类，默认值5',
+        initValue: 5,
     },
     {
         label: '影响因子2',
         valueKey: 'IF2',
         placeholder: 'payload内容种类，默认值2',
+        initValue: 2,
     },
     {
         label: '影响因子3',
         valueKey: 'IF3',
         placeholder: 'payload长度的种类，默认值5',
+        initValue: 5,
     },
 ]
 

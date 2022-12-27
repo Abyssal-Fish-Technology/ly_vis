@@ -13,10 +13,11 @@ const detailConfigForms = [
         required: true,
     },
     {
-        label: '相似度',
+        label: '可疑程度',
         valueKey: 'min',
-        placeholder: '检出相似度（范围0～99）',
+        placeholder: '查询域名疑似dns隧道的程度,默认值99',
         required: true,
+        initValue: 99,
     },
 ]
 

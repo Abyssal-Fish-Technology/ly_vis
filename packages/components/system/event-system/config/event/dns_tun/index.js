@@ -9,16 +9,19 @@ const detailConfigForms = [
         label: '域名长度',
         valueKey: 'namelen',
         placeholder: '建议值为25',
+        initValue: 25,
     },
     {
         label: '父域名请求次数阈值',
         valueKey: 'fqcount',
         placeholder: '建议值为150',
+        initValue: 150,
     },
     {
         label: '检出评估值',
         valueKey: 'detvalue',
         placeholder: '超出评估值检出为威胁事件，建议值4',
+        initValue: 4,
     },
 ]
 
