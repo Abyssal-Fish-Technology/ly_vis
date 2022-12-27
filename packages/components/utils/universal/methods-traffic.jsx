@@ -39,3 +39,16 @@ export function arrangeAlerm(value) {
 }
 
 /** ***********************************************************************  end ************************************************************************* */
+/**
+ * 翻译告警规则配置中的数据单位字段值
+ * @param {*} value
+ * @returns
+ */
+export function translateDataType(value = '') {
+    const dataType = {
+        bps: '字节量/秒',
+        fps: '会话量/秒',
+        pps: '包数量/秒',
+    }
+    return dataType[value.toLocaleLowerCase()] || value
+}
