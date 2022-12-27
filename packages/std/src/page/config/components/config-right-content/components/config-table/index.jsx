@@ -192,7 +192,7 @@ function ConfigTable({
                     type='primary'
                     onClick={() => {
                         const addParams = { type: modalType || '' }
-                        if (modalType === 'mo') {
+                        if (modalType === 'mo' && nowConfigKey !== 'event') {
                             const { id = '' } =
                                 find(moGroup, d => d.name === configDataType) ||
                                 {}
