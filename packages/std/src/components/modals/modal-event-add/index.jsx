@@ -6,6 +6,7 @@ import {
     eventConfigFormDict,
 } from '@shadowflow/components/system/event-system'
 import StepFrom from '@shadowflow/components/ui/form/form-step'
+import { chain } from 'lodash'
 import Event from './components/event'
 import EventForm from './components/event-config'
 import eventModalStore from './store'
@@ -13,15 +14,7 @@ import style from './index.module.less'
 import { getConfirmInfo } from '../utils'
 
 function AddEventModal({ configStore }) {
-    const {
-        visible,
-        op,
-        id,
-        data,
-        onClose,
-        onConfirm,
-        eventType,
-    } = eventModalStore
+    const { visible, op, id, onClose, onConfirm, eventType } = eventModalStore
 
     const commondict = eventConfigFormDict
     const detaildict = EventConfig[eventType]
@@ -37,7 +30,18 @@ function AddEventModal({ configStore }) {
     const { changeData, event } = configStore
 
     const initialValues = useMemo(() => {
-        if (op === 'add') return data || null
+        if (op === 'add') {
+            return {
+                eventConfig: chain(EventConfig[eventType].detailConfigForms)
+                    .filter(d => d.initValue)
+                    .reduce((obj, item) => {
+                        const { initValue, valueKey } = item
+                        obj[valueKey] = initValue
+                        return obj
+                    }, {})
+                    .value(),
+            }
+        }
         const eventItem = event.find(d => String(d.id) === String(id))
         if (!eventItem) return null
 
@@ -52,7 +56,7 @@ function AddEventModal({ configStore }) {
             },
             eventConfig: eventConfigItem,
         }
-    }, [configStore, data, event, id, op])
+    }, [configStore, event, eventType, id, op])
 
     const confirmCallback = useCallback(
         values => {
