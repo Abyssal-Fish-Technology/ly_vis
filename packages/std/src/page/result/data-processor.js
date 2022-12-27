@@ -93,7 +93,7 @@ export const tcpinit = data => {
             d.showDuration = formatDuration(d.duration)
             d.lastTime = lastTimeData.time
             d.showLastTime = formatTimestamp(d.lastTime)
-            ;[d.bps, d.pps, d.fps] = [d.bytes * 8, d.pkts, d.flows].map(
+            ;[d.Bps, d.pps, d.fps] = [d.bytes * 8, d.pkts, d.flows].map(
                 _d => _d / (d.duration || 1)
             )
         })
@@ -161,7 +161,7 @@ export const scan = data => {
             d.showDuration = formatDuration(d.duration)
             d.lastTime = lastTimeData.time
             d.showLastTime = formatTimestamp(d.lastTime)
-            ;[d.bps, d.pps, d.fps] = [d.bytes * 8, d.pkts, d.flows].map(
+            ;[d.Bps, d.pps, d.fps] = [d.bytes * 8, d.pkts, d.flows].map(
                 _d => _d / (d.duration || 1)
             )
         })
@@ -219,7 +219,7 @@ export const sus = data => {
                 connectType = 'loop'
             }
             d.connectType = connectType
-            ;[d.bps, d.pps, d.fps] = [d.bytes * 8, d.pkts, d.flows].map(
+            ;[d.Bps, d.pps, d.fps] = [d.bytes * 8, d.pkts, d.flows].map(
                 _d => _d / (d.duration || 1)
             )
         })
@@ -273,7 +273,7 @@ export const black = data => {
                 connectType = 'loop'
             }
             d.connectType = connectType
-            ;[d.bps, d.pps, d.fps] = [d.bytes * 8, d.pkts, d.flows].map(
+            ;[d.Bps, d.pps, d.fps] = [d.bytes * 8, d.pkts, d.flows].map(
                 _d => _d / (d.duration || 1)
             )
         })
@@ -326,7 +326,7 @@ export const service = data => {
                 connectType = 'vToT'
             }
             d.connectType = connectType
-            ;[d.bps, d.pps, d.fps] = [d.bytes * 8, d.pkts, d.flows].map(
+            ;[d.Bps, d.pps, d.fps] = [d.bytes * 8, d.pkts, d.flows].map(
                 _d => _d / (d.duration || 1)
             )
         })
@@ -374,7 +374,7 @@ export function scanStatic(data, ip, justCount = true) {
         bytes: arrangeAlerm(sumBy(data, 'bytes')),
     }
     const flowRate = {
-        bps: arrangeAlerm((maxBy(data, 'bps') || {}).bps || 0),
+        Bps: arrangeAlerm((maxBy(data, 'Bps') || {}).Bps || 0),
         fps: arrangeAlerm((maxBy(data, 'fps') || {}).fps || 0),
         pps: arrangeAlerm((maxBy(data, 'pps') || {}).pps || 0),
     }
@@ -404,7 +404,7 @@ export function susStatic(data, ip, justCount = true) {
         bytes: arrangeAlerm(sumBy(data, 'bytes')),
     }
     const flowRate = {
-        bps: arrangeAlerm((maxBy(data, 'bps') || {}).bps || 0),
+        Bps: arrangeAlerm((maxBy(data, 'Bps') || {}).Bps || 0),
         fps: arrangeAlerm((maxBy(data, 'fps') || {}).fps || 0),
         pps: arrangeAlerm((maxBy(data, 'pps') || {}).pps || 0),
     }
@@ -433,7 +433,7 @@ export function blackStatic(data, ip, justCount = true) {
         bytes: arrangeAlerm(sumBy(data, 'bytes')),
     }
     const flowRate = {
-        bps: arrangeAlerm((maxBy(data, 'bps') || {}).bps || 0),
+        Bps: arrangeAlerm((maxBy(data, 'Bps') || {}).Bps || 0),
         fps: arrangeAlerm((maxBy(data, 'fps') || {}).fps || 0),
         pps: arrangeAlerm((maxBy(data, 'pps') || {}).pps || 0),
     }
@@ -461,7 +461,7 @@ export function serviceStatic(data, ip, justCount = true) {
         bytes: arrangeAlerm(sumBy(data, 'bytes')),
     }
     const flowRate = {
-        bps: arrangeAlerm((maxBy(data, 'bps') || {}).bps || 0),
+        Bps: arrangeAlerm((maxBy(data, 'Bps') || {}).Bps || 0),
         fps: arrangeAlerm((maxBy(data, 'fps') || {}).fps || 0),
         pps: arrangeAlerm((maxBy(data, 'pps') || {}).pps || 0),
     }

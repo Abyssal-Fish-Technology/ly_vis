@@ -867,7 +867,7 @@ export const TimeingChangeChart = inject(stores => ({
                             unit={
                                 tipsData.valueType
                                     ? `${tipsData.valueType}`
-                                    : 'bps'
+                                    : 'Bps'
                             }
                         />
                     </div>

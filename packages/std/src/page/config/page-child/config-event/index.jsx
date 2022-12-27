@@ -22,6 +22,7 @@ import {
     formatTimestamp,
     calculateWeekday,
 } from '@shadowflow/components/utils/universal/methods-time'
+import { translateDataType } from '@shadowflow/components/utils/universal/methods-traffic'
 import { Col, Descriptions, message, Row } from 'antd'
 import { chain, find, isEmpty } from 'lodash'
 import { inject, observer } from 'mobx-react'
@@ -366,6 +367,7 @@ const ExpandableCard = inject('configStore')(
                         <Descriptions title='监控配置'>
                             {Object.entries(monitorData).map(recordItem => {
                                 const [field, value] = recordItem
+
                                 return (
                                     field !== 'id' &&
                                     field !== 'grep_rule' && (
@@ -377,7 +379,9 @@ const ExpandableCard = inject('configStore')(
                                             span={3}
                                             key={field}
                                         >
-                                            {value}
+                                            {field === 'data_type'
+                                                ? translateDataType(value)
+                                                : value}
                                         </Descriptions.Item>
                                     )
                                 )

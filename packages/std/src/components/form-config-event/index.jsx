@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Input, Select, Form, Tooltip } from 'antd'
 import { EventConfig } from '@shadowflow/components/system/event-system'
 import { PlusOutlined, QuestionCircleFilled } from '@ant-design/icons'
+import { translateDataType } from '@shadowflow/components/utils/universal/methods-traffic'
 import { MoSelect } from '../form-components'
 import { openMoModal } from '../modals/modal-config-mo'
 
@@ -79,7 +80,7 @@ export default function EventConfigForm({
                                 {options.map(o => {
                                     return (
                                         <Select.Option key={o} value={o}>
-                                            {o || '全部'}
+                                            {translateDataType(o || '全部')}
                                         </Select.Option>
                                     )
                                 })}
