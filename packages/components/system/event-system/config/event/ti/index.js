@@ -6,7 +6,7 @@ const detailConfigForms = [
         required: true,
     },
     {
-        label: '数据单位',
+        label: '阈值单位',
         valueKey: 'data_type',
         options: ['Bps', 'pps', 'fps'], // 待选值，可省略
         required: true,
