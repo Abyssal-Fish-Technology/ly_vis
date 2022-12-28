@@ -25,7 +25,7 @@ function calculatePublicFields(currentData) {
         let showTopnDir = ''
         if (srv_mark) {
             showTopnDir = calculateTopnDir(
-                srv_mark === 'res' ? 'left' : 'right'
+                srv_mark === 'res' ? 'right' : 'left'
             )
         }
         if (ti_mark) {
