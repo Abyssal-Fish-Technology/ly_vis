@@ -35,15 +35,15 @@ function FeatureChart({ starttime, endtime, featureData, event }) {
         () =>
             isDnsTypeEvent(event.type) && event.type !== 'dga'
                 ? '父域名'
-                : '受害设备',
+                : '威胁设备',
         [event.type]
     )
     // 数据处理
     const useData = useMemo(() => {
         return featureData.map(d => {
-            const attackIp = featureType === 'aToV' ? d.domain || d.sip : d.dip
+            const attackIp = featureType === 'aToV' ? d.sip : d.domain || d.dip
             const attackPort = featureType === 'aToV' ? '发起' : d.dport
-            const victimIp = featureType === 'vToA' ? d.domain || d.sip : d.dip
+            const victimIp = featureType === 'vToA' ? d.sip : d.domain || d.dip
             const victimPort = featureType === 'vToA' ? '发起' : d.dport
             const [attackA, attackB, attackC, attackD] = attackIp.split('.')
             const [victimA, victimB, victimC, victimD] = victimIp.split('.')
@@ -532,9 +532,9 @@ function FeatureChart({ starttime, endtime, featureData, event }) {
                                         dx={groupWidth / 2}
                                     >
                                         {`${
-                                            key !== 'attack'
+                                            key === 'attack'
                                                 ? attackName
-                                                : '威胁设备'
+                                                : '受害设备'
                                         }`}
                                     </text>
                                 </g>
