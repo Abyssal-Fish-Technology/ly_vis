@@ -1,5 +1,5 @@
 import { deviceApi } from '@/service'
-import { Form } from 'antd'
+import { Form, Select } from 'antd'
 import { inject, observer } from 'mobx-react'
 import React, { useEffect } from 'react'
 import {
@@ -27,7 +27,12 @@ const formArr = [
             },
         ]}
     />,
-    <DefaultFormItem name='model' key='model' label='模型' />,
+    <Form.Item label='模型' key='model' name='model'>
+        <Select>
+            <Select.Option value='v4'>IPv4</Select.Option>
+            <Select.Option value='v6'>IPv6</Select.Option>
+        </Select>
+    </Form.Item>,
     <DefaultFormItem name='creator' key='creator' label='创建者' />,
     <DefaultFormItem name='comment' key='comment' label='注释' />,
     <PortInput name='port' key='port' label='端口' />,
@@ -50,7 +55,7 @@ function DeviceForm({ form, setDisabledNext }) {
             name='DeviceModalForm'
             initialValues={{
                 name: '',
-                model: '',
+                model: 'v4',
                 creator: '',
                 comment: '',
                 ip: '',
