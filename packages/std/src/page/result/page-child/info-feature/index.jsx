@@ -16,18 +16,14 @@ const featureLabelMap = {
     bytes: '流量总量',
 }
 
-function ResultFeature({ resultStore }) {
-    const {
-        featureInfo,
-        searchValue,
-        featureType,
-        conditionValue,
-        featureLoading,
-    } = useMemo(() => resultStore, [resultStore])
-
-    const featureInfoStore = useMemo(() => new FeatureInfoStore(), [])
-
-    const { featureData } = featureInfoStore
+function ResultFeature({
+    featureInfo,
+    searchValue,
+    featureType,
+    conditionValue,
+    featureLoading,
+}) {
+    const { featureData, start } = useMemo(() => new FeatureInfoStore(), [])
 
     const currentFeatureData = useMemo(() => {
         const { feature = [] } = conditionValue
@@ -48,8 +44,8 @@ function ResultFeature({ resultStore }) {
     }, [defaultKey, featureType])
 
     useEffect(() => {
-        featureInfoStore.start(featureInfo, searchValue)
-    }, [featureInfo, featureInfoStore, searchValue])
+        start(featureInfo, searchValue)
+    }, [featureInfo, searchValue, start])
 
     return (
         <div className={`${style.page} ${featureLoading ? 'app-loading' : ''}`}>
@@ -189,4 +185,10 @@ function ResultFeature({ resultStore }) {
         </div>
     )
 }
-export default inject('resultStore')(observer(ResultFeature))
+export default inject(stores => ({
+    featureInfo: stores.resultStore.featureInfo,
+    searchValue: stores.resultStore.searchValue,
+    featureType: stores.resultStore.featureType,
+    conditionValue: stores.resultStore.conditionValue,
+    featureLoading: stores.resultStore.featureLoading,
+}))(observer(ResultFeature))

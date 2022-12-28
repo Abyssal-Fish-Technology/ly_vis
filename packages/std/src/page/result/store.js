@@ -259,21 +259,21 @@ class ResultStore {
 
     @observable basicLoading = false
 
-    eventLoading = false
+    @observable eventLoading = false
 
-    susLoading = false
+    @observable susLoading = false
 
-    dnsLoading = false
+    @observable dnsLoading = false
 
-    dns_tunLoading = false
+    @observable dns_tunLoading = false
 
-    blackLoading = false
+    @observable blackLoading = false
 
-    serviceLoading = false
+    @observable serviceLoading = false
 
-    tcpinitLoading = false
+    @observable tcpinitLoading = false
 
-    featureLoading = false
+    @observable featureLoading = false
 
     @action.bound changePageLoading(type, state = false) {
         this[`${type}Loading`] = state
