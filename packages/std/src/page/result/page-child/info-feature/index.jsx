@@ -4,6 +4,7 @@ import { map } from 'lodash'
 import { inject, observer } from 'mobx-react'
 import { AntdTableSuper } from '@shadowflow/components/ui/antd-components-super'
 import UnitContainer from '@shadowflow/components/ui/container/unit-container'
+import { translateDataType } from '@shadowflow/components/utils/universal/methods-traffic'
 import FeatureInfoStore from './store'
 import style from './index.module.less'
 
@@ -142,12 +143,12 @@ function ResultFeature({ resultStore }) {
                                                                     value={v}
                                                                 />
                                                                 <UnitContainer
-                                                                    unit={
+                                                                    unit={translateDataType(
                                                                         item.unit ===
-                                                                        undefined
+                                                                            undefined
                                                                             ? k
                                                                             : item.unit
-                                                                    }
+                                                                    )}
                                                                 />
                                                                 {/* <span className='feature-static-item-data-item-unit'>
                                                                     {item.unit ===
