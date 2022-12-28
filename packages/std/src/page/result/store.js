@@ -2,7 +2,7 @@ import configStore from '@/layout/components/config/store'
 import { eventGet, featureGet, portinfo } from '@/service'
 import { getUrlParams } from '@shadowflow/components/utils/universal/methods-router'
 import { splitEventObj } from '@shadowflow/components/system/event-system'
-import { initial } from 'lodash'
+import { chain, initial } from 'lodash'
 import { action, observable } from 'mobx'
 import moment from 'moment'
 import { getDeviceInfo } from '@/utils/methods-data'
@@ -235,18 +235,13 @@ class ResultStore {
                 })
                     .then(
                         res => {
-                            const newObj = JSON.parse(
-                                JSON.stringify(this.featureInfo)
-                            )
-                            newObj[d].data = initial(res)
-                            this.featureInfo = newObj
+                            return Promise.resolve({
+                                data: initial(res),
+                                type: d,
+                            })
                         },
                         () => {
-                            const newObj = JSON.parse(
-                                JSON.stringify(this.featureInfo)
-                            )
-                            newObj[d].data = []
-                            this.featureInfo = newObj
+                            return Promise.resolve({ data: [], type: d })
                         }
                     )
                     .finally(() => {
@@ -312,9 +307,33 @@ class ResultStore {
             promiseArr.push(this.getPortInfo(port))
         }
 
-        Promise.allSettled(promiseArr).finally(() => {
-            this.changePageLoading('feature', false)
-        })
+        Promise.allSettled(promiseArr)
+            .then(res => {
+                const newFeatureInfo = JSON.parse(
+                    JSON.stringify(this.featureInfo)
+                )
+                chain(res)
+                    .filter(d => d.value)
+                    .reduce((obj, item) => {
+                        const {
+                            value: { data = [], type = '' },
+                        } = item
+                        if (type) {
+                            obj[type] = data
+                        }
+                        return obj
+                    }, {})
+                    .entries()
+                    .forEach(d => {
+                        const [key, value] = d
+                        newFeatureInfo[key].data = value
+                    })
+                    .value()
+                this.featureInfo = newFeatureInfo
+            })
+            .finally(() => {
+                this.changePageLoading('feature', false)
+            })
     }
 
     @observable currentTabKey = '总览'
