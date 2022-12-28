@@ -1,4 +1,8 @@
-import { MoGroupSelect, MoGroupSelectAdd } from '@/components/form-components'
+import {
+    MoGroupSelect,
+    MoGroupSelectAdd,
+    ProtocolSelect,
+} from '@/components/form-components'
 import {
     IpInput,
     PortInput,
@@ -6,7 +10,6 @@ import {
     DeviceSelect,
 } from '@shadowflow/components/ui/form/form-components'
 import { moApi } from '@/service'
-import validateInput from '@/utils/validateRule'
 import { Form, Input, Select } from 'antd'
 import { inject, observer } from 'mobx-react'
 import React, { useEffect, useMemo } from 'react'
@@ -19,39 +22,30 @@ const { Option } = Select
 
 const moModalStore = new AddConfigModalStore()
 
-const validMoFn = ({ getFieldValue }) => ({
-    validator(rule, value) {
-        const vilidData =
-            rule.field === 'moip'
-                ? getFieldValue('moport')
-                : getFieldValue('moip')
-        const errorText =
-            rule.field === 'moip'
-                ? '请输入追踪目标IP！'
-                : '请输入追踪目标端口！'
-        if (!vilidData && !value) return Promise.reject(new Error(errorText))
-        return Promise.resolve()
-    },
-})
-
 const formArr = [
-    <IpInput name='moip' key='moip' label='追踪目标IP' rules={[validMoFn]} />,
+    <IpInput
+        name='moip'
+        key='moip'
+        label='追踪目标IP'
+        rules={[
+            {
+                required: true,
+            },
+        ]}
+    />,
     <PortInput
         name='moport'
         key='moport'
         label='追踪目标端口'
-        rules={[validMoFn]}
+        rules={[
+            {
+                required: true,
+            },
+        ]}
     />,
     <IpInput name='pip' key='pip' label='对端IP' />,
     <PortInput name='pport' key='pport' label='对端端口' />,
-    <Form.Item
-        name='protocol'
-        key='protocol'
-        label='协议'
-        getValueFromEvent={validateInput('protocolRule')}
-    >
-        <Input allowClear />
-    </Form.Item>,
+    <ProtocolSelect name='protocol' key='protocol' label='协议' />,
     <MoGroupSelect name='groupid' key='groupid' label='追踪分组' />,
     <Form.Item name='direction' key='direction' label='方向'>
         <Select>

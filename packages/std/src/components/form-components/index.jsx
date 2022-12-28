@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import { Select, Input, Tooltip, TreeSelect } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { observer } from 'mobx-react'
@@ -127,6 +127,24 @@ export const EventActSelect = withFormItem(props => {
             <Option value={1}>send email</Option>
             <Option value={2}>send message</Option>
             <Option value={3}>send email,send message</Option>
+        </Select>
+    )
+})
+
+/**
+ * 协议字段下拉框
+ */
+export const ProtocolSelect = withFormItem(({ value, onChange, ...props }) => {
+    const [newValue, setNewValue] = useState('')
+    useEffect(() => {
+        setNewValue(value || '')
+    }, [value])
+    return (
+        <Select value={newValue} onChange={onChange} {...props}>
+            <Option value=''>全部</Option>
+            <Option value='TCP'>TCP</Option>
+            <Option value='UDP'>UDP</Option>
+            <Option value='ICMP'>ICMP</Option>
         </Select>
     )
 })

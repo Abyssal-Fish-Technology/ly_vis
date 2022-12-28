@@ -14,6 +14,7 @@ import { Form } from 'antd'
 import AddConfigModal, {
     AddConfigModalStore,
 } from '@shadowflow/components/ui/modal/modal-config'
+import { ProtocolSelect } from '@/components/form-components'
 import { commonFormProps, getConfirmInfo, getFormDict } from '../utils'
 
 const eventIgnoreModalStore = new AddConfigModalStore()
@@ -49,11 +50,19 @@ const formArr = [
         label='域名'
         inputProps={{ allowClear: true }}
     />,
-    <DefaultFormItem
-        name='protocol'
-        key='protocol'
-        label='协议'
-        inputProps={{ allowClear: true }}
+    <ProtocolSelect name='protocol' key='protocol' label='协议' />,
+    <WeekSelect name='weekday' key='weekday' label='周期' />,
+    <HourPicker
+        name='stime'
+        key='stime'
+        label='开始时间'
+        inputProps={{ allowClear: false }}
+    />,
+    <HourPicker
+        name='etime'
+        key='etime'
+        label='结束时间'
+        inputProps={{ allowClear: false }}
     />,
     <DefaultFormItem
         name='desc'
@@ -67,19 +76,6 @@ const formArr = [
             },
         ]}
         inputProps={{ allowClear: true }}
-    />,
-    <WeekSelect name='weekday' key='weekday' label='周期' />,
-    <HourPicker
-        name='stime'
-        key='stime'
-        label='开始时间'
-        inputProps={{ allowClear: false }}
-    />,
-    <HourPicker
-        name='etime'
-        key='etime'
-        label='结束时间'
-        inputProps={{ allowClear: false }}
     />,
 ]
 
