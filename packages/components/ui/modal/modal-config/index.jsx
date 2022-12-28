@@ -24,7 +24,7 @@ export default function AddConfigModal({
             onCancel={onClose}
             maskClosable={false}
             destroyOnClose
-            bodyStyle={{ overflow: 'auto', height: '60vh' }}
+            bodyStyle={{ overflow: 'auto', height: '70vh' }}
             {...props}
         >
             <StepFrom
