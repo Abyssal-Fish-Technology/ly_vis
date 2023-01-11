@@ -285,7 +285,12 @@ export function calculateUpdatedEventData(eventData, updateList) {
     return resultData
 }
 
-export function calculateIcmpType(icmp_type) {
+/**
+ * 计算icmp协议请求类型，主要用在event_feature接口中
+ * @param {*} dport type+code16位二进制转换的10进制数
+ * @returns
+ */
+export function calculateIcmpType(dport = 0) {
     const icmpTypeObj = {
         0: '响应应答',
         3: '不可到达',
@@ -300,5 +305,5 @@ export function calculateIcmpType(icmp_type) {
         18: '地址掩码应答',
         30: '路由跟踪',
     }
-    return icmpTypeObj[icmp_type]
+    return icmpTypeObj[dport >> 8]
 }

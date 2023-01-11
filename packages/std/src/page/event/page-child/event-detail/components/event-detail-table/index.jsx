@@ -109,17 +109,7 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
                         <span>{d}</span>
                     </DeviceOperate>
                 ),
-            },
-            {
-                title: '目的端口',
-                dataIndex: 'dport',
-                sorter: valueSort('dport'),
-                width: 80,
-                render: d => (
-                    <DeviceOperate device={d} resultParams={alarmParams}>
-                        <span>{d}</span>
-                    </DeviceOperate>
-                ),
+                hidden: type === 'icmp_tun',
             },
             {
                 title: '目的IP',
@@ -159,9 +149,10 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
                 sorter: valueSort('pkts'),
             },
         ]
+
         // dns、dga,dns_tun、icmp_tun、挖矿 需要展示额外的字段
         if (isDnsTypeEvent(type)) {
-            basicColumns.splice(5, 0, {
+            basicColumns.splice(4, 0, {
                 title: '域名',
                 dataIndex: 'domain',
                 render: d => (
@@ -170,28 +161,20 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
                     </DeviceOperate>
                 ),
             })
-            basicColumns.splice(6, 0, {
+            basicColumns.splice(5, 0, {
                 title: '查询类型',
                 dataIndex: 'qtype',
                 render: d => <TagAttribute>{d}</TagAttribute>,
             })
         }
         if (type === 'icmp_tun') {
-            basicColumns.splice(5, 0, {
+            basicColumns.splice(4, 0, {
                 title: 'Payload',
                 dataIndex: 'payload',
             })
-            basicColumns.splice(6, 0, {
-                title: '请求类型',
-                dataIndex: 'icmp_type',
-                render: d => (
-                    <TagAttribute>{calculateIcmpType(d)}</TagAttribute>
-                ),
-            })
         }
-
         if (type === 'mining') {
-            basicColumns.splice(5, 0, {
+            basicColumns.splice(4, 0, {
                 title: '域名',
                 dataIndex: 'domain',
                 render: d => (
@@ -201,8 +184,21 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
                 ),
             })
         }
-
-        return basicColumns
+        basicColumns.splice(type === 'icmp_tun' ? 4 : 2, 0, {
+            title: type === 'icmp_tun' ? '请求类型' : '目的端口',
+            dataIndex: 'dport',
+            sorter: valueSort('dport'),
+            width: 80,
+            render: d =>
+                type === 'icmp_tun' ? (
+                    <TagAttribute>{calculateIcmpType(d)}</TagAttribute>
+                ) : (
+                    <DeviceOperate device={d} resultParams={alarmParams}>
+                        <span>{d}</span>
+                    </DeviceOperate>
+                ),
+        })
+        return basicColumns.filter(d => !d.hidden)
     }, [alarmParams, type])
 
     const [selection, setSelection] = useState([])
