@@ -1,7 +1,7 @@
 import { valueSort } from '@shadowflow/components/utils/universal/methods-table'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { eventFeature } from '@/service'
-import { chain, initial, isEmpty } from 'lodash'
+import { chain, find, initial, isEmpty } from 'lodash'
 import { formatTimestamp } from '@shadowflow/components/utils/universal/methods-time'
 import { axisLeft, extent, path, scaleLinear, select } from 'd3'
 import moment from 'moment'
@@ -86,6 +86,7 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
     )
 
     const columns = useMemo(() => {
+        const isICMP = !!find(useData, d => d.protocol === 'ICMP')
         const basicColumns = [
             {
                 title: '源IP',
@@ -109,7 +110,7 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
                         <span>{d}</span>
                     </DeviceOperate>
                 ),
-                hidden: type === 'icmp_tun',
+                hidden: isICMP,
             },
             {
                 title: '目的IP',
@@ -184,13 +185,13 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
                 ),
             })
         }
-        basicColumns.splice(type === 'icmp_tun' ? 4 : 2, 0, {
-            title: type === 'icmp_tun' ? '请求类型' : '目的端口',
+        basicColumns.splice(isICMP ? 4 : 2, 0, {
+            title: isICMP ? '请求类型' : '目的端口',
             dataIndex: 'dport',
             sorter: valueSort('dport'),
             width: 80,
             render: d =>
-                type === 'icmp_tun' ? (
+                isICMP ? (
                     <TagAttribute>{calculateIcmpType(d)}</TagAttribute>
                 ) : (
                     <DeviceOperate device={d} resultParams={alarmParams}>
@@ -199,7 +200,7 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
                 ),
         })
         return basicColumns.filter(d => !d.hidden)
-    }, [alarmParams, type])
+    }, [alarmParams, type, useData])
 
     const [selection, setSelection] = useState([])
 
