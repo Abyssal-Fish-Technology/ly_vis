@@ -171,6 +171,6 @@ yarn std build
 
 联系邮箱：[sales@abyssalfish.com.cn](mailto:sales@abyssalfish.com.cn)
 
-联系微信：
+联系微信：<img title="" src="readMe.asset/ed78beee79b68176e9fc0cc27510913b5588c3fc.jpeg" alt="" width="171"><img title="" src="readMe.asset/31b954507ea12494d64049d95cb847387619089a.png" alt="" width="175">
 
-<img title="" src="readMe.asset/d82523bdb256631fe00f146816a5a5f8e118a9c0.jpeg" alt="" width="186"><img title="" src="readMe.asset/31b954507ea12494d64049d95cb847387619089a.png" alt="" width="175">
+微信公众号：<img src="readMe.asset/8bfccacc9402875ef889f477546d6a0436897fa2.jpeg" title="" alt="" width="151">（深海鱼科技有限公司）
