@@ -286,24 +286,200 @@ export function calculateUpdatedEventData(eventData, updateList) {
 }
 
 /**
- * 计算icmp协议请求类型，主要用在event_feature接口中
+ * 计算icmp协议type、code、description，主要用在event_feature接口中
  * @param {*} dport type+code16位二进制转换的10进制数
- * @returns
+ * @returns type、code、description
  */
 export function calculateIcmpType(dport = 0) {
-    const icmpTypeObj = {
-        0: '响应应答',
-        3: '不可到达',
-        4: '源抑制',
-        5: '重定向',
-        8: '响应请求',
-        11: '超时',
-        12: '参数失灵',
-        13: '时间戳请求',
-        14: '时间戳应答',
-        17: '地址掩码请求',
-        18: '地址掩码应答',
-        30: '路由跟踪',
+    const icmpTypeArr = [
+        {
+            type: 0,
+            code: 0,
+            description: 'Ping应答',
+        },
+        {
+            type: 3,
+            code: 0,
+            description: '网络不可达',
+        },
+        {
+            type: 3,
+            code: 1,
+            description: '主机不可达',
+        },
+        {
+            type: 3,
+            code: 2,
+            description: '协议不可达',
+        },
+        {
+            type: 3,
+            code: 3,
+            description: '端口不可达',
+        },
+        {
+            type: 3,
+            code: 4,
+            description: '需要进行分片但设置不分片比特',
+        },
+        {
+            type: 3,
+            code: 5,
+            description: '源站选路失败',
+        },
+        {
+            type: 3,
+            code: 6,
+            description: '目的网络未知',
+        },
+        {
+            type: 3,
+            code: 7,
+            description: '目的主机未知',
+        },
+        {
+            type: 3,
+            code: 8,
+            description: '源主机被隔离',
+        },
+        {
+            type: 3,
+            code: 9,
+            description: '目的网络被强制禁止',
+        },
+        {
+            type: 3,
+            code: 10,
+            description: '目的主机被强制禁止',
+        },
+        {
+            type: 3,
+            code: 11,
+            description: '由于服务类型TOS，网络不可达',
+        },
+        {
+            type: 3,
+            code: 12,
+            description: '由于服务类型TOS，主机不可达',
+        },
+        {
+            type: 3,
+            code: 13,
+            description: '由于过滤，通信被强制禁止',
+        },
+        {
+            type: 3,
+            code: 14,
+            description: '主机越权',
+        },
+        {
+            type: 3,
+            code: 15,
+            description: '优先中止生效',
+        },
+        {
+            type: 4,
+            code: 0,
+            description: '源端被关闭（基本流控制）',
+        },
+        {
+            type: 5,
+            code: 0,
+            description: '对网络重定向',
+        },
+        {
+            type: 5,
+            code: 1,
+            description: '对主机重定向',
+        },
+        {
+            type: 5,
+            code: 2,
+            description: '对服务类型和网络重定向',
+        },
+        {
+            type: 5,
+            code: 3,
+            description: '对服务类型和主机重定向',
+        },
+        {
+            type: 8,
+            code: 0,
+            description: 'Ping请求',
+        },
+        {
+            type: 9,
+            code: 0,
+            description: '路由器通告',
+        },
+        {
+            type: 10,
+            code: 0,
+            description: '路由器请求',
+        },
+        {
+            type: 11,
+            code: 0,
+            description: '传输期间生存时间为0',
+        },
+        {
+            type: 11,
+            code: 1,
+            description: '在数据报组装期间生存时间为0',
+        },
+        {
+            type: 12,
+            code: 0,
+            description: '坏的IP首部（包括各种差错）',
+        },
+        {
+            type: 12,
+            code: 1,
+            description: '缺少必需的选项',
+        },
+        {
+            type: 13,
+            code: 0,
+            description: '时间戳请求',
+        },
+        {
+            type: 15,
+            code: 0,
+            description: '信息请求',
+        },
+        {
+            type: 16,
+            code: 0,
+            description: '信息应答',
+        },
+        {
+            type: 17,
+            code: 0,
+            description: '地址掩码请求',
+        },
+        {
+            type: 18,
+            code: 0,
+            description: '地址掩码应答',
+        },
+    ]
+    // 10进制转为2进制，然后补全为16位的二进制数，高八位为type，低8位为code，分别转位10进制后返回结果
+    const formatStr = parseInt(dport, 10).toString(2)
+    const spliceStr = Array(16 - formatStr.length)
+        .fill(0)
+        .join('')
+    const resultStr = `${spliceStr}${formatStr}`
+    const [typeStr, codeStr] = [resultStr.slice(0, 8), resultStr.slice(8)]
+    const { description = '', code = '', type = '' } =
+        find(
+            icmpTypeArr,
+            d =>
+                d.type === parseInt(typeStr, 2) &&
+                d.code === parseInt(codeStr, 2)
+        ) || {}
+    return {
+        type,
+        code,
+        description,
     }
-    return icmpTypeObj[dport >> 8]
 }

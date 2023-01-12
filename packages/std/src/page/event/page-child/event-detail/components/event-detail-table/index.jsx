@@ -17,6 +17,7 @@ import { isDnsTypeEvent } from '@shadowflow/components/system/event-system'
 import { calculateIcmpType } from '@/utils/methods-event'
 import { TagAttribute } from '@shadowflow/components/ui/tag'
 import EvidenceContent from '@shadowflow/components/ui/container/EvidenceContent'
+import { Tooltip } from 'antd'
 import style from './index.module.less'
 import { LimitCom } from '../public-com'
 
@@ -69,11 +70,28 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
                     changeReportData('eventFeatureOriginData', res)
                     const result = chain(initial(res))
                         .forIn(resItem => {
-                            const { bytes, flows, pkts, time } = resItem
+                            const {
+                                bytes,
+                                flows,
+                                pkts,
+                                time,
+                                protocol,
+                                dport,
+                            } = resItem
                             resItem.show_bytes = arrangeAlerm(bytes)
                             resItem.show_flows = arrangeAlerm(flows)
                             resItem.show_pkts = arrangeAlerm(pkts)
                             resItem.show_time = formatTimestamp(time)
+                            if (protocol === 'ICMP') {
+                                const {
+                                    type: icmptype,
+                                    code,
+                                    description,
+                                } = calculateIcmpType(dport)
+                                resItem.icmp_type = `${icmptype}`
+                                resItem.icmp_code = `${code}`
+                                resItem.icmp_description = description
+                            }
                         })
                         .value()
                     setUseData(result)
@@ -104,6 +122,18 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
                 title: '源端口',
                 dataIndex: 'sport',
                 sorter: valueSort('sport'),
+                width: 80,
+                render: d => (
+                    <DeviceOperate device={d} resultParams={alarmParams}>
+                        <span>{d}</span>
+                    </DeviceOperate>
+                ),
+                hidden: isICMP,
+            },
+            {
+                title: '目的端口',
+                dataIndex: 'dport',
+                sorter: valueSort('dport'),
                 width: 80,
                 render: d => (
                     <DeviceOperate device={d} resultParams={alarmParams}>
@@ -156,6 +186,7 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
             basicColumns.splice(4, 0, {
                 title: '域名',
                 dataIndex: 'domain',
+                sorter: valueSort('domain'),
                 render: d => (
                     <DeviceOperate device={d} resultParams={alarmParams}>
                         <span>{d}</span>
@@ -165,19 +196,16 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
             basicColumns.splice(5, 0, {
                 title: '查询类型',
                 dataIndex: 'qtype',
+                sorter: valueSort('qtype'),
                 render: d => <TagAttribute>{d}</TagAttribute>,
             })
         }
-        if (type === 'icmp_tun') {
-            basicColumns.splice(4, 0, {
-                title: 'Payload',
-                dataIndex: 'payload',
-            })
-        }
+
         if (type === 'mining') {
             basicColumns.splice(4, 0, {
                 title: '域名',
                 dataIndex: 'domain',
+                sorter: valueSort('domain'),
                 render: d => (
                     <DeviceOperate device={d} resultParams={alarmParams}>
                         <span>{d}</span>
@@ -185,20 +213,38 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
                 ),
             })
         }
-        basicColumns.splice(isICMP ? 4 : 2, 0, {
-            title: isICMP ? '请求类型' : '目的端口',
-            dataIndex: 'dport',
-            sorter: valueSort('dport'),
-            width: 80,
-            render: d =>
-                isICMP ? (
-                    <TagAttribute>{calculateIcmpType(d)}</TagAttribute>
-                ) : (
-                    <DeviceOperate device={d} resultParams={alarmParams}>
-                        <span>{d}</span>
-                    </DeviceOperate>
+        if (isICMP) {
+            basicColumns.splice(5, 0, {
+                title: 'ICMPTYPE',
+                dataIndex: 'icmp_type',
+                sorter: valueSort('icmp_type'),
+                render: d => <TagAttribute>{d}</TagAttribute>,
+            })
+            basicColumns.splice(6, 0, {
+                title: 'ICMPCODE',
+                dataIndex: 'icmp_code',
+                sorter: valueSort('icmp_code'),
+                render: d => <TagAttribute>{d}</TagAttribute>,
+            })
+            basicColumns.splice(7, 0, {
+                title: 'ICMP描述',
+                dataIndex: 'icmp_description',
+                sorter: valueSort('icmp_description'),
+                render: d => <TagAttribute>{d}</TagAttribute>,
+            })
+        }
+        if (type === 'icmp_tun') {
+            basicColumns.splice(8, 0, {
+                title: 'Payload',
+                dataIndex: 'payload',
+                sorter: valueSort('payload'),
+                render: d => (
+                    <Tooltip title={d}>
+                        <div className='payload_content'>{d}</div>
+                    </Tooltip>
                 ),
-        })
+            })
+        }
         return basicColumns.filter(d => !d.hidden)
     }, [alarmParams, type, useData])
 
