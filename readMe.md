@@ -4,7 +4,7 @@
 
 将下载的 `release` 或者本地打包的文件部署在服务器的 `home/Server/www/ui`文件路径下。
 
-部署完成后，使用Chrome浏览器访问 `your server:18080/ui` ，如出现登录页面则部署成功。
+部署完成后，使用Chrome浏览器访问 `server地址:18080/ui` ，如出现登录页面则部署成功。
 
 ## 环境介绍
 
@@ -52,7 +52,7 @@ const devServerConfig = () => config => {
         ...config,
         proxy: {
             '/d/': {
-                target: Your Server,
+                target: Server地址:端口（端口号默认为18080）,
                 changeOrigin: true,
             },
         },
@@ -67,6 +67,11 @@ yarn std start
 ```
 
 项目会唤醒浏览器，自动访问[localhost:8004](localhost:8004)，展示为登录页面。如启动程序运行完毕之后未能自动访问，则需要手动访问。
+
+默认管理员登录密码为：
+
+- 账号：admin
+- 密码：LoginLY@2016
 
 ### 开发
 
@@ -171,6 +176,6 @@ yarn std build
 
 联系邮箱：[sales@abyssalfish.com.cn](mailto:sales@abyssalfish.com.cn)
 
-联系微信：<img title="" src="readMe.asset/ed78beee79b68176e9fc0cc27510913b5588c3fc.jpeg" alt="" width="171"><img title="" src="readMe.asset/31b954507ea12494d64049d95cb847387619089a.png" alt="" width="175">
+联系微信：`<img title="" src="readMe.asset/ed78beee79b68176e9fc0cc27510913b5588c3fc.jpeg" alt="" width="171"><img title="" src="readMe.asset/31b954507ea12494d64049d95cb847387619089a.png" alt="" width="175">`
 
-微信公众号：<img src="readMe.asset/8bfccacc9402875ef889f477546d6a0436897fa2.jpeg" title="" alt="" width="151">（深海鱼科技有限公司）
+微信公众号：`<img src="readMe.asset/8bfccacc9402875ef889f477546d6a0436897fa2.jpeg" title="" alt="" width="151">`（深海鱼科技有限公司）
