@@ -215,27 +215,24 @@ function EventDetailTable({ originRecordData, changeReportData, alarmParams }) {
         }
         if (isICMP) {
             basicColumns.splice(5, 0, {
-                title: 'ICMPTYPE',
+                title: 'ICMP类别',
                 dataIndex: 'icmp_type',
                 sorter: valueSort('icmp_type'),
-                render: d => <TagAttribute>{d}</TagAttribute>,
             })
             basicColumns.splice(6, 0, {
-                title: 'ICMPCODE',
+                title: 'ICMP代码',
                 dataIndex: 'icmp_code',
                 sorter: valueSort('icmp_code'),
-                render: d => <TagAttribute>{d}</TagAttribute>,
             })
             basicColumns.splice(7, 0, {
-                title: 'ICMP描述',
+                title: '描述',
                 dataIndex: 'icmp_description',
                 sorter: valueSort('icmp_description'),
-                render: d => <TagAttribute>{d}</TagAttribute>,
             })
         }
         if (type === 'icmp_tun') {
             basicColumns.splice(8, 0, {
-                title: 'Payload',
+                title: '载荷',
                 dataIndex: 'payload',
                 sorter: valueSort('payload'),
                 render: d => (
