@@ -6,6 +6,20 @@
 
 部署完成后，使用Chrome浏览器访问 `server地址:18080/ui` ，如出现登录页面则部署成功。
 
+## 相关文档地址
+
+- [项目主页](https://abyssalfish-os.github.io/)
+
+- [项目简介](https://abyssalfish-os.github.io/about/what-is-liuying/)
+
+- [部署文档](https://abyssalfish-os.github.io/installation/)
+
+- [使用手册](https://abyssalfish-os.github.io/user-manual/)
+
+- [在线Demo](https://abyssalfish-os.github.io/demo/)
+
+- [在线讨论](https://gitter.im/abyssalfish-os/community)
+
 ## 环境介绍
 
 ### 运行环境
@@ -174,8 +188,10 @@ yarn std build
 
 如果在开发、部署、产品使用的过程中遇到任何问题，或者技术讨论、产品咨询、商务合作等，都欢迎前来联系我们！
 
-联系邮箱：[sales@abyssalfish.com.cn](mailto:sales@abyssalfish.com.cn)
+- 联系邮箱：[sales@abyssalfish.com.cn](mailto:sales@abyssalfish.com.cn)
 
-联系微信：<img title="" src="readMe.asset/ed78beee79b68176e9fc0cc27510913b5588c3fc.jpeg" alt="" width="171"><img src="readMe.asset/31b954507ea12494d64049d95cb847387619089a.png" title="" alt="" width="156">
+- 开源讨论组：<img title="" src="readMe.asset/2023-01-14-20-28-28-image.png" alt="" width="174">
 
-微信公众号：<img src="readMe.asset/8bfccacc9402875ef889f477546d6a0436897fa2.jpeg" title="" alt="" width="151">（深海鱼科技有限公司）
+- 开源负责人：<img title="" src="readMe.asset/40a1690fbf43f7d9fb8fefc077147e16840dd775.png" alt="" width="169">
+
+- 微信公众号：<img title="" src="readMe.asset/8bfccacc9402875ef889f477546d6a0436897fa2.jpeg" alt="" width="176">（深海鱼科技有限公司）
