@@ -21,8 +21,12 @@ export default class ConfigStore {
      */
     // 当前用户权限
     @computed get userLevel() {
-        const level =
-            this.userList.length === 1 ? this.userList[0].level : 'viewer'
+        let level = 'viewer'
+        if (this.userList.length === 1) {
+            level = this.userList[0].level
+        } else if (this.userList.length > 1) {
+            level = 'sysadmin'
+        }
         setUserAuth(level)
         return level
     }
