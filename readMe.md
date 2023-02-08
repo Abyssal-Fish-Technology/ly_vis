@@ -66,7 +66,7 @@ const devServerConfig = () => config => {
         ...config,
         proxy: {
             '/d/': {
-                target: 
+                target: http:// + server地址:端口（端口号默认为18080,根据实际部署情况修改）,
                 changeOrigin: true,
             },
         },
