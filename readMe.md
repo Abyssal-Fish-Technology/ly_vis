@@ -195,3 +195,11 @@ yarn std build
 - 开源负责人：<img title="" src="readMe.asset/40a1690fbf43f7d9fb8fefc077147e16840dd775.png" alt="" width="169">
 
 - 微信公众号：<img title="" src="readMe.asset/8bfccacc9402875ef889f477546d6a0436897fa2.jpeg" alt="" width="176">（深海鱼科技有限公司）
+
+
+
+## 常见问题
+
+Q：启动本地开发环境是，报错`error:0308010C:digital envelope routines::unsupported`。
+
+A：在`packages/std/package.json`文件的start命中添加参数`--openssl-legacy-provider`，修改为`"start": "cross-env REACT_APP_ENV=dev react-app-rewired --openssl-legacy-provider start"`。
