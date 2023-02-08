@@ -66,7 +66,7 @@ const devServerConfig = () => config => {
         ...config,
         proxy: {
             '/d/': {
-                target: Server地址:端口（端口号默认为18080）,
+                target: 
                 changeOrigin: true,
             },
         },
@@ -195,8 +195,6 @@ yarn std build
 - 开源负责人：<img title="" src="readMe.asset/40a1690fbf43f7d9fb8fefc077147e16840dd775.png" alt="" width="169">
 
 - 微信公众号：<img title="" src="readMe.asset/8bfccacc9402875ef889f477546d6a0436897fa2.jpeg" alt="" width="176">（深海鱼科技有限公司）
-
-
 
 ## 常见问题
 
