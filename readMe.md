@@ -184,6 +184,19 @@ yarn std build
 
 打包后文件会在 ` packages/std/build` 文件夹下。
 
+## Vmware虚拟机镜像
+
+为了方便大家安装试用，制作了vmware安装镜像，请大家前往如下百度网盘地址下载。
+
+- 镜像下载地址： https://pan.baidu.com/s/1XpZPt5YO6mIe4jHkR8pzHg
+- 提取码：AFOS
+- 虚拟机用户名root，密码ShyLiuying
+
+虚拟机安装后，流影前端默认使用18080端口，访问地址及默认账号：
+
+- 访问地址：http://ip:18080/ui
+- 登录管理员账号：admin，密码LoginLY@2016
+
 ## 联系我们
 
 如果在开发、部署、产品使用的过程中遇到任何问题，或者技术讨论、产品咨询、商务合作等，都欢迎前来联系我们！
