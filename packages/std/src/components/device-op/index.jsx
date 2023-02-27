@@ -292,29 +292,6 @@ export const DeviceOpMenu = withAuth(
                         // },
                     )
                     if (isOnlyIp) {
-                        resultArr.push({
-                            type: 'menu',
-                            icon: <PartitionOutlined />,
-                            menuText: '活跃端口',
-                            click: () => {
-                                const nowParams = {
-                                    filterCondition: {
-                                        device: {
-                                            ip: device,
-                                        },
-                                    },
-                                }
-                                if (resultParams) {
-                                    nowParams.queryParams =
-                                        Object.prototype.toString.call(
-                                            resultParams
-                                        ) === '[object Function]'
-                                            ? resultParams()
-                                            : resultParams
-                                }
-                                skipPage('/asset/srv', nowParams)
-                            },
-                        })
                         const { handle_auth = false } = userAuth
                         if (handle_auth) {
                             resultArr.push({
