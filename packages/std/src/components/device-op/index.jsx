@@ -7,7 +7,6 @@ import {
     SearchOutlined,
     SettingOutlined,
     UpCircleOutlined,
-    PartitionOutlined,
 } from '@ant-design/icons'
 import { Descriptions, message, Tabs, Timeline } from 'antd'
 import React, { useCallback, useMemo, useState } from 'react'

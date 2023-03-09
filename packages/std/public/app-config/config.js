@@ -1,7 +1,7 @@
 window.appConfig = {
     baseUrl: '/d/', // baseUrl是Server接口文件部署的基础路径，默认在/Server/www/d下，如果没有修改路径就无需改动
     subName: '开源版',
-    version: '1.0.1',
+    version: '1.0.2',
     company: '',
     capabilityDescription: [
         {
