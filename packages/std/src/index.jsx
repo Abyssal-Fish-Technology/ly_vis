@@ -1,10 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { message } from 'antd'
 import * as serviceWorker from './serviceWorker'
 import AppRouter from './router'
 import './locale/i18n'
 import '@shadowflow/components/style/index.less'
 import './style/index.less'
+
+message.config({
+    maxCount: 2,
+})
 
 ReactDOM.render(<AppRouter />, document.getElementById('root'))
 
