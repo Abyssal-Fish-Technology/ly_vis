@@ -46,6 +46,10 @@ class EventConfigStore {
                 eventConfig[nowKey] = nowValue || 'null'
             })
         }
+        if (event.devid === '') {
+            event.devid = 'null'
+        }
+
         event.action_id = 1
         const currentApi = () => {
             return EventConfig[event_type].detailConfigForms.length

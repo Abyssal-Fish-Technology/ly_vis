@@ -193,17 +193,17 @@ function AntdTableSuper({
             const { render = '' } = d
             return {
                 ...d,
-                render: (d1 = '', r, i, a) => {
-                    // 分别对d1 为对象、数组和字符串的情况做了真值判断
-                    const objResult = isObject(d1) ? !isEmpty(d1) : true
-                    const arrResult = isArray(d1)
-                        ? compact(d1).length > 0
-                        : true
+                render:
+                    render ||
+                    ((d1 = '') => {
+                        // 分别对d1 为对象、数组和字符串的情况做了真值判断
+                        const objResult = isObject(d1) ? !isEmpty(d1) : true
+                        const arrResult = isArray(d1)
+                            ? compact(d1).length > 0
+                            : true
 
-                    const resultText =
-                        render && d1 !== '-' ? render(d1, r, i, a) : d1
-                    return objResult && arrResult ? resultText : '-'
-                },
+                        return objResult && arrResult ? d1 : '-'
+                    }),
             }
         })
 

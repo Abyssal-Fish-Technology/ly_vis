@@ -17,7 +17,7 @@ export const DeviceCell = withConfig(function DeviceCell({
     const { device } = configStore
     const resultArr = useMemo(() => {
         const arr = []
-        if (id === '-') {
+        if (id === '' || id === '-') {
             arr.push('全部')
         } else {
             String(id)

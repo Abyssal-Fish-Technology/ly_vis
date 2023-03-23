@@ -45,6 +45,11 @@ function configApi(eventType) {
 
 const eventColumns = [
     {
+        title: 'ID',
+        dataIndex: 'id',
+        sorter: valueSort('status'),
+    },
+    {
         title: '状态',
         dataIndex: 'status',
         sorter: valueSort('status'),
@@ -58,7 +63,9 @@ const eventColumns = [
         title: '数据源',
         dataIndex: 'devid',
         sorter: valueSort('devid'),
-        render: t => <DeviceCell id={t} />,
+        render: (t, row) => {
+            return <DeviceCell id={row.devid} />
+        },
     },
     {
         title: '事件级别',
