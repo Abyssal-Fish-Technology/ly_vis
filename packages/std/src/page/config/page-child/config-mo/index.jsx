@@ -17,6 +17,11 @@ import { JumpSpan } from '../../components/config-right-content/components/confi
 
 const moColumns = [
     {
+        title: 'ID',
+        dataIndex: 'id',
+        sorter: valueSort(''),
+    },
+    {
         title: '描述',
         dataIndex: 'desc',
         sorter: valueSort('desc'),

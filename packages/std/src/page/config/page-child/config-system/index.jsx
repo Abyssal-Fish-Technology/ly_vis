@@ -107,6 +107,11 @@ const LockedComponent = inject('configStore')(
 
 const deviceColumns = [
     {
+        title: 'ID',
+        dataIndex: 'id',
+        sorter: valueSort(''),
+    },
+    {
         title: '名称',
         dataIndex: 'name',
         sorter: valueSort('name'),
@@ -164,6 +169,11 @@ const deviceColumns = [
 
 const proxyColumns = [
     {
+        title: 'ID',
+        dataIndex: 'id',
+        sorter: valueSort(''),
+    },
+    {
         title: '名称',
         dataIndex: 'name',
         sorter: valueSort('name'),
@@ -206,6 +216,11 @@ const proxyColumns = [
 ]
 
 const userColumns = [
+    {
+        title: 'ID',
+        dataIndex: 'id',
+        sorter: valueSort(''),
+    },
     {
         title: 'name',
         dataIndex: 'name',

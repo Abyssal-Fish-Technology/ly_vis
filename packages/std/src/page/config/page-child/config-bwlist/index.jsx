@@ -9,6 +9,11 @@ import ConfigTemplate from '../../components/config-template'
 
 const bwlistColumns = [
     {
+        title: 'ID',
+        dataIndex: 'id',
+        sorter: valueSort(''),
+    },
+    {
         title: '描述',
         dataIndex: 'desc',
         sorter: valueSort('desc'),

@@ -7,6 +7,11 @@ import { DeviceCell } from '../../components/table-cell'
 
 const internalIpColumns = [
     {
+        title: 'ID',
+        dataIndex: 'id',
+        sorter: valueSort(''),
+    },
+    {
         title: 'IP',
         dataIndex: 'ip',
         sorter: valueSort('ip'),
