@@ -24,15 +24,19 @@
 ### 运行环境
 
 - 开发工具：Visual Studio Code
-- 插件：
 
+- 插件：
+  
   - EditorConfig for VS Code
   - ESLint
   - Stylelint
-- 编辑工具：node >= v16.13.1
-- 包管理工具：Yarn >= v1.22.1
-- 运行环境：
 
+- 编辑工具：node >= v16.13.1
+
+- 包管理工具：Yarn >= v1.22.1
+
+- 运行环境：
+  
   - 推荐 Chrome 浏览器，其他现代浏览器不保证完全兼容
   - 屏幕分辨率 >= 1024
 
@@ -144,7 +148,7 @@ yarn commit
 按照以下五个问题填入commit信息：
 
 - Select the type of change that you're committing：更新类型（必填）
-
+  
   - feat：新功能
   - fix：修复BUG
   - docs：文档修改
@@ -156,10 +160,15 @@ yarn commit
   - ci：对CI配置文件或脚本进行了修改
   - chore：修改主要业务代码以外的代码
   - revert：版本回退
+
 - What is the scope of this change：影响范围
+
 - Write a short, imperative tense description of the change：简要说明（必填）
+
 - Provide a longer description of the change: (press enter to skip)：详细说明
+
 - Are there any breaking changes：是否有重大变动，主要是不兼容变动，默认否
+
 - Does this change affect any open issues：是否影响了哪些开放的issus，默认否
 
 如果提交失败请检查Eslint、Stylelint等工具是否报错。
@@ -192,8 +201,8 @@ yarn std build
 如果在开发、部署、产品使用的过程中遇到任何问题，或者技术讨论、产品咨询、商务合作等，都欢迎前来联系我们！
 
 - 联系邮箱：[sales@abyssalfish.com.cn](mailto:sales@abyssalfish.com.cn)
-- 开源讨论组：`<img title="" src="readMe.asset/github.png" alt="" width="174">`
-- 微信公众号：`<img title="" src="readMe.asset/weixin.jpeg" alt="" width="176">`（深海鱼科技有限公司）
+- 开源讨论组：<img title="" src="readMe.asset/github.png" alt="" width="174">
+- 微信公众号：<img title="" src="readMe.asset/weixin.jpeg" alt="" width="176">（深海鱼科技有限公司）
 
 ## 常见问题
 
