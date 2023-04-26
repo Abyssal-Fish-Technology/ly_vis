@@ -213,8 +213,6 @@ yarn std build
 
 - 开源讨论组：<img title="" src="readMe.asset/2023-01-14-20-28-28-image.png" alt="" width="174">
 
-- 
-
 - 微信公众号：<img title="" src="readMe.asset/8bfccacc9402875ef889f477546d6a0436897fa2.jpeg" alt="" width="176">（深海鱼科技有限公司）
 
 ## 常见问题
