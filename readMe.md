@@ -201,8 +201,8 @@ yarn std build
 如果在开发、部署、产品使用的过程中遇到任何问题，或者技术讨论、产品咨询、商务合作等，都欢迎前来联系我们！
 
 - 联系邮箱：[sales@abyssalfish.com.cn](mailto:sales@abyssalfish.com.cn)
-- 开源讨论组：<img title="" src="readMe.asset/github.png" alt="" width="174">
-- 微信公众号：<img title="" src="readMe.asset/weixin.jpeg" alt="" width="176">（深海鱼科技有限公司）
+- 开源讨论组：`<img title="" src="readMe.asset/gitee.png" alt="" width="174">`
+- 微信公众号：`<img title="" src="readMe.asset/weixin.jpeg" alt="" width="176">`（深海鱼科技有限公司）
 
 ## 常见问题
 
