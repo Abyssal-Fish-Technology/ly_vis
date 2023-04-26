@@ -4,28 +4,19 @@
 
 如果不需要开发改造，而是应用的话，直接部署本界面即可，操作流程如下：
 
-1. 在本页面右侧，下载最新版本的release(发行版)中的`build.zip`压缩包，下载完成后解压。
-
-2. 登录部署`server`的文件服务器，进入`home/Server/www/ui`路径，如果没有ui文件夹就新建一个。
-
-3. 将第一步下载的`build文件夹`下的文件全部复制到该`ui`文件夹下。
-
-4. 完成上述步骤后，用浏览器访问`http:// yourserver:18080/ui`，即可访问本界面。
-
+1. 在本页面右侧，下载最新版本的release(发行版)中的 `build.zip`压缩包，下载完成后解压。
+2. 登录部署 `server`的文件服务器，进入 `home/Server/www/ui`路径，如果没有ui文件夹就新建一个。
+3. 将第一步下载的 `build文件夹`下的文件全部复制到该 `ui`文件夹下。
+4. 完成上述步骤后，用浏览器访问 `http:// yourserver:18080/ui`，即可访问本界面。
 5. 如有使用问题，请在下面加入我们的开源群反馈。
 
 ## 相关地址
 
 - [项目主页](https://abyssalfish-os.github.io/)
-
 - [项目简介](https://abyssalfish-os.github.io/about/what-is-liuying/)
-
 - [部署文档](https://abyssalfish-os.github.io/installation/)
-
 - [使用手册](https://abyssalfish-os.github.io/user-manual/)
-
 - [在线Demo](https://abyssalfish-os.github.io/demo/)
-
 - [在线讨论](https://gitter.im/abyssalfish-os/community)
 
 ## 本地研发
@@ -33,19 +24,15 @@
 ### 运行环境
 
 - 开发工具：Visual Studio Code
-
 - 插件：
-  
+
   - EditorConfig for VS Code
   - ESLint
   - Stylelint
-
 - 编辑工具：node >= v16.13.1
-
 - 包管理工具：Yarn >= v1.22.1
-
 - 运行环境：
-  
+
   - 推荐 Chrome 浏览器，其他现代浏览器不保证完全兼容
   - 屏幕分辨率 >= 1024
 
@@ -157,7 +144,7 @@ yarn commit
 按照以下五个问题填入commit信息：
 
 - Select the type of change that you're committing：更新类型（必填）
-  
+
   - feat：新功能
   - fix：修复BUG
   - docs：文档修改
@@ -169,15 +156,10 @@ yarn commit
   - ci：对CI配置文件或脚本进行了修改
   - chore：修改主要业务代码以外的代码
   - revert：版本回退
-
 - What is the scope of this change：影响范围
-
 - Write a short, imperative tense description of the change：简要说明（必填）
-
 - Provide a longer description of the change: (press enter to skip)：详细说明
-
 - Are there any breaking changes：是否有重大变动，主要是不兼容变动，默认否
-
 - Does this change affect any open issues：是否影响了哪些开放的issus，默认否
 
 如果提交失败请检查Eslint、Stylelint等工具是否报错。
@@ -196,7 +178,7 @@ yarn std build
 
 为了方便大家安装试用，制作了vmware安装镜像，请大家前往如下百度网盘地址下载。
 
-- 镜像下载地址： https://pan.baidu.com/s/12LYVlJdKHRd7ylZYSWF5AQ 
+- 镜像下载地址： https://pan.baidu.com/s/12LYVlJdKHRd7ylZYSWF5AQ
 - 提取码：AFOS
 - 虚拟机用户名root，密码ShyLiuying
 
@@ -210,13 +192,11 @@ yarn std build
 如果在开发、部署、产品使用的过程中遇到任何问题，或者技术讨论、产品咨询、商务合作等，都欢迎前来联系我们！
 
 - 联系邮箱：[sales@abyssalfish.com.cn](mailto:sales@abyssalfish.com.cn)
-
-- 开源讨论组：<img title="" src="readMe.asset/2023-01-14-20-28-28-image.png" alt="" width="174">
-
-- 微信公众号：<img title="" src="readMe.asset/8bfccacc9402875ef889f477546d6a0436897fa2.jpeg" alt="" width="176">（深海鱼科技有限公司）
+- 开源讨论组：`<img title="" src="readMe.asset/github.png" alt="" width="174">`
+- 微信公众号：`<img title="" src="readMe.asset/weixin.jpeg" alt="" width="176">`（深海鱼科技有限公司）
 
 ## 常见问题
 
-Q：启动本地开发环境是，报错`error:0308010C:digital envelope routines::unsupported`。
+Q：启动本地开发环境是，报错 `error:0308010C:digital envelope routines::unsupported`。
 
-A：在`packages/std/package.json`文件的start命中添加参数`--openssl-legacy-provider`，修改为`"start": "cross-env REACT_APP_ENV=dev react-app-rewired --openssl-legacy-provider start"`。
+A：在 `packages/std/package.json`文件的start命中添加参数 `--openssl-legacy-provider`，修改为 `"start": "cross-env REACT_APP_ENV=dev react-app-rewired --openssl-legacy-provider start"`。
