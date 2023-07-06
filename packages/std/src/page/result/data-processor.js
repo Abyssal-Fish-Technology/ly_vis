@@ -7,7 +7,7 @@ import { arrangeAlerm } from '@shadowflow/components/utils/universal/methods-tra
 import { chain, filter, find, has, maxBy, sortBy, sumBy, uniq } from 'lodash'
 import { calculateTopnDir } from './config'
 
-function calculatePublicFields(currentData) {
+function calculatePublicFields(currentData, type) {
     const { data } = currentData
     currentData.data = data.map(d => {
         const {
@@ -24,9 +24,13 @@ function calculatePublicFields(currentData) {
 
         let showTopnDir = ''
         if (srv_mark) {
-            showTopnDir = calculateTopnDir(
-                srv_mark === 'res' ? 'right' : 'left'
-            )
+            if (type !== 'tcp') {
+                showTopnDir = calculateTopnDir(
+                    srv_mark === 'res' ? 'right' : 'left'
+                )
+            } else {
+                showTopnDir = d === 'res' ? '有响应' : '仅请求'
+            }
         }
         if (ti_mark) {
             showTopnDir = calculateTopnDir(ti_mark === 'res' ? 'left' : 'right')
@@ -85,9 +89,12 @@ export const tcpinit = data => {
             return aggreObj
         }, {})
         .each(d => {
+            calculatePublicFields(d, 'tcp')
             const dataArr = d.data
-            calculatePublicFields(d)
             d.protocol = chain(dataArr).map('protocol').uniq().value()
+            d.app_proto = chain(dataArr).map('app_proto').uniq().value()
+            d.retcode = chain(dataArr).map('retcode').uniq().value()
+            d.showTopnDir = chain(dataArr).map('showTopnDir').uniq().value()
             const lastTimeData = maxBy(dataArr, 'time')
             d.duration = lastTimeData.duration
             d.showDuration = formatDuration(d.duration)
@@ -120,8 +127,8 @@ export const dns = data => {
         }, {})
         .values()
         .each(d => {
-            const dataArr = d.data
             calculatePublicFields(d)
+            const dataArr = d.data
             d.qtype = chain(dataArr).map('qtype').uniq().value().join('|')
             d.showQtype = calculateTags(d.qtype, '|')
             d.dnsSrvCount = chain(dataArr).map('dip').uniq().value().length
@@ -153,8 +160,8 @@ export const scan = data => {
         }, {})
         .values()
         .each(d => {
-            const dataArr = d.data
             calculatePublicFields(d)
+            const dataArr = d.data
             d.protocol = chain(dataArr).map('protocol').uniq().value()
             const lastTimeData = maxBy(dataArr, 'time')
             d.duration = lastTimeData.duration
@@ -190,8 +197,8 @@ export const sus = data => {
         }, {})
         .values()
         .each(d => {
-            const dataArr = d.data
             calculatePublicFields(d)
+            const dataArr = d.data
             const lastTimeData = maxBy(dataArr, 'time')
             d.duration = lastTimeData.duration
             d.showDuration = formatDuration(d.duration)
@@ -245,8 +252,8 @@ export const black = data => {
         }, {})
         .values()
         .each(d => {
-            const dataArr = d.data
             calculatePublicFields(d)
+            const dataArr = d.data
             d.protocol = chain(dataArr).map('protocol').uniq().value()
             const lastTimeData = maxBy(dataArr, 'time')
             d.duration = lastTimeData.duration
@@ -299,8 +306,8 @@ export const service = data => {
             return aggreObj
         }, {})
         .each(d => {
-            const dataArr = d.data
             calculatePublicFields(d)
+            const dataArr = d.data
             d.protocol = chain(dataArr).map('protocol').uniq().value()
             const lastTimeData = maxBy(dataArr, 'time')
             d.lastTime = lastTimeData.time

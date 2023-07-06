@@ -153,7 +153,7 @@ const susDet = [
         dataIndex: 'protocol',
     },
     {
-        title: 'Time',
+        title: '请求时间',
         dataIndex: 'showTime',
         sorter: valueSort('time'),
     },
@@ -207,7 +207,7 @@ const blackCol = [
         ),
     },
     {
-        title: 'Last Time',
+        title: '最后请求时间',
         dataIndex: 'showLastTime',
         sorter: valueSort('lastTime'),
     },
@@ -237,7 +237,7 @@ const blackeDet = [
         dataIndex: 'protocol',
     },
     {
-        title: 'Time',
+        title: '请求时间',
         dataIndex: 'showTime',
         sorter: valueSort('time'),
     },
@@ -291,7 +291,7 @@ const serviceCol = [
         ),
     },
     {
-        title: 'Last Time',
+        title: '最后请求时间',
         dataIndex: 'showLastTime',
         sorter: valueSort('lastTime'),
     },
@@ -321,7 +321,7 @@ const serviceDet = [
         dataIndex: 'protocol',
     },
     {
-        title: 'Time',
+        title: '请求时间',
         dataIndex: 'showTime',
         sorter: valueSort('time'),
     },
@@ -363,7 +363,7 @@ const scanCol = [
         sorter: valueSort('count'),
     },
     {
-        title: 'Last Time',
+        title: '最后请求时间',
         dataIndex: 'showLastTime',
         sorter: valueSort('lastTime'),
     },
@@ -394,7 +394,7 @@ const scanDet = [
         dataIndex: 'protocol',
     },
     {
-        title: 'Time',
+        title: '请求时间',
         dataIndex: 'showTime',
         sorter: valueSort('time'),
     },
@@ -439,7 +439,22 @@ const tcpinitCol = [
         sorter: valueSort('count'),
     },
     {
-        title: 'Last Time',
+        title: 'http响应码',
+        dataIndex: 'retcode',
+        sorter: valueSort('retcode'),
+    },
+    {
+        title: '应用层协议',
+        dataIndex: 'app_proto',
+        sorter: valueSort('app_proto'),
+    },
+    {
+        title: '是否响应',
+        dataIndex: 'showTopnDir',
+        sorter: valueSort('showTopnDir'),
+    },
+    {
+        title: '最后请求时间',
         dataIndex: 'showLastTime',
         sorter: valueSort('lastTime'),
     },
@@ -468,7 +483,23 @@ const tcpinitDet = [
         render: t => <DeviceRender device={t} />,
     },
     {
-        title: 'Time',
+        title: 'http响应码',
+        dataIndex: 'retcode',
+        sorter: valueSort('retcode'),
+        render: d => d || '-',
+    },
+    {
+        title: '应用层协议',
+        dataIndex: 'app_proto',
+        sorter: valueSort('app_proto'),
+    },
+    {
+        title: '是否响应',
+        dataIndex: 'showTopnDir',
+        sorter: valueSort('showTopnDir'),
+    },
+    {
+        title: '请求时间',
         dataIndex: 'showTime',
         sorter: valueSort('time'),
     },
@@ -511,7 +542,7 @@ const dnsCol = [
         sorter: valueSort('count'),
     },
     {
-        title: 'Last Time',
+        title: '最后请求时间',
         dataIndex: 'showLastTime',
         sorter: valueSort('lastTime'),
     },
@@ -555,7 +586,7 @@ const dnsDet = [
         dataIndex: 'showBwclass',
     },
     {
-        title: 'Time',
+        title: '请求时间',
         dataIndex: 'showTime',
         sorter: valueSort('time'),
     },
