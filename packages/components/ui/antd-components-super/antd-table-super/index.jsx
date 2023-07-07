@@ -84,10 +84,12 @@ function AntdTableSuper({
             ? {
                   position: ['topRight', 'bottomRight'],
                   pageSize: page.size,
+                  showQuickJumper: true,
+                  total: dataSource.length,
                   ...pagination,
               }
             : false
-    }, [page, pagination])
+    }, [dataSource.length, page.size, pagination])
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([])
     const [selectedRows, setSelectedRows] = useState([])
