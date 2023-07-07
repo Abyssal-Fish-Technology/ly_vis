@@ -442,11 +442,13 @@ const tcpinitCol = [
         title: 'http响应码',
         dataIndex: 'retcode',
         sorter: valueSort('retcode'),
+        render: t => t.join(),
     },
     {
         title: '应用层协议',
         dataIndex: 'app_proto',
         sorter: valueSort('app_proto'),
+        render: t => t.join(),
     },
     {
         title: '是否响应',

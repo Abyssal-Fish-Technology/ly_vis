@@ -29,7 +29,7 @@ function calculatePublicFields(currentData, type) {
                     srv_mark === 'res' ? 'right' : 'left'
                 )
             } else {
-                showTopnDir = d === 'res' ? '有响应' : '仅请求'
+                showTopnDir = srv_mark === 'res' ? '有响应' : '仅请求'
             }
         }
         if (ti_mark) {
@@ -91,10 +91,27 @@ export const tcpinit = data => {
         .each(d => {
             calculatePublicFields(d, 'tcp')
             const dataArr = d.data
-            d.protocol = chain(dataArr).map('protocol').uniq().value()
-            d.app_proto = chain(dataArr).map('app_proto').uniq().value()
-            d.retcode = chain(dataArr).map('retcode').uniq().value()
-            d.showTopnDir = chain(dataArr).map('showTopnDir').uniq().value()
+            d.protocol = chain(dataArr)
+                .map('protocol')
+                .uniq()
+                .filter(a => a)
+                .value()
+            d.app_proto = chain(dataArr)
+                .map('app_proto')
+                .uniq()
+                .filter(a => a)
+                .value()
+            d.retcode = chain(dataArr)
+                .map('retcode')
+                .uniq()
+                .filter(a => a)
+                .value()
+            d.showTopnDir = chain(dataArr)
+                .map('srv_mark')
+                .value()
+                .includes('res')
+                ? '有响应'
+                : '仅请求'
             const lastTimeData = maxBy(dataArr, 'time')
             d.duration = lastTimeData.duration
             d.showDuration = formatDuration(d.duration)
