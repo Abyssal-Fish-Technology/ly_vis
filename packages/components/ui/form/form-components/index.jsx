@@ -122,6 +122,20 @@ export const DefaultFormItem = withFormItem(props => {
     return <Input {...props} />
 })
 
+export const DefaultFormItemSelect = withFormItem(props => {
+    return (
+        <Select {...props}>
+            {props.options.map(d => {
+                return (
+                    <Select.Option key={d.key} value={d.value}>
+                        {d.value}
+                    </Select.Option>
+                )
+            })}
+        </Select>
+    )
+})
+
 // 反转按钮
 export function ReverseFields({ style, onClick }) {
     return (

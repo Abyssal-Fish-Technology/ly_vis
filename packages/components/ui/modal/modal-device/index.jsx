@@ -1,12 +1,12 @@
 import { deviceApi } from '@/service'
-import { Form, Select } from 'antd'
+import { Form } from 'antd'
 import { inject, observer } from 'mobx-react'
 import React, { useEffect } from 'react'
 import {
     DefaultFormItem,
-    DeviceFlowType,
-    DeviceType,
+    DefaultFormItemSelect,
     DisabledSelect,
+    IpInput,
     PortInput,
     ProxySelect,
 } from '../../form/form-components'
@@ -27,19 +27,39 @@ const formArr = [
             },
         ]}
     />,
-    <Form.Item label='模型' key='model' name='model'>
-        <Select>
-            <Select.Option value='v4'>IPv4</Select.Option>
-            <Select.Option value='v6'>IPv6</Select.Option>
-        </Select>
-    </Form.Item>,
-    <DefaultFormItem name='creator' key='creator' label='创建者' />,
-    <DefaultFormItem name='comment' key='comment' label='注释' />,
-    <PortInput name='port' key='port' label='端口' />,
-    <DeviceType name='device_type' key='device_type' label='设备类型' />,
-    <DeviceFlowType name='flowtype' key='flowtype' label='数据类型' />,
     <ProxySelect name='agentid' key='agentid' label='分析节点' />,
+    <IpInput name='ip' key='ip' label='IP' />,
+    <PortInput name='port' key='port' label='端口' />,
+    <DefaultFormItemSelect
+        name='pcap_level'
+        key='pcap_level'
+        label='数据包留存级别'
+        inputProps={{
+            options: [
+                {
+                    key: 0,
+                    value: '不留存',
+                },
+                {
+                    key: 1,
+                    value: '只留存威胁',
+                },
+                {
+                    key: 2,
+                    value: '威胁和资产',
+                },
+                {
+                    key: 3,
+                    value: '所有会话一对',
+                },
+            ],
+        }}
+    />,
+    <DefaultFormItem name='interface' key='interface' label='采集网卡名称' />,
+    <DefaultFormItem name='filter' key='filter' label='流量采集过滤' />,
+    <DefaultFormItem name='template' key='template' label='流量元数据模板' />,
     <DisabledSelect name='disabled' key='disabled' label='禁止使用' />,
+    <DefaultFormItem name='comment' key='comment' label='注释' />,
 ]
 
 const dict = getFormDict(formArr)
@@ -55,13 +75,10 @@ function DeviceForm({ form, setDisabledNext }) {
             name='DeviceModalForm'
             initialValues={{
                 name: '',
-                model: 'v4',
                 creator: '',
                 comment: '',
                 ip: '',
                 port: '',
-                device_type: 'router',
-                flowtype: 'netflow',
                 disabled: 'N',
             }}
             {...commonFormProps}

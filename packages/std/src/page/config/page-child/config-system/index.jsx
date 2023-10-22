@@ -13,6 +13,7 @@ import React, { useCallback, useState } from 'react'
 import moment from 'moment'
 import { valueSort } from '@shadowflow/components/utils/universal/methods-table'
 import { DeviceOperate } from '@shadowflow/components/ui/table/device-op-menu-template'
+import globalStore from '@/layout/components/config/store'
 import ConfigTemplate from '../../components/config-template'
 import { DeviceCell } from '../../components/table-cell'
 
@@ -109,7 +110,7 @@ const deviceColumns = [
     {
         title: 'ID',
         dataIndex: 'id',
-        sorter: valueSort(''),
+        sorter: valueSort('id'),
     },
     {
         title: '名称',
@@ -117,37 +118,22 @@ const deviceColumns = [
         sorter: valueSort('name'),
     },
     {
-        title: '设备类型',
-        dataIndex: 'device_type',
-        sorter: valueSort('device_type'),
-    },
-    {
-        title: '模型',
-        dataIndex: 'model',
-        sorter: valueSort('model'),
-    },
-    {
-        title: 'flowtype',
-        dataIndex: 'flowtype',
-        sorter: valueSort('flowtype'),
-    },
-    {
-        title: 'agentid',
+        title: '分析节点',
         dataIndex: 'agentid',
         sorter: valueSort('agentid'),
+        render: d => {
+            const { proxy } = globalStore
+            const thisName = proxy.find(p => p.id === d).name
+            return thisName
+        },
     },
     {
-        title: '创建者',
-        dataIndex: 'creator',
-        sorter: valueSort('creator'),
+        title: 'IP',
+        dataIndex: 'ip',
+        sorter: valueSort('ip'),
     },
     {
-        title: '注释',
-        dataIndex: 'comment',
-        sorter: valueSort('comment'),
-    },
-    {
-        title: 'port',
+        title: '端口',
         dataIndex: 'port',
         width: 80,
         render: t => (
@@ -155,6 +141,27 @@ const deviceColumns = [
                 <span>{t}</span>
             </DeviceOperate>
         ),
+    },
+    {
+        title: '数据包留存级别',
+        dataIndex: 'pcap_level',
+        sorter: valueSort('pcap_level'),
+        render: d => ['不留存', '只留存威胁', '威胁和资产', '所有会话一对'][d],
+    },
+    {
+        title: '采集网卡名称',
+        dataIndex: 'interface',
+        sorter: valueSort('interface'),
+    },
+    {
+        title: '流量采集过滤',
+        dataIndex: 'filter',
+        sorter: valueSort('filter'),
+    },
+    {
+        title: '流量元数据模板',
+        dataIndex: 'template',
+        sorter: valueSort('template'),
     },
     {
         title: '禁止使用',
@@ -165,13 +172,18 @@ const deviceColumns = [
             <ControlDisabled record={row} dataName='device' api={deviceApi} />
         ),
     },
+    {
+        title: '注释',
+        dataIndex: 'comment',
+        sorter: valueSort('comment'),
+    },
 ]
 
 const proxyColumns = [
     {
         title: 'ID',
         dataIndex: 'id',
-        sorter: valueSort(''),
+        sorter: valueSort('id'),
     },
     {
         title: '名称',
