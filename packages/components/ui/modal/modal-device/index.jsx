@@ -90,7 +90,7 @@ function DeviceForm({ form, setDisabledNext }) {
 
 const forms = [
     {
-        title: '数据节点配置',
+        title: '采集结点',
         content: DeviceForm,
     },
 ]
@@ -108,7 +108,7 @@ export default inject('configStore')(
         return (
             <AddConfigModal
                 op={op}
-                title='数据节点配置'
+                title='采集节点'
                 visible={visible}
                 forms={forms}
                 initialValues={data}

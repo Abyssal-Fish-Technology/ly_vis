@@ -294,15 +294,15 @@ export const systemConfigData = {
             title: '部署',
             children: [
                 {
-                    title: '数据节点',
+                    title: '采集节点',
                     key: 'device',
-                    describe: '介绍：这是数据节点',
+                    describe: '',
                     CreateDescribe: () => {
                         return (
                             <>
                                 <div>功能简介：</div>
                                 <div className='paragraph-content'>
-                                    本页面是配置数据节点，根据不同的数据节点采集对应的数据返回分析结果。
+                                    本页面是配置采集节点，根据不同的采集节点采集对应的数据返回分析结果。
                                 </div>
                                 <div className='paragraph-content '>
                                     支持
@@ -327,7 +327,7 @@ export const systemConfigData = {
                             <>
                                 <div>功能简介：</div>
                                 <div className='paragraph-content'>
-                                    本页面是配置分析节点，对应数据节点中的分析功能。
+                                    本页面是配置分析节点，对应采集节点中的分析功能。
                                 </div>
                                 <div className='paragraph-content '>
                                     支持
@@ -357,7 +357,7 @@ export const systemConfigData = {
                             <>
                                 <div>功能简介：</div>
                                 <div className='paragraph-content'>
-                                    本页面是配置用户登录账号，包括账号、密码、权限、指定用户访问的数据节点，当用户账号被系统锁定后，可在此页面进行解除锁定操作。
+                                    本页面是配置用户登录账号，包括账号、密码、权限、指定用户访问的采集节点，当用户账号被系统锁定后，可在此页面进行解除锁定操作。
                                 </div>
                                 <div className='paragraph-content '>
                                     支持
