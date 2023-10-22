@@ -191,21 +191,6 @@ const proxyColumns = [
         sorter: valueSort('name'),
     },
     {
-        title: '创建者',
-        dataIndex: 'creator',
-        sorter: valueSort('creator'),
-    },
-    {
-        title: '状态',
-        dataIndex: 'status',
-        sorter: valueSort('status'),
-    },
-    {
-        title: '注释',
-        dataIndex: 'comment',
-        sorter: valueSort('comment'),
-    },
-    {
         title: 'ip',
         dataIndex: 'ip',
         sorter: valueSort('ip'),
@@ -224,6 +209,11 @@ const proxyColumns = [
         render: (t, row) => (
             <ControlDisabled record={row} dataName='proxy' api={proxyApi} />
         ),
+    },
+    {
+        title: '注释',
+        dataIndex: 'comment',
+        sorter: valueSort('comment'),
     },
 ]
 

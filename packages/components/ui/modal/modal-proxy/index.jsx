@@ -1,5 +1,5 @@
 import { proxyApi } from '@/service'
-import { Form, Select } from 'antd'
+import { Form } from 'antd'
 import { inject, observer } from 'mobx-react'
 import React, { useEffect } from 'react'
 import {
@@ -24,8 +24,6 @@ const formArr = [
             },
         ]}
     />,
-    <DefaultFormItem name='creator' key='creator' label='创建者' />,
-    <DefaultFormItem name='comment' key='comment' label='注释' />,
     <IpInput
         name='ip'
         key='ip'
@@ -37,13 +35,8 @@ const formArr = [
             },
         ]}
     />,
-    <Form.Item name='status' key='status' label='状态'>
-        <Select>
-            <Select.Option value='disconnected'>disconnected</Select.Option>
-            <Select.Option value='connected'>connected</Select.Option>
-        </Select>
-    </Form.Item>,
     <DisabledSelect name='disabled' key='disabled' label='禁止使用' />,
+    <DefaultFormItem name='comment' key='comment' label='注释' />,
 ]
 
 function ProxyForm({ form, setDisabledNext }) {
