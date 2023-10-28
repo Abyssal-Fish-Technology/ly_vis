@@ -2,8 +2,6 @@ import fetch from '@/service/fetch'
 
 export function sctlStat(params) {
     return fetch.post('sctl', {
-        op: 'stat',
-        tid: '0',
         ...params,
     })
 }

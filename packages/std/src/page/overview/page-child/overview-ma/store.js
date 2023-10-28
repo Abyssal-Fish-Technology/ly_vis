@@ -129,34 +129,6 @@ export default class OverviewMaStore {
         fsd: '守护进程',
     }
 
-    // ============== 服务器设备数据 ==============
-
-    @computed get useDeviceData() {
-        const { device: probe, proxy: agent } = this.configData
-        return [
-            ...probe.map(d => ({
-                ...d,
-                type: 'probe',
-                tid: d.agentid,
-                realId: d.id,
-                agentid: `agent-${d.agentid}`,
-            })),
-            ...agent.map(d => ({
-                ...d,
-                type: 'agent',
-                realId: d.id,
-                tid: d.id,
-            })),
-        ].map(d => ({
-            ...d,
-            name: d.name,
-            address: `${d.ip}${d.port ? `:${d.port}` : ''}`,
-            status: d.disabled === 'Y' ? '禁用' : '正常',
-            id: `${d.type}-${d.id}`,
-            detailInfo: {},
-        }))
-    }
-
     @observable deviceData = []
 
     calcualteDetailInfo = data => {
@@ -169,21 +141,20 @@ export default class OverviewMaStore {
         }
         const detailInfo = data
             .map(d => {
-                const { type, status, desc } = d
+                const { nodetype, servicetype, status, desc } = d
                 const item = {
-                    type,
+                    servicetype,
                     name:
-                        type !== 'disk'
-                            ? nameDict[type] || type
-                            : `${nameDict[type]}(${desc})`,
+                        servicetype !== 'disk'
+                            ? nameDict[servicetype] || servicetype
+                            : `${nameDict[servicetype]}(${desc})`,
                     status,
                     desc,
-                    id: `${type}-${desc}`,
+                    key: `${nodetype}-${servicetype}-${desc}`,
                 }
                 return item
             })
             .sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type))
-
         return detailInfo
     }
 
@@ -192,108 +163,68 @@ export default class OverviewMaStore {
             this.deviceData = []
             return
         }
-
-        // ============== 补充节点信息 ==============
-        // ============== 获取 Agent和 Probe的补充数据 ==============
-        const getAgentAndProbe = new Promise(resolve => {
-            const { proxy: agent } = this.configData
-            const agentIdArr = agent.map(d => d.id)
-            const result = []
-            sctlStat({
-                type: 'all',
-                tid: agentIdArr.join(','),
-            })
-                .then(statsInfoArr => {
-                    agentIdArr.forEach(agentid => {
-                        const thisStatsInfo = statsInfoArr.filter(
-                            statInfoItem =>
-                                statInfoItem.tid === agentid &&
-                                statInfoItem.result === 'succeed'
-                        )
-                        const detailInfo = this.calcualteDetailInfo(
-                            thisStatsInfo
-                        )
-                        this.useDeviceData
-                            .filter(
-                                d =>
-                                    (d.type === 'probe' &&
-                                        d.agentid === `agent-${agentid}`) ||
-                                    (d.type === 'agent' &&
-                                        d.id === `agent-${agentid}`)
-                            )
-                            .forEach(propeItem => {
-                                result.push({
-                                    ...propeItem,
-                                    detailInfo,
-                                })
-                            })
-                    })
-                    resolve(result)
-                })
-                .catch(err => {
-                    Promise.reject(err)
-                })
-            // .catch(() => {
-            //     resolve(this.useDeviceData)
-            // })
+        const getDevice = sctlStat({
+            op: 'status',
+            servicetype: 'basic',
+            nodetype: 'all',
         })
 
-        // ============== 获取本地服务器的节点详信息 ==============
-        const item = {
-            name: '服务器',
-            address: window.location.host,
-            status: '正常',
-            id: 'server-3',
-            type: 'server',
-            detailInfo: {},
-            tid: 0,
-        }
-        const getServer = new Promise(resolve => {
-            sctlStat({
-                type: 'all',
-            })
-                .then(statsInfoArr => {
-                    item.detailInfo = this.calcualteDetailInfo(statsInfoArr)
-                    resolve(item)
-                })
-                .catch(err => {
-                    Promise.reject(err)
-                })
-            // .catch(() => {
-            //     resolve(item)
-            // })
+        const getStatus = sctlStat({
+            op: 'status',
+            servicetype: 'all',
+            nodetype: 'all',
         })
-        Promise.all([getAgentAndProbe, getServer])
-            .then(res => {
-                this.deviceData = [...res[0], res[1]]
+
+        Promise.all([getDevice, getStatus])
+            .then(arr => {
+                const [deviceData, statusData] = arr
+                deviceData.forEach(deviceItem => {
+                    const { nodetype, id } = deviceItem
+                    const detailInfoArr =
+                        nodetype === 'server'
+                            ? statusData.filter(
+                                  statusItem => statusItem.nodetype === 'server'
+                              )
+                            : statusData.filter(
+                                  statusItem =>
+                                      statusItem.nodetype === nodetype &&
+                                      statusItem.id === id
+                              )
+                    deviceItem.detailInfo = this.calcualteDetailInfo(
+                        detailInfoArr
+                    )
+                    deviceItem.key = `${nodetype}-${id}`
+                })
+                this.deviceData = deviceData
             })
             .catch(() => {
-                this.deviceData = [...this.useDeviceData, item]
+                this.deviceData = []
             })
     }
 
-    @action.bound changeDeviceData(deviceId, deviceStatus) {
-        const newDeviceData = [...this.deviceData]
-        newDeviceData.forEach(deviceItem => {
-            if (deviceItem.id === deviceId) {
-                deviceItem.status = deviceStatus
-            }
-        })
-        this.deviceData = newDeviceData
-    }
-
-    @action.bound changeDeviceDetailData(deviceId, detailId, detailValue) {
+    @action.bound changeDeviceDetailData(deviceId, servicetype, detailValue) {
         const newDeviceData = [...this.deviceData]
         newDeviceData.forEach(deviceItem => {
             if (deviceItem.id === deviceId) {
                 deviceItem.detailInfo.forEach(detailItem => {
-                    if (detailItem.id === detailId) {
+                    if (detailItem.servicetype === servicetype) {
                         detailItem.status = detailValue
                     }
                 })
             }
         })
         this.deviceData = newDeviceData
+    }
+
+    @action.bound changeDeviceStatus(deviceKey, status) {
+        this.deviceData.forEach((deviceItem, i) => {
+            if (deviceItem.key === deviceKey) {
+                this.deviceData[i] = {
+                    ...deviceItem,
+                    status,
+                }
+            }
+        })
     }
 
     // ============== 事件规则数据 ==============

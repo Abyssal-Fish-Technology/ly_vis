@@ -41,7 +41,7 @@ const deviceIcon = {
         icon: <DeploymentUnitOutlined />,
     },
     server: {
-        name: 'Server',
+        name: '管理节点',
         icon: <DatabaseOutlined />,
     },
 }
@@ -99,22 +99,21 @@ function ConfigDevice({ deviceData }) {
         if (isActivate) {
             const arr = []
             deviceData
-                .filter(d => d.type === 'probe')
+                .filter(d => d.nodetype === 'probe')
                 .forEach(d => {
                     arr.push({
-                        source: d.id,
-                        target: d.agentid,
+                        source: d.key,
+                        target: `agent-${d['relate-agent']}`,
                         value: 1,
                     })
                 })
 
-            const serverData = deviceData.filter(d => d.type === 'server')[0]
             deviceData
-                .filter(d => d.type === 'agent')
+                .filter(d => d.nodetype === 'agent')
                 .forEach(d => {
                     arr.push({
-                        source: d.id,
-                        target: serverData.id,
+                        source: d.key,
+                        target: `server-${d['relate-server']}`,
                         value: 1,
                     })
                 })
@@ -189,35 +188,25 @@ function ConfigDevice({ deviceData }) {
                 </BasicCustomChart>
                 <div className='device-graph-space device-graph-probe'>
                     {deviceData
-                        .filter(d => d.type === 'probe')
+                        .filter(d => d.nodetype === 'probe')
                         .map(d => {
-                            return <DeviceItem key={d.id} data={d} />
+                            return <DeviceItem key={d.key} data={d} />
                         })}
                 </div>
                 <div className='device-graph-space device-graph-agent'>
                     {deviceData
-                        .filter(d => d.type === 'agent')
+                        .filter(d => d.nodetype === 'agent')
                         .map(d => {
-                            return <DeviceItem key={d.id} data={d} />
+                            return <DeviceItem key={d.key} data={d} />
                         })}
                 </div>
                 <div className='device-graph-space device-graph-server'>
                     {deviceData
-                        .filter(d => d.type === 'server')
+                        .filter(d => d.nodetype === 'server')
                         .map(d => {
-                            return <DeviceItem key={d.id} data={d} />
+                            return <DeviceItem key={d.key} data={d} />
                         })}
                 </div>
-                {/* {nodes.map(d => {
-                    return (
-                        <DeviceItem
-                            key={d.id}
-                            css={{
-                                transform: `translate(${d.x0}px, ${d.y0}px)`,
-                            }}
-                        />
-                    )
-                })} */}
             </div>
         </Section>
     )
@@ -230,26 +219,28 @@ const DeviceItem = withAuth(
     inject(stores => ({
         changeData: stores.configStore.changeData,
         changeDeviceDetailData: stores.overviewMaStore.changeDeviceDetailData,
+        changeDeviceStatus: stores.overviewMaStore.changeDeviceStatus,
     }))(function DeviceItem({
         css,
         data,
         changeData,
+        changeDeviceStatus,
         changeDeviceDetailData,
         userAuth = {},
     }) {
         const { admin_auth = false } = useMemo(() => userAuth, [userAuth])
-        const { name, status, id, type, detailInfo, tid, realId } = data
+        const { name, status, id, key, nodetype, detailInfo } = data
         const [loadingObj, setloadingObj] = useState(
             detailInfo.reduce((obj, d) => {
-                obj[d.id] = false
+                obj[d.key] = false
                 return obj
             }, {})
         )
 
-        function changeLoading(key, isloading) {
+        function changeLoading(loadkey, isloading) {
             const newObj = {
                 ...loadingObj,
-                [key]: isloading,
+                [loadkey]: isloading,
             }
             setloadingObj(newObj)
         }
@@ -269,46 +260,49 @@ const DeviceItem = withAuth(
 
         return (
             <div
-                className={`device-item ${status === '正常' ? '' : 'disabled'}`}
+                className={`device-item ${
+                    status === 'active' ? '' : 'disabled'
+                }`}
                 style={{ ...css }}
-                id={id}
+                id={key}
             >
-                {/* <SettingOutlined className='device-item-setting' /> */}
                 <div className='device-item-icon'>
-                    {deviceIcon[type].icon}
+                    {deviceIcon[nodetype].icon}
                     <span>
                         {name}
-                        {type !== 'server' && (
+                        {nodetype !== 'server' && (
                             <Switch
                                 disabled={!admin_auth}
                                 size='small'
                                 checkedChildren='启用'
                                 unCheckedChildren='禁用'
-                                checked={status === '正常'}
+                                checked={status === 'active'}
                                 loading={loading}
                                 onChange={isDisabled => {
+                                    const { api } = callback[nodetype]
                                     setloading(true)
-                                    callback[type]
-                                        .api({
-                                            op: 'mod',
-                                            id: realId,
-                                            disabled: isDisabled ? 'N' : 'Y',
-                                        })
-                                        .then(res => {
-                                            if (res === '[{executed}]') {
-                                                setloading(false)
-                                                callback[type]
-                                                    .api({
-                                                        op: 'get',
-                                                    })
-                                                    .then(res2 => {
-                                                        changeData({
-                                                            [callback[type]
-                                                                .type]: res2,
-                                                        })
-                                                    })
-                                            }
-                                        })
+                                    api({
+                                        op: 'mod',
+                                        id,
+                                        disabled: isDisabled ? 'N' : 'Y',
+                                    }).then(res => {
+                                        if (res === '[{executed}]') {
+                                            setloading(false)
+                                            api({
+                                                op: 'get',
+                                            }).then(res2 => {
+                                                changeData({
+                                                    [nodetype]: res2,
+                                                })
+                                                changeDeviceStatus(
+                                                    key,
+                                                    isDisabled
+                                                        ? 'active'
+                                                        : 'inactive'
+                                                )
+                                            })
+                                        }
+                                    })
                                 }}
                             />
                         )}
@@ -316,16 +310,24 @@ const DeviceItem = withAuth(
                 </div>
                 <div className='device-item-info'>
                     {detailInfo.map(d => {
+                        const {
+                            servicetype,
+                            status: serviceStatus,
+                            key: serviceKey,
+                        } = d
                         return (
-                            <span key={d.id} className='device-item-info-item'>
+                            <span
+                                key={serviceKey}
+                                className='device-item-info-item'
+                            >
                                 <span className='device-item-info-label'>
                                     {d.name}:
                                 </span>
                                 <span className='device-item-info-value'>
-                                    {d.type === 'disk' && d.status}
-                                    {d.type === 'http' && (
+                                    {servicetype === 'disk' && serviceStatus}
+                                    {servicetype === 'http' && (
                                         <div className='device-item-restart'>
-                                            {d.status === 'active'
+                                            {serviceStatus === 'active'
                                                 ? '开启中'
                                                 : '已关闭'}
                                             <Button
@@ -333,52 +335,42 @@ const DeviceItem = withAuth(
                                                 ghost
                                                 size='small'
                                                 icon={<ReloadOutlined />}
-                                                loading={loadingObj[d.id]}
+                                                loading={loadingObj[serviceKey]}
                                                 onClick={() => {
-                                                    changeLoading(d.id, true)
+                                                    changeLoading(
+                                                        serviceKey,
+                                                        true
+                                                    )
                                                     sctlRestart({
-                                                        type: 'http',
-                                                        tid,
+                                                        servicetype,
+                                                        nodetype,
+                                                        id,
                                                     })
                                                     RequestStore.cancel()
                                                     setTimeout(() => {
                                                         changeLoading(
-                                                            d.id,
+                                                            serviceKey,
                                                             false
                                                         )
                                                         message.success(
                                                             '重启成功, 请在2分钟后刷新页面!'
                                                         )
                                                     }, 1000)
-                                                    // const test = setInterval(() => {
-                                                    //     sctlStat({
-                                                    //         type: 'http',
-                                                    //         tid,
-                                                    //     }).then(res => {
-                                                    //         console.log(res)
-                                                    //         clearInterval(test)
-                                                    //         overviewMaStore.changeDeviceDetailData(
-                                                    //             id,
-                                                    //             d.id,
-                                                    //             res[0].status
-                                                    //         )
-                                                    //         message.success(
-                                                    //             '重启成功'
-                                                    //         )
-                                                    //     })
-                                                    // }, 500)
                                                 }}
                                             />
                                         </div>
                                     )}
-                                    {!['disk', 'http'].includes(d.type) && (
+                                    {!['disk', 'http'].includes(
+                                        servicetype
+                                    ) && (
                                         <Switch
                                             disabled={!admin_auth}
                                             onChange={turnOn => {
-                                                changeLoading(d.id, true)
+                                                changeLoading(serviceKey, true)
                                                 sctlStart({
-                                                    type: d.type,
-                                                    tid,
+                                                    nodetype,
+                                                    servicetype,
+                                                    id,
                                                     op: turnOn
                                                         ? 'start'
                                                         : 'stop',
@@ -391,7 +383,7 @@ const DeviceItem = withAuth(
                                                         ) {
                                                             changeDeviceDetailData(
                                                                 id,
-                                                                d.id,
+                                                                servicetype,
                                                                 res[0].status
                                                             )
                                                             message.success(
@@ -405,12 +397,12 @@ const DeviceItem = withAuth(
                                                     })
                                                     .finally(() => {
                                                         changeLoading(
-                                                            d.id,
+                                                            serviceKey,
                                                             false
                                                         )
                                                     })
                                             }}
-                                            loading={loadingObj[d.id]}
+                                            loading={loadingObj[serviceKey]}
                                             size='small'
                                             checked={d.status === 'active'}
                                             checkedChildren='开'

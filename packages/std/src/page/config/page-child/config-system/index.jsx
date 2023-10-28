@@ -123,7 +123,8 @@ const deviceColumns = [
         sorter: valueSort('agentid'),
         render: d => {
             const { proxy } = globalStore
-            const thisName = proxy.find(p => p.id === d).name
+            const relaAgent = proxy.find(p => p.id === d)
+            const thisName = relaAgent ? relaAgent.name : d
             return thisName
         },
     },
