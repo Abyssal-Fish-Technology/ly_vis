@@ -122,13 +122,6 @@ export default class OverviewMaStore {
         return configCard
     }
 
-    nameDict = {
-        probe: '采集器',
-        cap: '接收器',
-        disk: '磁盘',
-        fsd: '守护进程',
-    }
-
     @observable deviceData = []
 
     calcualteDetailInfo = data => {
@@ -140,6 +133,7 @@ export default class OverviewMaStore {
             fsd: '守护进程',
         }
         const detailInfo = data
+            .filter(d => d.servicetype !== 'fsd')
             .map(d => {
                 const { nodetype, servicetype, status, desc } = d
                 const item = {
