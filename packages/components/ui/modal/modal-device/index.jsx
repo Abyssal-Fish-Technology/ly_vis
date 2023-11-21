@@ -35,22 +35,27 @@ const formArr = [
         key='pcap_level'
         label='数据包留存级别'
         inputProps={{
+            defaultValue: 1,
             options: [
                 {
                     key: 0,
-                    value: '不留存',
+                    value: 0,
+                    label: '不留存',
                 },
                 {
                     key: 1,
-                    value: '只留存威胁',
+                    value: 1,
+                    label: '只留存威胁',
                 },
                 {
                     key: 2,
-                    value: '威胁和资产',
+                    value: 2,
+                    label: '威胁和资产',
                 },
                 {
                     key: 3,
-                    value: '所有会话一对',
+                    value: 3,
+                    label: '所有会话一对',
                 },
             ],
         }}
