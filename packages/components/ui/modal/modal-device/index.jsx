@@ -27,9 +27,19 @@ const formArr = [
             },
         ]}
     />,
+    <IpInput name='ip' key='ip' label='采集节点IP' />,
     <ProxySelect name='agentid' key='agentid' label='分析节点' />,
-    <IpInput name='ip' key='ip' label='IP' />,
-    <PortInput name='port' key='port' label='端口' />,
+    <PortInput
+        name='port'
+        key='port'
+        label='分析节点端口'
+        rules={[
+            {
+                required: true,
+                message: '请输入分析节点端口！',
+            },
+        ]}
+    />,
     <DefaultFormItemSelect
         name='pcap_level'
         key='pcap_level'

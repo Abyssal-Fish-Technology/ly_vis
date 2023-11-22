@@ -118,6 +118,11 @@ const deviceColumns = [
         sorter: valueSort('name'),
     },
     {
+        title: '采集节点IP',
+        dataIndex: 'ip',
+        sorter: valueSort('ip'),
+    },
+    {
         title: '分析节点',
         dataIndex: 'agentid',
         sorter: valueSort('agentid'),
@@ -129,12 +134,7 @@ const deviceColumns = [
         },
     },
     {
-        title: 'IP',
-        dataIndex: 'ip',
-        sorter: valueSort('ip'),
-    },
-    {
-        title: '端口',
+        title: '分析节点端口',
         dataIndex: 'port',
         width: 80,
         render: t => (
